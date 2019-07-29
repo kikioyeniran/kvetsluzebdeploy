@@ -1,0 +1,192 @@
+extends layout
+
+block content
+    .content-inner.chart-cont
+      // ***** CONTENT *****
+      #card-prof.row.mt-2
+        .col-md-3
+          .card.hovercard
+            .cardheader
+            .avatar
+              img.img-fluid(alt="" src="/admin/img/avatar-1.jpg")
+            .info
+              .title
+                a(target="_blank" href="#") Steena Ben
+              .desc steena@gmail.com
+              hr
+            nav.nav.text-center.prof-nav
+              ul.list-unstyled
+                li
+                  a(href="#") Profile
+                li
+                  a(href="#") Inbox
+                li
+                  a(href="#") Setting
+                li
+                  a(href="login.html") Logout
+            .bottom
+              a.btn.btn-info.btn-twitter.btn-sm(href="#")
+                i.fa.fa-twitter
+              a.btn.btn-danger.btn-sm(rel="publisher" href="#")
+                i.fa.fa-google-plus
+              a.btn.btn-primary.btn-sm(rel="publisher" href="#")
+                i.fa.fa-facebook
+        .col-md-9
+          .card.hovercard
+            .tab(role="tabpanel")
+              ul.nav.nav-tabs(role="tablist")
+                li.nav-item
+                  a.nav-link.active(href="#profile" role="tab" data-toggle="tab")
+                    span
+                      i.fa.fa-user
+                    |  Profile
+                li.nav-item
+                  a.nav-link(href="#buzz" role="tab" data-toggle="tab")
+                    span
+                      i.fa.fa-inbox
+                    |  Inbox
+                li.nav-item
+                  a.nav-link(href="#references" role="tab" data-toggle="tab")
+                    span
+                      i.fa.fa-cog
+                    |  Setting
+              // Tab panes
+              .tab-content.tabs
+                #profile.tab-pane.fade.show.active(role="tabpanel")
+                  p
+                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit.
+                  #report4.row
+                    .col-md-4
+                      .card.text-center.social-bottom.sb-fb
+                        i.fa.fa-facebook
+                        div 3250 +
+                        p Likes
+                    .col-md-4
+                      .card.text-center.social-bottom.sb-tw
+                        i.fa.fa-twitter
+                        div 2345 +
+                        p Following
+                    .col-md-4
+                      .card.text-center.social-bottom.sb-gp
+                        i.fa.fa-google-plus
+                        div 1253 +
+                        p Followers
+                  .row.mt-3
+                    h5.col-12.mb-2 User Info
+                    .col-6
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-envelope  E-mail:
+                        |     steena@gmail.com
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-phone  Phone:
+                        |    +91 1233 45 5678
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-map  City:
+                        |     New York
+                    .col-6
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-globe  Country:
+                        |     steena@gmail.com
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-map-marker  Address:
+                        |    25, Dist town Street, Logn California, US
+                      .form-group
+                        strong.mr-5
+                          i.fa.fa-globe  Website:
+                        |     www.Businessbox.com
+                #buzz.tab-pane.fade(role="tabpanel")
+                  .panel.panel-default.widget
+                    .panel-heading
+                      h3.panel-title
+                        i.fa.fa-comment
+                        |  Messages
+                    .panel-body
+                      ul.list-group
+                        li.list-group-item
+                          .row
+                            .col-md-2
+                              img.img-circle.img-fluid(src="/admin/img/avatar-2.jpg" alt="")
+                            .col-md-10
+                              div
+                                a(href="#")
+                                  | Congratulations
+                                .mic-info
+                                  | By:
+                                  a(href="#") Check My Athletics
+                                  |  on 12 Jun 2018
+                              .comment-text
+                                | We would like to congratulate John on his achievement...
+                              a.btn.btn-sm.btn-hover.btn-primary(href="#")
+                                span.fa.fa-share-alt(style="padding-right:3px;")
+                              a.btn.btn-sm.btn-hover.btn-danger(href="#")
+                                span.fa.fa-remove(style="padding-right:3px;")
+                        li.list-group-item
+                          .row
+                            .col-md-2
+                              img.img-circle.img-fluid(src="/admin/img/avatar-3.jpg" alt="")
+                            .col-md-10
+                              div
+                                a(href="#") Great Job
+                                .mic-info
+                                  | By:
+                                  a(href="#") Coacher
+                                  |  on 11 May 2018
+                              .comment-text
+                                | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                | euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                        li.list-group-item
+                          .row
+                            .col-md-2
+                              img.img-circle.img-fluid(src="/admin/img/avatar-2.jpg" alt="")
+                            .col-md-10
+                              div
+                                a(href="#") Great Job
+                                .mic-info
+                                  | By:
+                                  a(href="#") Coacher
+                                  |  on 11 May 2018
+                              .comment-text
+                                | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                | euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                #references.tab-pane.fade(role="tabpanel")
+                  .row.mx-2
+                    .col-md-12.panel-heading
+                      h3.panel-title
+                        i.fa.fa-comment
+                        |  Edit Info
+                      br
+                    .col-md-6
+                      .form-group.row
+                        label.col-form-label(for="example-text-input" style="width: 85px;") Name
+                        .col-9
+                          input#example-text-input.form-control(type="text" value="Steena Ben")
+                      .form-group.row
+                        label.col-form-label(for="example-email-input" style="width: 85px;") Email
+                        .col-9
+                          input#example-email-input.form-control(type="email" value="steena@gmail.com")
+                      .form-group.row
+                        label.col-form-label(for="example-url-input" style="width: 85px;") URL
+                        .col-9
+                          input#example-url-input.form-control(type="url" value="www.Businessbox.com")
+                    .col-md-6
+                      .form-group.row
+                        label.col-form-label(for="example-text-input" style="width: 85px;") Department
+                        .col-9
+                          input#example-text-input.form-control(type="text" value="Programming")
+                      .form-group.row
+                        label.col-form-label(for="example-date-input" style="width: 85px;") Hire Date
+                        .col-9
+                          input#example-date-input.form-control(type="date" value="2018-08-19")
+                      .form-group.row
+                        label.col-form-label(for="example-tel-input" style="width: 85px;") Telephone
+                        .col-9
+                          input#example-tel-input.form-control(type="tel" value="+91-(555)-555-5555")
+
+
+
+

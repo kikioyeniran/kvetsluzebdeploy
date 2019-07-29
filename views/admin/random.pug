@@ -1,0 +1,295 @@
+.content-inner
+      // ***** REPORT-1 *****
+      #report1.row
+        .col-sm-3
+          .card
+            .card-block
+              .text-left.report1-cont
+                h2.font-light.m-b-0
+                  i.ti-arrow-up.text-success
+                  |  $9,220
+                span.text-muted Todays Income
+              span.text-success 80%
+              .progress
+                .progress-bar.bg-success(role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+              p
+                small Last month 10% Growth
+        .col-sm-3
+          .card
+            .card-block
+              .text-left.report1-cont
+                h2.font-light.m-b-0
+                  i.ti-arrow-up.text-danger
+                  |  $5,530
+                span.text-muted Gross Profit
+              span.text-danger 43%
+              .progress
+                .progress-bar.bg-danger(role="progressbar" style="width: 43%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+              p
+                small Last month 10% Growth
+        .col-sm-3
+          .card
+            .card-block
+              .text-left.report1-cont
+                h2.font-light.m-b-0
+                  i.ti-arrow-up.text-warning
+                  |  $3,620
+                span.text-muted Interest Expenses
+              span.text-warning 53%
+              .progress
+                .progress-bar.bg-warning(role="progressbar" style="width: 53%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+              p
+                small Last month 10% Growth
+        .col-sm-3
+          .card
+            .card-block
+              .text-left.report1-cont
+                h2.font-light.m-b-0
+                  i.ti-arrow-up.text-info
+                  |  $82,600
+                span.text-muted Net Profit
+              span.text-info 70%
+              .progress
+                .progress-bar.bg-info(role="progressbar" style="width: 70%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+              p
+                small Last month 10% Growth
+      // ***** REPORT-2 *****
+      #report2.row
+        .col-md-4
+          .card.card-c1
+            .card-header.card-chart(data-background-color="green")
+              canvas#myChart1.ct-chart(height="250")
+            .card-content
+              h4.title Daily Sales
+              p.category
+                span.text-success
+                  i.fa.fa-long-arrow-up
+                  |  55%
+                |  increase in today sales.
+            .card-footer
+              .stats
+                i.fa.fa-clock-o
+                |  updated 4 minutes ago
+        .col-md-4
+          .card.card-c1
+            .card-header.card-chart(data-background-color="orange")
+              canvas#myChart2.ct-chart(height="250")
+            .card-content
+              h4.title Email Subscriptions
+              p.category Last Campaign Performance
+            .card-footer
+              .stats
+                i.fa.fa-clock-o
+                |  campaign sent 2 days ago
+        .col-md-4
+          .card.card-c1
+            .card-header.card-chart(data-background-color="red")
+              canvas#myChart3.ct-chart(height="250")
+            .card-content
+              h4.title Completed Tasks
+              p.category Last Campaign Performance
+            .card-footer
+              .stats
+                i.fa.fa-clock-o
+                |  campaign sent 2 days ago
+      // ***** REPORT-3 *****
+      #report3.row
+        .col-md-8
+          .card.card-c2
+            table.table.table-hover
+              thead
+                .dropdown.pull-right.menu-sett-card
+                  a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                    i.fa.fa-ellipsis-v.men
+                  ul.dropdown-menu(aria-labelledby="notifications")
+                    li
+                      a.dropdown-item.nav-link(rel="nofollow" href="#") Edit
+                    li
+                      a.dropdown-item.nav-link(rel="nofollow" href="#") FAQ
+                    li
+                      a.dropdown-item.nav-link(rel="nofollow" href="#") Support
+                tr
+                  th Case Study
+                  th Target Date
+                  th
+                    | Progress
+                    // <i class="fa fa-ellipsis-v pull-right" ></i>
+              tbody
+                tr
+                  td Tech Wireframes
+                  td 23/03/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 75%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Mobile Boz
+                  td 02/06/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 100%; height:10px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Reskel Soft
+                  td 11/02/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 95%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Desan Shop
+                  td 05/03/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 75%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Effel Soft
+                  td 24/02/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 100%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Tech Box
+                  td 01/09/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 55%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Lesto Firm
+                  td 15/12/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 85%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Technoborn
+                  td 08/08/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 45%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+                tr
+                  td Redor Books
+                  td 18/08/2018
+                  td
+                    .progress
+                      .progress-bar.bg-info(role="progressbar" style="width: 55%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100")
+        .col-md-4
+          .card.card-c2
+            .dropdown.pull-right.menu-sett-card
+              a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                i.fa.fa-ellipsis-v.men
+              ul.dropdown-menu(aria-labelledby="notifications")
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") Edit
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") FAQ
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") Support
+            .header
+              h4.title Email Statistics
+              p.category Last Campaign Performance
+            .content
+              canvas#polar-chart.ct-chart(height="250")
+              // <canvas class="ct-chart" id="myChart4" height="250"></canvas>
+              .footer
+                .legend
+                  i.fa.fa-circle.text-info
+                  |  Open
+                  i.fa.fa-circle.text-danger
+                  |  Bounce
+                  i.fa.fa-circle.text-warning
+                  |  Unsubscribe
+                hr
+                .stats
+                  i.fa.fa-clock-o
+                  |  Campaign sent 2 days ago
+      // ***** REPORT-4 *****
+      #report4.row
+        #card-1.col-md-4
+          .card.card-inverse.card-info
+            img.card-img-top(src="img/card/c-1.jpg")
+            .card-block
+              h4.card-title Clean Tech Box
+              .card-text
+                | Lorem Ipsum has been the industry's standard.
+            .card-footer
+              small Last updated 3 mins ago
+              button.btn.btn-info.float-right.btn-sm Follow
+        #card-2.col-md-4.mt-0
+          .card.hovercard
+            .cardheader
+            .avatar
+              img.img-fluid(alt="" src="img/avatar-1.jpg")
+            .info
+              .title
+                a(target="_blank" href="#") Steena Ben
+              .desc Passionate designer
+              .desc Curious developer
+              .desc Tech geek
+            .bottom
+              a.btn.btn-primary.btn-twitter.btn-sm(href="https://twitter.com/webmaniac")
+                i.fa.fa-twitter
+              a.btn.btn-danger.btn-sm(rel="publisher" href="https://plus.google.com/+ahmshahnuralam")
+                i.fa.fa-google-plus
+              a.btn.btn-primary.btn-sm(rel="publisher" href="https://plus.google.com/shahnuralam")
+                i.fa.fa-facebook
+              a.btn.btn-warning.btn-sm(rel="publisher" href="https://plus.google.com/shahnuralam")
+                i.fa.fa-behance
+        .col-md-4
+          .card.card-c2
+            .dropdown.pull-right.menu-sett-card
+              a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                i.fa.fa-ellipsis-v.men
+              ul.dropdown-menu(aria-labelledby="notifications")
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") Edit
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") FAQ
+                li
+                  a.dropdown-item.nav-link(rel="nofollow" href="#") Support
+            .header
+              h4.title Newsfeed
+              p.category Latest News Update
+              hr
+            .content.newsf-list
+              ul.list-unstyled
+                li.border.border-primary
+                  a.d-flex(rel="nofollow " href="#")
+                    .news-f-img
+                      img.img-fluid.rounded-circle(src="img/avatar-2.jpg" alt="...")
+                    .msg-body
+                      h3.h5.msg-nav-h3 New Innovation world
+                      small Tech soft is great innovation for...
+                li.border.border-success
+                  a.d-flex(rel="nofollow" href="#")
+                    .news-f-img
+                      img.img-fluid.rounded-circle(src="img/avatar-3.jpg" alt="...")
+                    .msg-body
+                      h3.h5.msg-nav-h3 Modified hand-cart steering
+                      small The idea is to incorporate easy...
+                li.border.border-info
+                  a.d-flex(rel="nofollow" href="#")
+                    .news-f-img
+                      img.img-fluid.rounded-circle(src="img/avatar-4.jpg" alt="...")
+                    .msg-body
+                      h3.h5.msg-nav-h3 Low cost Modern printer
+                      small A dot matrix printer modified at...
+      // ***** FOOTER *****
+      #report4.row
+        .col-md-3
+          .card.text-center.social-bottom.sb-fb
+            i.fa.fa-facebook
+            div 3250 +
+            p Likes
+        .col-md-3
+          .card.text-center.social-bottom.sb-tw
+            i.fa.fa-twitter
+            div 2345 +
+            p Following
+        .col-md-3
+          .card.text-center.social-bottom.sb-gp
+            i.fa.fa-google-plus
+            div 1253 +
+            p Followers
+        .col-md-3
+          .card.text-center.social-bottom.sb-in
+            i.fa.fa-instagram
+            div 4524 +
+            p Likes
+

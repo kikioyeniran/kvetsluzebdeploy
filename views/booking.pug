@@ -1,0 +1,171 @@
+extends layout
+
+block content
+    .body2
+        .main
+            .container2
+                h2 Book A Cleaner
+                form#signup-form.signup-form(method='POST', action='/client/booking')
+                    h3
+                        span.title_text Account Infomation
+                    fieldset
+                        .fieldset-content
+                            .form-group
+                                label.form-label(for='username') Username
+                                input#username(type='text' name='username' placeholder='User Name')
+                            .form-group
+                                label.form-label(for='email') Email
+                                input#email(type='email' name='email' placeholder='Your Email')
+                            .form-group.form-password
+                                label.form-label(for='password') Password
+                                input#password(type='password' name='password' data-indicator='pwindicator')
+                                #pwindicator
+                                    .bar-strength
+                                        .bar-process
+                                            .bar
+                                    .label
+                            .form-group.form-password
+                                label.form-label(for='password2') Confirm Password
+                                input#password2(type='password' name='password2' data-indicator='pwindicator')
+                                #pwindicator
+                                    .bar-strength
+                                        .bar-process
+                                            .bar
+                                    .label
+                        .fieldset-footer
+                                span Step 1 of 3
+                    h3
+                        span.title_text Customise your Clean
+                    fieldset
+                        .fieldset-content
+                            .form-group
+                                label.form-label(for='post_code') Enter Your Post Code
+                                input#full_name(type='text' name='postcode' placeholder='Post Code')
+                            hr
+                            .form-group
+                                label.form-label(for='bedrooms') How many bedrooms?
+                                input#bedrooms(type='number' name='bedrooms' placeholder='1' min='0' max='10')
+                            hr
+                            .form-group
+                                label.form-label(for='bathrooms') How many bathrooms?
+                                input#bedrooms(type='number' name='bathrooms' placeholder='1' min='0' max='10')
+                            hr
+                            .form-group
+                                label.form-label(for='extra_tasks') Extra Tasks?
+                                select#keep-order(multiple="multiple" name="extra_tasks")
+                                    option(value="ironing") Ironing
+                                    option(value="inside_windows") Inside Windows
+                                    option(value="inside_oven") Inside Oven
+                                    option(value="laundry") Laundry
+                                    option(value="inside_fridge") Inside Fridge
+                            hr
+                            .form-radio
+                                label.form-label(for='hours') Number of hours for cleaning
+                                .form-radio-item
+                                    input#two(type='radio' name='hours' value='2.0' checked='checked')
+                                    label(for='two') 2.0
+                                    input#twoplus(type='radio' name='hours' value='2.5')
+                                    label(for='twoplus') 2.5
+                                    input#three(type='radio' name='hours' value='3.0')
+                                    label(for='three') 3.0
+                                    input#threeplus(type='radio' name='hours' value='3.5')
+                                    label(for='threeplus') 3.5
+                                    input#more(type='radio' name='hours' value='more')
+                                    label(for='more') More
+                            #textboxes.form-radio
+                                label.form-label(for='more_hours') Select the number of hours
+                                .form-radio-item
+                                    input#four(type='radio' name='more_hours' value='4.0' checked='checked')
+                                    label(for='four') 4.0
+                                    input#fourplus(type='radio' name='more_hours' value='4.5')
+                                    label(for='fourplus') 4.5
+                                    input#five(type='radio' name='more_hours' value='5.0')
+                                    label(for='five') 5.0
+                                    input#fiveplus(type='radio' name='more_hours' value='5.5')
+                                    label(for='fiveplus') 5.5
+                                    input#six(type='radio' name='more_hours' value='6.0' checked='checked')
+                                    label(for='six') 6.0
+                                    input#sixplus(type='radio' name='more_hours' value='6.5')
+                                    label(for='sixplus') 6.5
+                            hr
+                            .form-group
+                                p *You must provide all cleaning products and items for your cleaner
+                            //- .form-select
+                            //-     label.form-label(for='country') Country
+                            //-     select#country(name='country')
+                            //-         option(value='') Country
+                            //-         option(value='Australia') Australia
+                            //-         option(value='USA') America
+                            hr
+                            .form-textarea
+                                label.form-label(for='priority') Where should your cleaner prioritise?
+                                textarea#priority(name='priority' placeholder='Example, kitchen, inside-oven...')
+                            .fieldset-footer
+                            span Step 2 of 3
+                    h3
+                        span.title_text Timing and Address
+                    fieldset
+                        .fieldset-content
+                            .form-radio
+                                label(for='access_type') How will the Cleaner access the apartment?
+                                .form-radio-flex
+                                    input#spare_key(type='radio' name='access_type' value='spare_key' checked='checked')
+                                    label(for='spare_key')
+                                        | Spare Key
+                                    input#someone_home(type='radio' name='access_type' value='someone_home')
+                                    label(for='someone_home')
+                                        | Someone at home
+                                    input#concierge(type='radio' name='access_type' value='concierge')
+                                    label(for='concierge')
+                                        | Concierge
+                                    input#key_safe(type='radio' name='access_type' value='key_safe')
+                                    label(for='key_safe')
+                                        | Key safe
+                                    input#key_hidden(type='radio' name='access_type' value='key_hidden')
+                                    label(for='key_hidden')
+                                        | Key Hidden
+                            #key_safe_pin.form-group
+                                label.form-label(for='key_safe_pin') Enter Your Pin
+                                input#key_safe_pin(type='text' name='key_safe_pin' placeholder='We will only share this with your cleaner')
+                            #key_hidden_pin.form-group
+                                label.form-label(for='key_hidden_pin') Where is the Key hidden?
+                                input#key_hidden_pin(type='text' name='key_hidden_pin' placeholder='We will only share this with your cleaner')
+                            hr
+                            .form-radio
+                                label.form-label(for='schedule') How often?
+                                .form-radio-item
+                                    input#weekly(type='radio' name='schedule' value='weekly' checked='checked')
+                                    label(for='weekly') Weekly
+                                    input#fortnightly(type='radio' name='schedule' value='fortnightly')
+                                    label(for='fortnightly') Fortnightly
+                                    input#one-off(type='radio' name='schedule' value='one-off')
+                                    label(for='one-off') One-Off
+                                    input#multiple(type='radio' name='schedule' value='multiple')
+                                    label(for='multiple') Multiple
+                            hr
+                            .form-group
+                                label.form-label(for="example-date-input") Seelect Date for first clean
+                                input#example-date-input.form-control(type="date" value="2011-08-19" name="date")
+                            hr
+                            .form-group
+                                label.form-label(for='fullname') Full Name
+                                input#fullname(type='text' name='fullname' placeholder='Full Name')
+                            hr
+                            .form-group
+                                label.form-label(for='mobile_no') Mobile Number
+                                input#mobilenumber(type='text' name='mobilenumber' placeholder='Mobile Number')
+                            hr
+                            .form-textarea
+                                label.form-label(for='address') Address
+                                textarea#address(name='address' placeholder='Please make sure you enter the correct details...')
+                            hr
+                            .form-group
+                                label.form-label(for='city') City
+                                input#city(type='text' name='city' placeholder='Your City')
+                            hr
+                            //- .form-group
+                            //-     label.form-label(for='postcode') Postcode
+                            //-     input#postcode(type='text' name='postcode' placeholder='postcode')
+                        .fieldset-footer
+                                span Step 3 of 3
+                                //- input.btn.btn-primary(type='submit', value='Submit')

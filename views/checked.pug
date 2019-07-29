@@ -1,0 +1,71 @@
+extends layout
+
+block content
+    h1 Conditionally toggling visibility of form fields with Pure CSS(3)
+    p
+      | I was looking for a pure CSS way to hide/show some form elements based on their value.  Turns out it's pretty easy for checkboxes and radios. Basic example:
+    form(action="")
+      fieldset
+        ol
+          li
+            input#requirement.control(type="checkbox")
+            label(for="requirement") Check me
+            fieldset.conditional
+              ol
+                li
+                  label(for="option") Related subfield
+                  input#option(type="text")
+          li
+            input#radio.control(type="radio")
+            label(for="radio") Radio
+            fieldset.conditional
+              ol
+                li
+                  label(for="option") Related subfield
+                  input#option(type="text")
+    p
+      | In the above example, I use the class .control to indicate which fields are the control and .conditional to indicate what will be displayed when the control is checked.  I use sibling selectors (
+      code ~
+      | ) to tie the conditional to the control
+    p You can get creative with IDs to show fields based on certain values only:
+    form(action="")
+      fieldset
+        ol
+          li
+            input#citizen(type="radio" name="residency" value="Citizen")
+            label(for="citizen") Citizen
+          li
+            input#immigrant(type="radio" name="residency" value="Immigrant")
+            label(for="immigrant") Immigrant
+            fieldset.conditional
+              ol
+                li
+                  label(for="country_citizenship") Country of Citizenship
+                  input#country_citizenship(type="text")
+                li
+                  label(for="visa_type") Type of Visa
+                  input#visa_type(type="text")
+    p You can even nest them.
+    form(action="")
+      fieldset
+        ol
+          li
+            input#requirement-2.control(type="checkbox")
+            label(for="requirement-2") Check me
+            fieldset.conditional
+              ol
+                li
+                  label(for="option-2") Related subfield
+                  input#option-2(type="checkbox")
+                  fieldset.conditional
+                    ol
+                      li
+                        label(for="country_citizenship") Country of Citizenship
+                        input#country_citizenship(type="text")
+                      li
+                        label(for="visa_type") Type of Visa
+                        input#visa_type(type="text")
+    p
+      | I haven't thought of a way to make this work with the
+      code .conditional
+      |  in a different part of the form as it relies on an element being either a sibling or parent to be the control.

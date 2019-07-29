@@ -1,0 +1,339 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description' content='')
+    meta(name='author' content='')
+    title Kvet Sluzeb
+    link(rel='shortcut icon' href='/img/favicon.png')
+    // Global Stylesheets
+    link(href='/css/bootstrap/bootstrap.min.css' rel='stylesheet')
+    link(rel='stylesheet' href='/font-awesome-4.7.0/css/font-awesome.min.css')
+    link(rel='stylesheet' href='/css/animate/animate.min.css')
+    link(rel='stylesheet' href='/css/owl-carousel/owl.carousel.min.css')
+    link(rel='stylesheet' href='/css/owl-carousel/owl.theme.default.min.css')
+    link(rel='stylesheet' href='/css/style.css')
+    link(rel='stylesheet' href='/css/form.css')
+    link(rel='stylesheet' href='/css/tempusdominus-bootstrap-4.css')
+    link(rel='stylesheet' href='/css/conditionals.css')
+    link(rel='stylesheet' href='/css/multiform/css/style.css')
+    link(rel='stylesheet' href='/css/multi-select/css/multi-select.css')
+    //link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
+    //Core Style Sheets
+    link(rel='stylesheet' href='/css/about.css')
+    link(rel='stylesheet' href='/admin/css/ui-elements/card.css')
+  //
+    ====================================================
+    HEADER
+    ======================================================
+  header
+    // Top Navbar
+    .top-menubar
+      .topmenu
+        .container
+          .row
+            .col-md-6
+              ul.list-inline.top-contacts
+                li
+                  i.fa.fa-envelope
+                  |  Email:
+                  a(href='#') info@kvetsluzeb.com
+                li
+                  i.fa.fa-phone
+                  |  Hotline: (1) 111 222 33
+            .col-md-6
+              ul.list-inline.top-data
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-facebook
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-twitter
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-google-plus
+                li
+                  a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Login
+                li
+                  a.log-top(href='/cleaner/cleaner_registration')
+                    button.btn.btn-general.btn-green.wow.fadeInUp(role='button') Register As Cleaner
+    // Navbar
+    nav#mainNav.navbar.navbar-expand-lg.navbar-light(data-toggle='affix')
+      .container
+        a.navbar-brand.smooth-scroll(href='/')
+          img(src='/img/mainlogo.png' alt='logo')
+        button.navbar-toggler.navbar-toggler-right(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarResponsive.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            li.nav-item
+              a.nav-link.smooth-scroll(href='/') Home
+            li.nav-item
+              a.nav-link.smooth-scroll(href='/public/about') About
+            li.nav-item
+              a.nav-link.smooth-scroll(href='#') How It Works
+            li.nav-item
+              a.nav-link.smooth-scroll(href='/public/faq') FAQs
+            li
+              i.search.fa.fa-search.search-btn
+              .search-open
+                .input-group.animated.fadeInUp
+                  input.form-control(type='text' placeholder='Search' aria-describedby='basic-addon2')
+                  span#basic-addon2.input-group-addon Go
+            li
+              .top-menubar-nav
+                .topmenu
+                  .container
+                    .row
+                      .col-md-9
+                        ul.list-inline.top-contacts
+                          li
+                            i.fa.fa-envelope
+                            |  Email:
+                            a(href='mailto:info@htmlstream.com') info@kvetsluzeb.com
+                          li
+                            i.fa.fa-phone
+                            |  Hotline: (1) 396 4587 99
+                          li
+                            i.fa.fa-phone
+                            |  Hotline: (1) 396 4587 99
+                      .col-md-3
+                        ul.list-inline.top-data
+                          li
+                            a(href='#' target='_empty')
+                              i.fa.top-social.fa-whatsapp
+                          li
+                            a(href='#' target='_empty')
+                              i.fa.top-social.fa-twitter
+                          li
+                            a(href='#' target='_empty')
+                              i.fa.top-social.fa-google-plus
+                          li
+                            a(href='#' target='_empty')
+                              i.fa.top-social.fa-google-plus
+                          // <li><a href="#"><button class="btn btn-general btn-green wow fadeInUp" role="button">Book A Cleaner Now</button></a></li>
+                          li
+                            a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Register
+                          li
+                            a.log-top(href='#' data-toggle='modal') Loginsss
+  //
+    ====================================================
+    LOGIN OR REGISTER
+    ======================================================
+  section#login
+    #login-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;')
+      .modal-dialog
+        .modal-content
+          .modal-header(align='center')
+            button.close(type='button' data-dismiss='modal' aria-label='Close')
+              span.fa.fa-times(aria-hidden='true')
+          #div-forms
+            form#login-form(method="POST", action="/client/client_login")
+              h3.text-center Login
+              .modal-body
+                label(for='username') Username
+                input#login_username.form-control(type='text' placeholder='Enter username ' required='' name="username")
+                label(for='username') Password
+                input#login_password.form-control(type='password' placeholder='Enter password' required='' name="password")
+                .checkbox
+                  label
+                    input(type='checkbox')
+                    | Remember me
+              .modal-footer.text-center
+                div
+                  button.btn.btn-general.btn-white(type='submit') Login
+                div
+                  button#login_register_btn.btn.btn-link(type='button') Cleaner
+            form#register-form(style='display:none;', method="POST", action="/cleaner/cleaner_login")
+              h3.text-center Cleaner Login
+              .modal-body
+                label(for='username') Username
+                input#register_username.form-control(type='text' placeholder='Enter username' required='' name="username")
+                label(for='register_password') Password
+                input#register_password.form-control(type='password' placeholder='Password' required='' name="password")
+              .modal-footer
+                div
+                  button.btn.btn-general.btn-white(type='submit') Login
+                div
+                  button#register_login_btn.btn.btn-link(type='button') Not a Cleaner
+
+  .container
+            != messages('message', locals)
+            if errors
+                each error, i in errors
+                    div(class="alert alert-danger") #{error.msg}
+  block content
+
+  //
+    ====================================================
+    FOOTER
+    ======================================================
+  footer
+    #footer-s1.footer-s1
+      .footer
+        .container
+          .row
+            // About Us
+            .col-md-3.col-sm-6
+              div
+                img.img-fluid(src='img/mainlogo.png' alt='')
+              ul.list-unstyled.comp-desc-f
+                li
+                  p
+                    | Kvet Sluzeb is a company focused on connecting cleaners to clients who need them. We aim to provide te most comofortable cleaning service Europe has ever seen.
+              br
+            // End About Us
+            // Recent News
+            .col-md-3.col-sm-6
+              .heading-footer
+                h2 Useful Links
+              ul.list-unstyled.link-list
+                li
+                  a(href='about.html') About us
+                  i.fa.fa-angle-right
+                li
+                  a(href='project.html') Project
+                  i.fa.fa-angle-right
+                li
+                  a(href='careers.html') Career
+                  i.fa.fa-angle-right
+                li
+                  a(href='faq.html') FAQ
+                  i.fa.fa-angle-right
+                li
+                  a(href='contact.html') Contact us
+                  i.fa.fa-angle-right
+            // End Recent list
+            // Recent Blog Entries
+            .col-md-3.col-sm-6
+              .heading-footer
+                h2 Recent Post Entries
+              ul.list-unstyled.thumb-list
+                li
+                  .overflow-h
+                    a(href='#') Praesent ut consectetur diam.
+                    small 02 OCT, 2017
+                li
+                  .overflow-h
+                    a(href='#') Maecenas pharetra tellus et fringilla.
+                    small 02 OCT, 2017
+            // End Recent Blog Entries
+            // Latest Tweets
+            .col-md-3.col-sm-6
+              .heading-footer
+                h2 Get In Touch
+              address.address-details-f
+                | 25, Dist town Street, Logn
+                br
+                |                     California, US
+                br
+                |                     Phone: 800 123 3456
+                br
+                |                     Fax: 800 123 3456
+                br
+                |                     Email:
+                a(href='mailto:info@kvetsluzeb.com') info@kvetsluzeb.com
+              ul.list-inline.social-icon-f.top-data
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-facebook
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-twitter
+                li
+                  a(href='#' target='_empty')
+                    i.fa.top-social.fa-google-plus
+            // End Latest Tweets
+        // /container
+    #footer-bottom
+      .container
+        .row
+          .col-md-12
+            #footer-copyrights
+              p
+                | Copyrights &copy; 2019 All Rights Reserved Kvet Sluzeb.
+                a(href='#') Privacy Policy
+                a(href='#') Terms of Services
+    a#back-to-top.btn.btn-sm.btn-green.btn-back-to-top.smooth-scrolls.hidden-sm.hidden-xs(href='#home' title='home' role='button')
+      i.fa.fa-angle-up
+  // Global JavaScript
+  script(src='/js/jquery/jquery.min.js')
+  script(src='/js/popper/popper.min.js')
+  script(src='/js/bootstrap/bootstrap.min.js')
+  script(src='/js/wow/wow.min.js')
+  script(src='/js/owl-carousel/owl.carousel.min.js')
+  script(src='/js/conditional.js')
+  script(src='/js/form-validation.js')
+  //For Multistep Form
+  script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
+  script(src='/js/multiform/vendor/jquery-validation/dist/additional-methods.min.js')
+  script(src='/js/multiform/vendor/jquery-steps/jquery.steps.min.js')
+  script(src='/js/multiform/vendor/minimalist-picker/dobpicker.js')
+  script(src='/js/multiform/vendor/jquery.pwstrength/jquery.pwstrength.js')
+  script(src='/js/multiform/js/main.js')
+  //For Datepicker
+  script(src='/js/datepicker/moment.js')
+  script(src='/js/datepicker/tempusdominus-bootstrap-4.js')
+  script(src='/js/datepicker/datepicker.js')
+  //For Booking final
+  script(src='/js/booking_final.js')
+  // Plugin JavaScript
+  script(src='/js/jquery-easing/jquery.easing.min.js')
+  script(src='/js/custom.js')
+
+  script(src='/css/multi-select/js/jquery.multi-select.js')
+  script.
+    $('#callbacks').multiSelect({
+    afterSelect: function(values) {
+    alert("Select value: " + values);
+    },
+    afterDeselect: function(values) {
+    alert("Deselect value: " + values);
+    }
+    });
+  script.
+    $('#keep-order').multiSelect({ keepOrder: true });
+  script.
+    $('#public-methods').multiSelect();
+    $('#select-all').click(function() {
+    $('#public-methods').multiSelect('select_all');
+    return false;
+    });
+    $('#deselect-all').click(function() {
+    $('#public-methods').multiSelect('deselect_all');
+    return false;
+    });
+    $('#select-100').click(function() {
+    $('#public-methods').multiSelect('select', ['elem_0', 'elem_1'..., 'elem_99']);
+    return false;
+    });
+    $('#deselect-100').click(function() {
+    $('#public-methods').multiSelect('deselect', ['elem_0', 'elem_1'..., 'elem_99']);
+    return false;
+    });
+    $('#refresh').on('click', function() {
+    $('#public-methods').multiSelect('refresh');
+    return false;
+    });
+    $('#add-option').on('click', function() {
+    $('#public-methods').multiSelect('addOption', { value: 42, text: 'test 42', index: 0 });
+    return false;
+    });
+  script.
+    $('#optgroup').multiSelect({ selectableOptgroup: true });
+  script.
+    $('#disabled-attribute').multiSelect();
+  script.
+    $('#custom-headers').multiSelect({
+    selectableHeader: "<div class='custom-header'>Selectable items</div>",
+    selectionHeader: "<div class='custom-header'>Selection items</div>",
+    selectableFooter: "<div class='custom-header'>Selectable footer</div>",
+    selectionFooter: "<div class='custom-header'>Selection footer</div>"
+    });
+
+
+
+
+
+

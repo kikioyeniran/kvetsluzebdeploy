@@ -1,0 +1,465 @@
+//
+  author: Boostraptheme
+  author URL: https://boostraptheme.com
+  License: Creative Commons Attribution 4.0 Unported
+  License URL: https://creativecommons.org/licenses/by/4.0/
+html
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="description" content="")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="robots" content="all,follow")
+        title Kvet Sluzeb Client Dashboard
+        link(rel="shortcut icon" href="img/favicon.png")
+        // global stylesheets
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
+        link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/admin/font-awesome-4.7.0/css/font-awesome.min.css")
+        link(rel="stylesheet" href="/admin/css/font-icon-style.css")
+        link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
+        // Core stylesheets
+        link(rel="stylesheet" href="/admin/css/ui-elements/card.css")
+        link(rel="stylesheet" href="/admin/css/style.css")
+        link(rel="stylesheet" href="/admin/css/profile.css")
+        link(rel="stylesheet" href="/admin/css/apps/invoice.css")
+        link(rel="stylesheet" href="/admin/css/apps/calendar.css")
+        link(rel="stylesheet" href="/admin/css/pages/faq.css")
+    body
+        //
+            ====================================================
+            MAIN NAVBAR
+            ======================================================
+        header.header
+            nav.navbar.navbar-expand-lg
+                .search-box
+                    button.dismiss
+                        i.icon-close
+                    form#searchForm(action="#" role="search")
+                        input.form-control(type="search" placeholder="Search Now")
+                .container-fluid
+                    .navbar-holder.d-flex.align-items-center.justify-content-between
+                        .navbar-header
+                            a.navbar-brand(href="index.html")
+                                .brand-text.brand-big.hidden-lg-down
+                                    img.img-fluid(src="/img/mainlogo.png" alt="Logo")
+                                .brand-text.brand-small
+                                    img.img-fluid(src="/admin/img/second_logo.png" alt="Logo")
+                            a#toggle-btn.menu-btn.active(href="#")
+                                span
+                                span
+                                span
+                    ul.nav-menu.list-unstyled.d-flex.flex-md-row.align-items-md-center
+                        // Expand
+                        li.nav-item.d-flex.align-items-center.full_scr_exp
+                            a.nav-link(href="#")
+                                img.img-fluid(src="/admin/img/expand.png" onclick="toggleFullScreen(document.body)" alt="")
+                        // Search
+                        li.nav-item.d-flex.align-items-center
+                            a#search.nav-link(href="#")
+                                i.icon-search
+                        // Notifications
+                        li.nav-item.dropdown
+                            a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                i.fa.fa-bell-o
+                                span.noti-numb-bg
+                                span.badge 12
+                            ul.dropdown-menu(aria-labelledby="notifications")
+                                li
+                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-envelope.bg-red
+                                            | You have 6 new messages
+                                        .notification-time
+                                            small 4 minutes ago
+                                li
+                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-twitter.bg-skyblue
+                                            | You have 2 followers
+                                        .notification-time
+                                            small 4 minutes ago
+                                li
+                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-upload.bg-blue
+                                            | Server Rebooted
+                                        .notification-time
+                                            small 4 minutes ago
+                                li
+                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-twitter.bg-skyblue
+                                            | You have 2 followers
+                                        .notification-time
+                                            small 10 minutes ago
+                                li
+                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
+                                        strong view all notifications
+                        // Messages
+                        li.nav-item.dropdown
+                            a#messages.nav-link.logout(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                i.fa.fa-envelope-o
+                                span.noti-numb-bg
+                                span.badge 10
+                            ul.dropdown-menu(aria-labelledby="messages")
+                                li
+                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
+                                        .msg-profile
+                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
+                                        .msg-body
+                                            h3.h5.msg-nav-h3 Jason Doe
+                                            span Sent You Message
+                                li
+                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
+                                        .msg-profile
+                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
+                                        .msg-body
+                                            h3.h5.msg-nav-h3 Frank Williams
+                                            span Sent You Message
+                                li
+                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
+                                        .msg-profile
+                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
+                                        .msg-body
+                                            h3.h5.msg-nav-h3 Ashley Wood
+                                            span Sent You Message
+                                li
+                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
+                                        strong Read all messages
+                        li.nav-item.dropdown
+                            a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="..." style="height: 30px; width: 30px;")
+                            ul.dropdown-menu.profile(aria-labelledby="profile")
+                                li
+                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
+                                        .msg-profile
+                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
+                                        .msg-body
+                                            h3.h5 Steena Ben
+                                            span steenaben@Businessbox.com
+                                hr
+                                li
+                                    a.dropdown-item(rel="nofollow" href="profile.html")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-user
+                                            | My Profile
+                                li
+                                    a.dropdown-item(rel="nofollow" href="profile.html")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-envelope-o
+                                            | Inbox
+                                li
+                                    a.dropdown-item(rel="nofollow" href="profile.html")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-cog
+                                            | Setting
+                                hr
+                                li
+                                    a.dropdown-item(rel="nofollow" href="profile.html")
+                                        .notification
+                                        .notification-content
+                                            i.fa.fa-power-off
+                                            | Logout
+                        li.nav-item.d-flex.align-items-center
+                            a#menu-toggle-right.nav-link(href="#")
+                                i.fa.fa-bars
+                            nav#sidebar-wrapper
+                                .sidebar-nav
+                                    .tab(role="tabpanel")
+                                        ul.nav.nav-tabs(role="tablist")
+                                            li.nav-item
+                                                a.nav-link.active(href="#live" role="tab" data-toggle="tab")
+                                                    i.fa.fa-globe
+                                                    |  Live
+                                            li.nav-item
+                                                a.nav-link(href="#trend" role="tab" data-toggle="tab")
+                                                    i.fa.fa-rocket
+                                                    |  Trending
+                                        .tab-content.tabs
+                                            #live.tab-pane.fade.show.active(role="tabpanel")
+                                                h3 Connect Live
+                                                .content.newsf-list
+                                                    ul.list-unstyled
+                                                        li.border.border-primary
+                                                            a.d-flex(rel="nofollow " href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 New Innovation world
+                                                                    small Tech soft is great innovation for...
+                                                        li.border.border-success
+                                                            a.d-flex(rel="nofollow" href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 Modified hand-cart
+                                                                    small The idea is to incorporate easy...
+                                                        li.border.border-info
+                                                            a.d-flex(rel="nofollow" href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-4.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
+                                                                    small A dot matrix printer modified at...
+                                                        li.border.border-primary
+                                                            a.d-flex(rel="nofollow" href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
+                                                                    small A dot matrix printer modified at...
+                                                        li.border.border-success
+                                                            a.d-flex(rel="nofollow" href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
+                                                                    small A dot matrix printer modified at...
+                                                        li.border.border-info
+                                                            a.d-flex(rel="nofollow" href="#")
+                                                                .news-f-img
+                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
+                                                                .msg-body
+                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
+                                                                    small A dot matrix printer modified at...
+                                            #trend.tab-pane.fade(role="tabpanel")
+                                                .card.card-c2(style="box-shadow: 0 0 0;")
+                                                    .header
+                                                        h3.title Trending Items
+                                                        p.category Last Campaign Performance
+                                                    .content
+                                                        canvas#myChart4.ct-chart(height="250")
+                                                        .footer
+                                                            .legend
+                                                                i.fa.fa-circle.text-info
+                                                                |  Open
+                                                                i.fa.fa-circle.text-danger
+                                                                |  Bounce
+                                                                i.fa.fa-circle.text-warning
+                                                                |  Unsubscribe
+                                                            hr
+                                                            .stats
+                                                                i.fa.fa-clock-o
+                                                                |  Campaign sent 2 days ago
+        //
+            ====================================================
+            PAGE CONTENT
+            ======================================================
+        .page-content.d-flex.align-items-stretch
+            // ***** SIDE NAVBAR *****
+            nav.side-navbar
+                .sidebar-header.d-flex.align-items-center
+                    .avatar
+                        img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
+                    .title
+                        h1.h4 Steena Ben
+                hr
+                // Sidebar Navidation Menus
+                ul.list-unstyled
+                    li.active
+                    a(href="/client/admin/client_dashboard")
+                        i.icon-home
+                        | Home
+                    li
+                    a(href="/client/admin/client_finance")
+                        i.fa.fa-bar-chart
+                        | Finance
+                    li
+                    a(href="/client/admin/client_calendar")
+                        i.icon-grid
+                        | Calendar(Due Dates)
+                    li
+                    a(href="/client/admin/client_faq")
+                        i.fa.fa-question-circle-o
+                        | FAQs
+                    li
+                    a(href="maps.html")
+                        i.fa.fa-map-o
+                        | Maps
+                    li
+                    a(href="#forms" aria-expanded="false" data-toggle="collapse")
+                        i.fa.fa-comments-o
+                        | Chats
+                    ul#forms.collapse.list-unstyled
+                        li
+                        a(href="#") Cleaner 1
+                        li
+                        a(href="#") Cleaner 2
+            block content
+
+
+    // Global Javascript
+    script(src="/admin/js/jquery.min.js")
+    script(src="/admin/js/popper/popper.min.js")
+    script(src="/admin/js/tether.min.js")
+    script(src="/admin/js/bootstrap.min.js")
+    script(src="/admin/js/jquery.cookie.js")
+    script(src="/admin/js/jquery.validate.min.js")
+    script(src="/admin/js/chart.min.js")
+    script(src="/admin/js/front.js")
+    // Core Javascript
+    script(src="/admin/js/mychart.js")
+    script.
+        new Chart(document.getElementById("myChart-nav").getContext('2d'), {
+        type: 'doughnut',
+        data: {
+        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        datasets: [{
+        backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e"
+        ],
+        data: [12, 19, 3, 17, 28, 24, 7]
+        }]
+        },
+        options: {
+        legend: { display: false },
+        title: {
+        display: true,
+        text: ''
+        }
+        }
+        });
+    // Calendar Core Javascript
+    script.
+      new Chart(document.getElementById("myChart4").getContext('2d'), {
+      type: 'doughnut',
+      data: {
+      labels: ["M", "T", "W", "T", "F", "S", "S"],
+      datasets: [{
+      backgroundColor: [
+      "#2ecc71",
+      "#3498db",
+      "#95a5a6",
+      "#9b59b6",
+      "#f1c40f",
+      "#e74c3c",
+      "#34495e"
+      ],
+      data: [12, 19, 3, 17, 28, 24, 7]
+      }]
+      },
+      options: {
+      legend: { display: false },
+      title: {
+      display: true,
+      text: ''
+      }
+      }
+      });
+    script.
+      var d = new Date();
+      var todaysDate = d.getDate();
+      var target = $('#calendar .week .day .date');
+      target.each(function() {
+      var day = $(this).html();
+      if (todaysDate == day) {
+      $(this).addClass('today');
+      }
+      if (todaysDate < day) {
+      $(this).parent().addClass('future');
+      }
+      if (todaysDate >= day) {
+      $(this).parent().addClass('past')
+      }
+      });
+      // handle clicks on days
+      $('.day').click(function() {
+      if ($(this).hasClass('future')) {
+      $('#modal').addClass('active');
+      $('#modal .wrapper .content .box').html("<h2>Naughty, naughty.</h2> <p>You can't look early! Check back on that day to see what I've left for you.</p>");
+      }
+      if ($(this).hasClass('past')) {
+      var content = $(this).children('.surprise').html();
+      $('#modal').addClass('active');
+      $('#modal .wrapper .content .box').html('');
+      $('#modal .wrapper .content .box').html(content);
+      }
+      })
+      // close modal
+      $('.close').click(function() {
+      var ultimateParent = $(this).parent().parent().parent();
+      ultimateParent.addClass('moveOut');
+      setTimeout(function() {
+      ultimateParent.removeClass('moveOut').removeClass('active');
+      }, 250);
+      })
+      // snow effect customizations
+      $(document).snowfall({ flakeCount: 100, collection: '.collectonme', maxSpeed: 10 });
+
+    // FAQ Core Javascript
+    script.
+      new Chart(document.getElementById("myChart-nav").getContext('2d'), {
+      type: 'doughnut',
+      data: {
+      labels: ["M", "T", "W", "T", "F", "S", "S"],
+      datasets: [{
+      backgroundColor: [
+      "#2ecc71",
+      "#3498db",
+      "#95a5a6",
+      "#9b59b6",
+      "#f1c40f",
+      "#e74c3c",
+      "#34495e"
+      ],
+      data: [12, 19, 3, 17, 28, 24, 7]
+      }]
+      },
+      options: {
+      legend: { display: false },
+      title: {
+      display: true,
+      text: ''
+      }
+      }
+      });
+    script.
+      (function($) {
+      var mn = $(".vert-tab");
+      mns = "vert-tab-scrolled";
+      $(window).scroll(function() {
+      if ($(this).scrollTop() > $('header').height()) {
+      mn.addClass(mns);
+      } else {
+      mn.removeClass(mns);
+      }
+      });
+      "use strict";
+      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
+      {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+      $('html, body').animate({
+      scrollTop: (target.offset().top - 22)
+      }, 700, "easeInOutExpo");
+      return false;
+      }
+      }
+      });
+      $('.collapse').on('show.bs.collapse', function() {
+      var id = $(this).attr('id');
+      $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+      $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-minus"></i>');
+      });
+      $('.collapse').on('hide.bs.collapse', function() {
+      var id = $(this).attr('id');
+      $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
+      $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
+      });
+      })(jQuery);

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    input(type="radio" name="type" value="Fresher")
+    |  Fresher
+    input(type="radio" name="type" value="Experienced")
+    |  Experienced
+    #textboxes(style="display: none")
+      | Company Name:
+      input(type="text" hidden="true")
+      | Designation:
+      input(type="text" hidden="true")
+      | Year_of_Experience:
+      input(type="text" hidden="true")

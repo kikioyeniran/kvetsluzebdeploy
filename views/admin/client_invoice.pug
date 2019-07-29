@@ -1,0 +1,142 @@
+doctype html
+//
+  author: Boostraptheme
+  author URL: https://boostraptheme.com
+  License: Creative Commons Attribution 4.0 Unported
+  License URL: https://creativecommons.org/licenses/by/4.0/
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="robots" content="all,follow")
+    title Bootstrap Admin Template
+    link(rel="shortcut icon" href="img/favicon.ico")
+    // global stylesheets
+    link(href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet")
+    link(rel="stylesheet" href="css/bootstrap.min.css")
+    link(rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="css/font-icon-style.css")
+    link#theme-stylesheet(rel="stylesheet" href="css/style.default.css")
+    // Core stylesheets
+    link(rel="stylesheet" href="css/apps/invoice.css")
+  body
+    //
+      ====================================================
+      PAGE CONTENT
+      ======================================================
+    .page-content.d-flex.align-items-stretch(style="background: rgba(176, 237, 251, 0.96);")
+      .container-fluid.content-inner(style="margin: 100px auto;")
+        // ***** CONTENT *****
+        .row
+          .col-md-12
+            .invoice-title
+              div
+                img(src="img/logo.png" alt="")
+                p.pull-right.mt-3 Order # 12345
+            hr
+            .row
+              .col-md-6
+                address
+                  strong Billed To:
+                  br
+                  |                                     John Smith
+                  br
+                  |                                     1234 Main
+                  br
+                  |                                     Apt. 4B
+                  br
+                  |                                     Springfield, ST 54321
+              .col-md-6.text-right
+                address
+                  strong Shipped To:
+                  br
+                  |                                     Jane Smith
+                  br
+                  |                                     1234 Main
+                  br
+                  |                                     Apt. 4B
+                  br
+                  |                                     Springfield, ST 54321
+            .row
+              .col-md-6
+                address
+                  strong Payment Method:
+                  br
+                  |                                     Visa ending **** 4242
+                  br
+                  |                                     jsmith@email.com
+              .col-md-6.text-right
+                address
+                  div
+                    p.mb-0 Order Date : March 7, 2014
+                    p Term : Due on Receipt
+                  br
+        .row
+          .col-md-12
+            .panel.panel-default
+              .panel-heading
+                h3.panel-title
+                  strong Order summary
+              .panel-body
+                .table-responsive
+                  table.table.borderless
+                    thead
+                      tr.bg-info.text-white
+                        td
+                          strong Item
+                        td.text-center
+                          strong Price
+                        td.text-center
+                          strong Quantity
+                        td.text-right
+                          strong Totals
+                    tbody
+                      tr
+                        td BS-200
+                        td.text-center $10.99
+                        td.text-center 1
+                        td.text-right $10.99
+                      tr
+                        td BS-400
+                        td.text-center $20.00
+                        td.text-center 3
+                        td.text-right $60.00
+                      tr
+                        td BS-1000
+                        td.text-center $600.00
+                        td.text-center 1
+                        td.text-right $600.00
+                      tr
+                        td.thick-line
+                        td.thick-line
+                        td.thick-line.text-center
+                          strong Subtotal
+                        td.thick-line.text-right $670.99
+                      tr
+                        td.no-line
+                        td.no-line
+                        td.no-line.text-center
+                          strong Shipping
+                        td.no-line.text-right $15
+                      tr
+                        td.no-line
+                        td.no-line
+                        td.no-line.text-center
+                          strong Total
+                        td.no-line.text-right $685.99
+                  .text-right
+                    button.btn.btn-general.btn-blue.mr-3(onclick="javascript:window.print();")
+                      i.fa.fa-print
+                      |  Print
+                    button.btn.btn-general.btn-white Submit The Invoice
+    // Global Javascript
+    script(src="js/jquery.min.js")
+    script(src="js/popper/popper.min.js")
+    script(src="js/tether.min.js")
+    script(src="js/bootstrap.min.js")
+    script(src="js/jquery.cookie.js")
+    script(src="js/jquery.validate.min.js")
+    script(src="js/chart.min.js")
+    script(src="js/front.js")
