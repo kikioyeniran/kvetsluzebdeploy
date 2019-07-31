@@ -5,7 +5,7 @@ block content
         .main
             .container2
                 h2 Book A Cleaner
-                form#signup-form.signup-form(method='POST', action='/client/booking')
+                form#signup-form.signup-form(method='POST', action='/client/booking', enctype="multipart/form-data")
                     h3
                         span.title_text Account Infomation
                     fieldset
@@ -150,6 +150,10 @@ block content
                             .form-group
                                 label.form-label(for='fullname') Full Name
                                 input#fullname(type='text' name='fullname' placeholder='Full Name')
+                            hr
+                            .form-group
+                                label.form-label(for="profile_pic") Select a profile picture
+                                input#profile_pic.form-control-file(type="file" aria-describedby="fileHelp" name="profile_pic")
                             hr
                             .form-group
                                 label.form-label(for='mobile_no') Mobile Number

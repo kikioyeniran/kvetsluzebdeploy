@@ -67,16 +67,17 @@ function addTag(e){
         checkout.id = 'checkoutBTN';
         checkout.appendChild(document.createTextNode('Check Out'))
         requestForm.appendChild(checkout);
-        chcount ++;
+        chcount++;
+        console.log(chcount);
         for(var i = 0; i < selectBtns.length; i++){
             console.log(selectBtns.length)
             selectBtns[i].disabled = true;
-            if(chcount > 1){
-                var checkout = document.querySelector('.checkout')
-                requestForm.removeChild(checkout.nextSibling);
-                }
         }
-
+        if(chcount > 1){
+            console.log('true chcount > 1');
+            var checkout = document.querySelector('.checkout')
+            requestForm.removeChild(checkout.nextSibling);
+        }
     }
 }
 

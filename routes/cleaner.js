@@ -36,20 +36,76 @@ router.get('/admin/cleaner_dashboard/:id', (req, res) =>{
 });
 
 //Cleaner Finance Page route
-router.get('/admin/cleaner_finance', (req, res) =>{
-    res.render('admin/cleaner_finance')
+router.get('/admin/cleaner_finance/:id', (req, res) =>{
+    Cleaner.findById(req.params.id, (err, cleaner) =>{
+        console.log(cleaner)
+        var query = {cleaner_id: cleaner.cleanerid};
+        CleanerDetails.find((query), (err, cleaner_details)=>{
+            //console.log(cleaner_details[0].full_name);
+            res.render('admin/cleaner_finance',{
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0]
+            });
+        });
+    });
 });
-//Cleaner Finance Page route
-router.get('/admin/cleaner_invoice', (req, res) =>{
-    res.render('admin/cleaner_invoice')
+//Cleaner Invoice Page route
+router.get('/admin/cleaner_invoice/:id', (req, res) =>{
+    Cleaner.findById(req.params.id, (err, cleaner) =>{
+        console.log(cleaner)
+        var query = {cleaner_id: cleaner.cleanerid};
+        CleanerDetails.find((query), (err, cleaner_details)=>{
+            //console.log(cleaner_details[0].full_name);
+            res.render('admin/cleaner_invoice',{
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0]
+            });
+        });
+    });
 });
+
+//Cleaner Requests Page route
+router.get('/admin/cleaner_requests/:id', (req, res) =>{
+    Cleaner.findById(req.params.id, (err, cleaner) =>{
+        console.log(cleaner)
+        var query = {cleaner_id: cleaner.cleanerid};
+        CleanerDetails.find((query), (err, cleaner_details)=>{
+            //console.log(cleaner_details[0].full_name);
+            res.render('admin/cleaner_requests',{
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0]
+            });
+        });
+    });
+});
+
 //Cleaner Calendar Page route
-router.get('/admin/cleaner_calendar', (req, res) =>{
-    res.render('admin/cleaner_calendar')
+router.get('/admin/cleaner_calendar/:id', (req, res) =>{
+    Cleaner.findById(req.params.id, (err, cleaner) =>{
+        console.log(cleaner)
+        var query = {cleaner_id: cleaner.cleanerid};
+        CleanerDetails.find((query), (err, cleaner_details)=>{
+            //console.log(cleaner_details[0].full_name);
+            res.render('admin/cleaner_calendar',{
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0]
+            });
+        });
+    });
 });
 //Cleaner FAQs Page route
-router.get('/admin/cleaner_faq', (req, res) =>{
-    res.render('admin/cleaner_faq')
+router.get('/admin/cleaner_faq/:id', (req, res) =>{
+    Cleaner.findById(req.params.id, (err, cleaner) =>{
+        console.log(cleaner)
+        var query = {cleaner_id: cleaner.cleanerid};
+        CleanerDetails.find((query), (err, cleaner_details)=>{
+            //console.log(cleaner_details[0].full_name);
+            res.render('admin/cleaner_faq',{
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0]
+            });
+        });
+    });
 });
 
 //Cleaner Registration Processes
@@ -91,7 +147,8 @@ router.post('/cleaner_registration', (req, res)=>{
             console.log(err);
             return;
         } else{
-            const username = req.body.username.toLowerCase;
+            const username = req.body.username.toLowerCase();
+
             const email = req.body.email;
             const password = req.body.password;
             const password2 = req.body.password2;

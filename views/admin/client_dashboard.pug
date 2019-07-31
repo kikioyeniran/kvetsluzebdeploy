@@ -8,22 +8,22 @@ block content
           .card.hovercard
             .cardheader
             .avatar
-              img.img-fluid(alt="" src="/admin/img/avatar-1.jpg")
+              img.img-fluid(alt="" src="/uploads/"+clientDetails.profile_pic)
             .info
               .title
-                a(target="_blank" href="#") Steena Ben
-              .desc steena@gmail.com
+                a(target="_blank" href="#") #{clientDetails.full_name}
+              .desc #{client.email}
               hr
             nav.nav.text-center.prof-nav
               ul.list-unstyled
+                //- li
+                //-   a(href="#") Profile
                 li
                   a(href="#") Profile
                 li
-                  a(href="#") Inbox
-                li
                   a(href="#") Setting
                 li
-                  a(href="login.html") Logout
+                  a(href="/client/client_logout") Logout
             .bottom
               a.btn.btn-info.btn-twitter.btn-sm(href="#")
                 i.fa.fa-twitter
@@ -35,16 +35,16 @@ block content
           .card.hovercard
             .tab(role="tabpanel")
               ul.nav.nav-tabs(role="tablist")
+                //- li.nav-item
+                //-   a.nav-link.active(href="#profile" role="tab" data-toggle="tab")
+                //-     span
+                //-       i.fa.fa-user
+                //-     |  Profile
                 li.nav-item
-                  a.nav-link.active(href="#profile" role="tab" data-toggle="tab")
+                  a.nav-link.active(href="#buzz" role="tab" data-toggle="tab")
                     span
                       i.fa.fa-user
                     |  Profile
-                li.nav-item
-                  a.nav-link(href="#buzz" role="tab" data-toggle="tab")
-                    span
-                      i.fa.fa-inbox
-                    |  Inbox
                 li.nav-item
                   a.nav-link(href="#references" role="tab" data-toggle="tab")
                     span
@@ -52,107 +52,55 @@ block content
                     |  Setting
               // Tab panes
               .tab-content.tabs
-                #profile.tab-pane.fade.show.active(role="tabpanel")
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec urna aliquam, ornare eros vel, malesuada lorem. Nullam faucibus lorem at eros consectetur lobortis. Maecenas nec nibh congue, placerat sem id, rutrum velit.
-                  #report4.row
-                    .col-md-4
-                      .card.text-center.social-bottom.sb-fb
-                        i.fa.fa-facebook
-                        div 3250 +
-                        p Likes
-                    .col-md-4
-                      .card.text-center.social-bottom.sb-tw
-                        i.fa.fa-twitter
-                        div 2345 +
-                        p Following
-                    .col-md-4
-                      .card.text-center.social-bottom.sb-gp
-                        i.fa.fa-google-plus
-                        div 1253 +
-                        p Followers
-                  .row.mt-3
-                    h5.col-12.mb-2 User Info
-                    .col-6
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-envelope  E-mail:
-                        |     steena@gmail.com
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-phone  Phone:
-                        |    +91 1233 45 5678
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-map  City:
-                        |     New York
-                    .col-6
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-globe  Country:
-                        |     steena@gmail.com
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-map-marker  Address:
-                        |    25, Dist town Street, Logn California, US
-                      .form-group
-                        strong.mr-5
-                          i.fa.fa-globe  Website:
-                        |     www.Businessbox.com
-                #buzz.tab-pane.fade(role="tabpanel")
+                #buzz.tab-pane.fade.show.active(role="tabpanel")
                   .panel.panel-default.widget
-                    .panel-heading
-                      h3.panel-title
-                        i.fa.fa-comment
-                        |  Messages
                     .panel-body
-                      ul.list-group
-                        li.list-group-item
-                          .row
-                            .col-md-2
-                              img.img-circle.img-fluid(src="/admin/img/avatar-2.jpg" alt="")
-                            .col-md-10
-                              div
-                                a(href="#")
-                                  | Congratulations
-                                .mic-info
-                                  | By:
-                                  a(href="#") Check My Athletics
-                                  |  on 12 Jun 2018
-                              .comment-text
-                                | We would like to congratulate John on his achievement...
-                              a.btn.btn-sm.btn-hover.btn-primary(href="#")
-                                span.fa.fa-share-alt(style="padding-right:3px;")
-                              a.btn.btn-sm.btn-hover.btn-danger(href="#")
-                                span.fa.fa-remove(style="padding-right:3px;")
-                        li.list-group-item
-                          .row
-                            .col-md-2
-                              img.img-circle.img-fluid(src="/admin/img/avatar-3.jpg" alt="")
-                            .col-md-10
-                              div
-                                a(href="#") Great Job
-                                .mic-info
-                                  | By:
-                                  a(href="#") Coacher
-                                  |  on 11 May 2018
-                              .comment-text
-                                | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                | euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
-                        li.list-group-item
-                          .row
-                            .col-md-2
-                              img.img-circle.img-fluid(src="/admin/img/avatar-2.jpg" alt="")
-                            .col-md-10
-                              div
-                                a(href="#") Great Job
-                                .mic-info
-                                  | By:
-                                  a(href="#") Coacher
-                                  |  on 11 May 2018
-                              .comment-text
-                                | Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                | euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                      p
+                        | #{clientDetails.profile}
+                      #report4.row
+                        .col-md-4
+                          .card.text-center.social-bottom.sb-fb
+                            i.fa.fa-facebook
+                            div 3250 +
+                            p Likes
+                        .col-md-4
+                          .card.text-center.social-bottom.sb-tw
+                            i.fa.fa-twitter
+                            div 2345 +
+                            p Following
+                        .col-md-4
+                          .card.text-center.social-bottom.sb-gp
+                            i.fa.fa-google-plus
+                            div 1253 +
+                            p Followers
+                      .row.mt-3
+                        h5.col-12.mb-2 User Info
+                        .col-6
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-envelope  E-mail:
+                            |     #{client.email}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-phone  Phone:
+                            |    #{clientDetails.mobile_number}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-map  City:
+                            |     #{clientDetails.city}
+                        .col-6
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-globe  Postcode:
+                            |     #{clientDetails.postcode}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-map-marker  Address:
+                            |    #{clientDetails.address}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-money  Income/hour:
+                            |    $#{clientDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
                   .row.mx-2
                     .col-md-12.panel-heading

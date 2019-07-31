@@ -25,6 +25,7 @@ html
         link(rel="stylesheet" href="/admin/css/apps/invoice.css")
         link(rel="stylesheet" href="/admin/css/apps/calendar.css")
         link(rel="stylesheet" href="/admin/css/pages/faq.css")
+        link(rel="stylesheet" href="/admin/css/ui-elements/timeline.css")
     body
         //
             ====================================================
@@ -265,34 +266,34 @@ html
                 // Sidebar Navidation Menus
                 ul.list-unstyled
                     li.active
-                    a(href="/client/admin/client_dashboard/"+cleaner.cleanerid)
+                    a(href="/cleaner/admin/cleaner_dashboard/"+cleaner._id)
                         i.icon-home
                         | Home
                     li
-                    a(href="/client/admin/client_finance/"+cleaner.cleanerid)
+                    a(href="/cleaner/admin/cleaner_finance/"+cleaner._id)
                         i.fa.fa-bar-chart
                         | Finance
                     li
-                    a(href="/client/admin/client_calendar/"+cleaner.cleanerid)
+                    a(href="/cleaner/admin/cleaner_calendar/"+cleaner._id)
                         i.icon-grid
                         | Calendar(Due Dates)
                     li
-                    a(href="/client/admin/client_faq")
+                    a(href="/cleaner/admin/cleaner_faq/"+cleaner._id)
                         i.fa.fa-question-circle-o
                         | FAQs
                     li
-                    a(href="maps.html")
+                    a(href="/cleaner/admin/cleaner_requests/"+cleaner._id)
                         i.fa.fa-map-o
-                        | Maps
-                    li
-                    a(href="#forms" aria-expanded="false" data-toggle="collapse")
-                        i.fa.fa-comments-o
-                        | Chats
-                    ul#forms.collapse.list-unstyled
-                        li
-                        a(href="#") Cleaner 1
-                        li
-                        a(href="#") Cleaner 2
+                        | Requests
+                    //- li
+                    //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
+                    //-     i.fa.fa-comments-o
+                    //-     | Chats
+                    //- ul#forms.collapse.list-unstyled
+                    //-     li
+                    //-     a(href="#") Cleaner 1
+                    //-     li
+                    //-     a(href="#") Cleaner 2
             block content
 
 
@@ -400,6 +401,34 @@ html
       // snow effect customizations
       $(document).snowfall({ flakeCount: 100, collection: '.collectonme', maxSpeed: 10 });
 
+    //Request Timeline Core Javascript
+    script.
+        new Chart(document.getElementById("myChart-nav").getContext('2d'), {
+        type: 'doughnut',
+        data: {
+        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        datasets: [{
+        backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e"
+        ],
+        data: [12, 19, 3, 17, 28, 24, 7]
+        }]
+        },
+        options: {
+        legend: { display: false },
+        title: {
+        display: true,
+        text: ''
+        }
+        }
+        });
+
     // FAQ Core Javascript
     script.
       new Chart(document.getElementById("myChart-nav").getContext('2d'), {
@@ -441,25 +470,26 @@ html
       "use strict";
       $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
       if (location.pathname.replace(/^\\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
-      {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-      $('html, body').animate({
-      scrollTop: (target.offset().top - 22)
-      }, 700, "easeInOutExpo");
-      return false;
-      }
-      }
-      });
-      $('.collapse').on('show.bs.collapse', function() {
-      var id = $(this).attr('id');
-      $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
-      $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-minus"></i>');
-      });
-      $('.collapse').on('hide.bs.collapse', function() {
-      var id = $(this).attr('id');
-      $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
-      $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
-      });
-      })(jQuery);
+        {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        if (target.length) {
+        $('html, body').animate({
+        scrollTop: (target.offset().top - 22)
+        }, 700, "easeInOutExpo");
+        return false;
+        }
+        }
+        });
+        $('.collapse').on('show.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-minus"></i>');
+        });
+        $('.collapse').on('hide.bs.collapse', function() {
+        var id = $(this).attr('id');
+        $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
+        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
+        });
+        })(jQuery);
+
