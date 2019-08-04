@@ -102,39 +102,52 @@ block content
                               i.fa.fa-money  Income/hour:
                             |    $#{cleanerDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
-                  .row.mx-2
-                    .col-md-12.panel-heading
-                      h3.panel-title
-                        i.fa.fa-comment
-                        |  Edit Info
-                      br
-                    .col-md-6
-                      .form-group.row
-                        label.col-form-label(for="example-text-input" style="width: 85px;") Name
-                        .col-9
-                          input#example-text-input.form-control(type="text" value="Steena Ben")
-                      .form-group.row
-                        label.col-form-label(for="example-email-input" style="width: 85px;") Email
-                        .col-9
-                          input#example-email-input.form-control(type="email" value="steena@gmail.com")
-                      .form-group.row
-                        label.col-form-label(for="example-url-input" style="width: 85px;") URL
-                        .col-9
-                          input#example-url-input.form-control(type="url" value="www.Businessbox.com")
-                    .col-md-6
-                      .form-group.row
-                        label.col-form-label(for="example-text-input" style="width: 85px;") Department
-                        .col-9
-                          input#example-text-input.form-control(type="text" value="Programming")
-                      .form-group.row
-                        label.col-form-label(for="example-date-input" style="width: 85px;") Hire Date
-                        .col-9
-                          input#example-date-input.form-control(type="date" value="2018-08-19")
-                      .form-group.row
-                        label.col-form-label(for="example-tel-input" style="width: 85px;") Telephone
-                        .col-9
-                          input#example-tel-input.form-control(type="tel" value="+91-(555)-555-5555")
-
-
+                  form(method='POST', action='/cleaner/edit/'+encodeURIComponent(cleaner.cleanerid)+'/'+cleaner._id)
+                    .row.mx-2
+                      .col-md-12.panel-heading
+                        h3.panel-title
+                          i.fa.fa-comment
+                          |  Edit Info
+                        br
+                      .col-md-6
+                        .form-group.row
+                          label.col-form-label(for="example-text-input" style="width: 85px;") Full Name
+                          .col-9
+                            input#example-text-input.form-control(type="text" name='fullName' value=cleanerDetails.full_name)
+                        .form-group.row
+                          label.col-form-label(for="example-email-input" style="width: 85px;") Postcode
+                          .col-9
+                            input#example-email-input.form-control(type="text" name="postcode" value=cleanerDetails.postcode)
+                        .form-group.row
+                          label.col-form-label(for="example-url-input" style="width: 85px;") Address
+                          .col-9
+                            textarea#example-url-input.form-control(type="text" name='address' rows='5') #{cleanerDetails.address}
+                        .form-group.row
+                          label(for="exampleSelect1") Extra Tasks
+                          .col-9
+                            select#exampleSelect1.form-control(multiple="multiple" name="extra_tasks")
+                              option(value="ironing") Ironing
+                              option(value="inside_windows") Inside Windows
+                              option(value="inside_oven") Inside Oven
+                              option(value="laundry") Laundry
+                              option(value="inside_fridge") Inside Fridge
+                      .col-md-6
+                        .form-group.row
+                          label.col-form-label(for="example-text-input" style="width: 85px;") City
+                          .col-9
+                            input#example-text-input.form-control(type="text" name='city' value=cleanerDetails.city)
+                        .form-group.row
+                          label.col-form-label(for="example-tel-input" style="width: 85px;") Mobile Number
+                          .col-9
+                            input#example-tel-input.form-control(type="tel" name="mobileNumber" value=cleanerDetails.mobile_number)
+                        .form-group.row
+                          label.col-form-label(for="example-tel-input" style="width: 85px;") Desired Income/hour
+                          .col-9
+                            input#example-tel-input.form-control(type="tel" name="income" value=cleanerDetails.income)
+                        .form-group.row
+                          label.col-form-label(for="example-url-input" style="width: 85px;") Profile
+                          .col-9
+                            textarea#example-url-input.form-control(type="text" name='profile' rows='5') #{cleanerDetails.profile}
+                      button.btn.btn-general.btn-blue.special(type='submit') Update
 
 

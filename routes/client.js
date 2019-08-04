@@ -62,11 +62,25 @@ router.get('/admin/client_dashboard', (req, res) =>{
 
 router.get('/admin/client_dashboard/:id', (req, res) =>{
     Client.findById(req.params.id, (err, client) =>{
-        console.log(client)
+        //console.log(client)
         var query = {clientID: client.clientID};
         ClientDetails.find((query), (err, client_details)=>{
             //console.log(client_details[0]);
             res.render('admin/client_dashboard',{
+                client: client,
+                clientDetails: client_details[0]
+            });
+        });
+    });
+});
+
+router.get('/admin/client_renewbooking/:id', (req, res) =>{
+    Client.findById(req.params.id, (err, client) =>{
+        //console.log(client)
+        var query = {clientID: client.clientID};
+        ClientDetails.find((query), (err, client_details)=>{
+            //console.log(client_details[0]);
+            res.render('admin/client_renewbooking',{
                 client: client,
                 clientDetails: client_details[0]
             });
@@ -255,6 +269,61 @@ router.post('/booking', (req, res)=>{
 
 });
 
+//Edit Client Details Process
+router.post('/edit/:clientID/:id', (req, res) =>{
+    let client = {};
+    client.full_name = req.body.fullName;
+    console.log(req.body.fullName);
+    client.postcode = req.body.postcode;
+    client.city = req.body.city;
+    client.address = req.body.address;
+    client.mobile_number = req.body.mobileNumber;
+    let query = {clientID : req.params.clientID}
+    console.log(query);
+    console.log(req.params.clientID)
+
+    ClientDetails.updateOne(query, client, (err) =>{
+        if(err){
+            console.log(err);
+            return;
+        }else {
+            console.log('found and updated');
+            req.flash('success', 'Account Updated');
+            res.redirect('/client/admin/client_dashboard/'+req.params.id);
+        }
+    });
+});
+
+//Renew Client Booking
+router.post('/renew/:clientID/:id', (req, res) =>{
+    let client = {};
+    client.bedrooms = req.body.bedrooms;
+    //console.log(req.body.fullName);
+    client.bathrooms = req.body.bathrooms;
+    client.extra_tasks = req.body.extra_tasks;
+    client.date_first_clean = req.body.date;
+    client.cleaning_hours = req.body.hours;
+    client.more_cleaning_hours = req.body.more_hours;
+    client.apartment_access = req.body.access_type;
+    client.key_hidden_pin = req.body.key_hidden_pin;
+    client.key_safe_pin = req.body.key_safe_pin;
+    client.cleaning_frequency = req.body.schedule;
+    let query = {clientID : req.params.clientID}
+    console.log(query);
+    console.log(req.params.clientID)
+
+    ClientDetails.updateOne(query, client, (err) =>{
+        if(err){
+            console.log(err);
+            return;
+        }else {
+            console.log('found and updated');
+            req.flash('success', 'Account Updated');
+            res.redirect('/client/admin/client_dashboard/'+req.params.id);
+        }
+    });
+});
+
 //Login  Form Page route
 router.get('/login', (req, res)=>{
     res.render('login');
@@ -264,7 +333,7 @@ router.post('/client_login',
   passport.authenticate('client', { failureRedirect: '/client/client_login', failureFlash: true  }),
   function(req, res) {
     res.redirect('/client/admin/client_dashboard/'+req.user.id);
-  });
+    });
 
 //Logout
 router.get('/admin/client_logout', (req, res)=>{

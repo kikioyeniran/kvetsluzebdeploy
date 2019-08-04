@@ -3,12 +3,12 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 .card.form {
-    padding: 50px 30px;
+    padding: 20px 30px;
 }
- 
+
 /* layout.css Style */
 
 .upload-drop-zone {
@@ -16,7 +16,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     border-width: 2px;
     margin-bottom: 20px;
 }
- 
+
 /* skin.css Style*/
 
 .upload-drop-zone {
@@ -31,7 +31,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     color: #222;
     border-color: #222;
 }
- 
+
 .image-preview-input {
     position: relative;
     overflow: hidden;

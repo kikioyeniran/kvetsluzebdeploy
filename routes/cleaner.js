@@ -23,7 +23,7 @@ router.get('/cleaner_login', (req, res) =>{
 
 router.get('/admin/cleaner_dashboard/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
+        //console.log(cleaner)
         var query = {cleaner_id: cleaner.cleanerid};
         CleanerDetails.find((query), (err, cleaner_details)=>{
             //console.log(cleaner_details[0].full_name);
@@ -162,7 +162,7 @@ router.post('/cleaner_registration', (req, res)=>{
             const address = req.body.address;
             const city = req.body.city;
             const income = req.body.income;
-            const cleaner_id = bcrypt.hashSync('fullName', 10);
+            let cleaner_id = bcrypt.hashSync('fullName', 10);
             const profile_pic = req.files['profile_pic'][0].filename;
             const national_id = req.files['national_id'][0].filename;
             const health_insurance = req.files['health_insurance'][0].filename;
@@ -249,6 +249,35 @@ router.post('/cleaner_registration', (req, res)=>{
         }
       });
     console.log('form submitted');
+});
+
+//Edit cleaner Details Process
+router.post('/edit/:cleanerID/:id/', (req, res) =>{
+    console.log('code is here');
+    let cleaner = {};
+    cleaner.full_name = req.body.fullName;
+    //console.log(req.body.fullName);
+    cleaner.postcode = req.body.postcode;
+    cleaner.city = req.body.city;
+    cleaner.address = req.body.address;
+    cleaner.mobile_number = req.body.mobileNumber;
+    cleaner.extra_tasks = req.body.extra_tasks;
+    cleaner.profle = req.body.profile;
+    cleaner.income = req.body.income;
+    let query = {cleaner_id : req.params.cleanerID}
+    console.log(query);
+    console.log(req.params.cleanerID)
+
+    CleanerDetails.updateOne(query, cleaner, (err) =>{
+        if(err){
+            console.log(err);
+            return;
+        }else {
+            console.log('found and updated');
+            req.flash('success', 'Account Updated');
+            res.redirect('/cleaner/admin/cleaner_dashboard/'+req.params.id);
+        }
+    });
 });
 
 

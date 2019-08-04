@@ -1,0 +1,99 @@
+extends layout
+
+block content
+        .content-inner.form-cont
+            .row
+                .col-md-12
+                // ***** BASIC FORM *****
+                #form1.card.form
+                    .card-header
+                        h3 Renew Your Booking
+                        h6.info (filling this form will cancel all your previous bookings)
+                    br
+                    form(method='POST', action='/client/renew/'+encodeURIComponent(client.clientID)+'/'+client._id)
+                        .row
+                            .container
+                                .form-group
+                                    label(for="bedrooms") Number of Bedrooms
+                                    input#bedrooms.form-control( name='bedrooms' type="number" placeholder='1' min='0' max='10')
+                                .form-group
+                                    label(for="bathrooms") Bathrooms
+                                    input#bathrooms.form-control( name='bathrooms' type="number" placeholder='1' min='0' max='10')
+                                .form-radio
+                                    label(for='hours') Hours for cleaning
+                                    .form-radio-item
+                                        input#two(type='radio' name='hours' value='2.0' checked='checked')
+                                        label(for='two') 2.0
+                                        input#twoplus(type='radio' name='hours' value='2.5')
+                                        label(for='twoplus') 2.5
+                                        input#three(type='radio' name='hours' value='3.0')
+                                        label(for='three') 3.0
+                                        input#threeplus(type='radio' name='hours' value='3.5')
+                                        label(for='threeplus') 3.5
+                                        input#more(type='radio' name='hours' value='more')
+                                        label(for='more') More
+                                #textboxes.form-radio
+                                    label.form-label(for='more_hours') More hours
+                                    .form-radio-item
+                                        input#four(type='radio' name='more_hours' value='4.0' checked='checked')
+                                        label(for='four') 4.0
+                                        input#fourplus(type='radio' name='more_hours' value='4.5')
+                                        label(for='fourplus') 4.5
+                                        input#five(type='radio' name='more_hours' value='5.0')
+                                        label(for='five') 5.0
+                                        input#fiveplus(type='radio' name='more_hours' value='5.5')
+                                        label(for='fiveplus') 5.5
+                                        input#six(type='radio' name='more_hours' value='6.0' checked='checked')
+                                        label(for='six') 6.0
+                                        input#sixplus(type='radio' name='more_hours' value='6.5')
+                                        label(for='sixplus') 6.5
+                                .form-group
+                                    label.form-label(for='extra_tasks') Extra Tasks?
+                                    select#keep-order(multiple="multiple" name="extra_tasks")
+                                        option(value="ironing") Ironing
+                                        option(value="inside_windows") Inside Windows
+                                        option(value="inside_oven") Inside Oven
+                                        option(value="laundry") Laundry
+                                        option(value="inside_fridge") Inside Fridge
+                                .form-radio
+                                    label.form-label(for='schedule') How often?
+                                    .form-radio-item
+                                        input#weekly(type='radio' name='schedule' value='weekly' checked='checked')
+                                        label(for='weekly') Weekly
+                                        input#fortnightly(type='radio' name='schedule' value='fortnightly')
+                                        label(for='fortnightly') Fortnightly
+                                        input#one-off(type='radio' name='schedule' value='one-off')
+                                        label(for='one-off') One-Off
+                                        input#multiple(type='radio' name='schedule' value='multiple')
+                                        label(for='multiple') Multiple
+                                .form-group
+                                    label.form-label(for="example-date-input") Seelect Date for first clean
+                                    input#example-date-input.form-control(type="date" value="2011-08-19" name="date")
+                                fieldset
+                                    .fieldset-content
+                                        .form-radio
+                                            label(for='access_type') How will the Cleaner access the apartment?
+                                            .form-radio-flex
+                                                input#spare_key(type='radio' name='access_type' value='spare_key' checked='checked')
+                                                label(for='spare_key')
+                                                    | Spare Key
+                                                input#someone_home(type='radio' name='access_type' value='someone_home')
+                                                label(for='someone_home')
+                                                    | Someone at home
+                                                input#concierge(type='radio' name='access_type' value='concierge')
+                                                label(for='concierge')
+                                                    | Concierge
+                                                input#key_safe(type='radio' name='access_type' value='key_safe')
+                                                label(for='key_safe')
+                                                    | Key safe
+                                                input#key_hidden(type='radio' name='access_type' value='key_hidden')
+                                                label(for='key_hidden')
+                                                    | Key Hidden
+                                        #key_safe_pin.form-group
+                                            label.form-label(for='key_safe_pin') Enter Your Pin
+                                            input#key_safe_pin(type='text' name='key_safe_pin' placeholder='We will only share this with your cleaner')
+                                        #key_hidden_pin.form-group
+                                            label.form-label(for='key_hidden_pin') Where is the Key hidden?
+                                            input#key_hidden_pin(type='text' name='key_hidden_pin' placeholder='We will only share this with your cleaner')
+                        button.btn.btn-general.btn-blue.mr-2(type="submit") Submit
+                        button.btn.btn-general.btn-white(type="reset") Reset

@@ -26,6 +26,10 @@ html
         link(rel="stylesheet" href="/admin/css/apps/calendar.css")
         link(rel="stylesheet" href="/admin/css/pages/faq.css")
         link(rel="stylesheet" href="/admin/css/ui-elements/timeline.css")
+        link(rel="stylesheet" href="/admin/css/form.css")
+        link(rel='stylesheet' href='/css/multiform/css/style.css')
+        link(rel='stylesheet' href='/css/multi-select/css/multi-select.css')
+
     body
         //
             ====================================================
@@ -285,6 +289,10 @@ html
                     a(href="/client/admin/client_requests/"+client._id)
                         i.fa.fa-map-o
                         | Requests
+                    li
+                    a(href="/client/admin/client_renewbooking/"+client._id)
+                        i.fa.fa-refresh
+                        | Renew  Booking
                     //- li
                     //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
                     //-     i.fa.fa-comments-o
@@ -294,6 +302,7 @@ html
                     //-     a(href="#") client 1
                     //-     li
                     //-     a(href="#") client 2
+
             block content
 
 
@@ -304,8 +313,69 @@ html
     script(src="/admin/js/bootstrap.min.js")
     script(src="/admin/js/jquery.cookie.js")
     script(src="/admin/js/jquery.validate.min.js")
+    script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    script(src='/js/conditional.js')
+    script(src='/css/multi-select/js/jquery.multi-select.js')
+    // Multi Select scripts
+    script(src='/css/multi-select/js/jquery.multi-select.js')
+    script.
+        $('#callbacks').multiSelect({
+        afterSelect: function(values) {
+        alert("Select value: " + values);
+        },
+        afterDeselect: function(values) {
+        alert("Deselect value: " + values);
+        }
+        });
+    script.
+        $('#keep-order').multiSelect({ keepOrder: true });
+    script.
+        $('#public-methods').multiSelect();
+        $('#select-all').click(function() {
+        $('#public-methods').multiSelect('select_all');
+        return false;
+        });
+        $('#deselect-all').click(function() {
+        $('#public-methods').multiSelect('deselect_all');
+        return false;
+        });
+        $('#select-100').click(function() {
+        $('#public-methods').multiSelect('select', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+        });
+        $('#deselect-100').click(function() {
+        $('#public-methods').multiSelect('deselect', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+        });
+        $('#refresh').on('click', function() {
+        $('#public-methods').multiSelect('refresh');
+        return false;
+        });
+        $('#add-option').on('click', function() {
+        $('#public-methods').multiSelect('addOption', { value: 42, text: 'test 42', index: 0 });
+        return false;
+        });
+    script.
+        $('#optgroup').multiSelect({ selectableOptgroup: true });
+    script.
+        $('#disabled-attribute').multiSelect();
+    script.
+        $('#custom-headers').multiSelect({
+        selectableHeader: "<div class='custom-header'>Selectable items</div>",
+        selectionHeader: "<div class='custom-header'>Selection items</div>",
+        selectableFooter: "<div class='custom-header'>Selectable footer</div>",
+        selectionFooter: "<div class='custom-header'>Selection footer</div>"
+        });
+
+
+
+
+
+
+
+
     // Core Javascript
     script(src="/admin/js/mychart.js")
     script.
@@ -492,4 +562,5 @@ html
         $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
         });
         })(jQuery);
+
 

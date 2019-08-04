@@ -58,7 +58,7 @@ $(function(){
             $('#textboxes').show(1000);
         }
         else if(selectedValue != 'more'){
-            $('#textboxes').hide();
+            $('#textboxes').hide(500);
         }
     });
 });

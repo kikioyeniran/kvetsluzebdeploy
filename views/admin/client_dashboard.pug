@@ -2,6 +2,11 @@ extends layout
 
 block content
     .content-inner.chart-cont
+      .container
+        != messages('message', locals)
+        if errors
+            each error, i in errors
+                div(class="alert alert-danger") #{error.msg}
       // ***** CONTENT *****
       #card-prof.row.mt-2
         .col-md-3
@@ -102,38 +107,41 @@ block content
                               i.fa.fa-money  Income/hour:
                             |    $#{clientDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
-                  .row.mx-2
-                    .col-md-12.panel-heading
-                      h3.panel-title
-                        i.fa.fa-comment
-                        |  Edit Info
-                      br
-                    .col-md-6
-                      .form-group.row
-                        label.col-form-label(for="example-text-input" style="width: 85px;") Name
-                        .col-9
-                          input#example-text-input.form-control(type="text" value="Steena Ben")
-                      .form-group.row
-                        label.col-form-label(for="example-email-input" style="width: 85px;") Email
-                        .col-9
-                          input#example-email-input.form-control(type="email" value="steena@gmail.com")
-                      .form-group.row
-                        label.col-form-label(for="example-url-input" style="width: 85px;") URL
-                        .col-9
-                          input#example-url-input.form-control(type="url" value="www.Businessbox.com")
-                    .col-md-6
-                      .form-group.row
-                        label.col-form-label(for="example-text-input" style="width: 85px;") Department
-                        .col-9
-                          input#example-text-input.form-control(type="text" value="Programming")
-                      .form-group.row
-                        label.col-form-label(for="example-date-input" style="width: 85px;") Hire Date
-                        .col-9
-                          input#example-date-input.form-control(type="date" value="2018-08-19")
-                      .form-group.row
-                        label.col-form-label(for="example-tel-input" style="width: 85px;") Telephone
-                        .col-9
-                          input#example-tel-input.form-control(type="tel" value="+91-(555)-555-5555")
+                  form(method='POST', action='/client/edit/'+client.clientID+'/'+client._id)
+                    .row.mx-2
+                      .col-md-12.panel-heading
+                        h3.panel-title
+                          i.fa.fa-comment
+                          |  Edit Info
+                        br
+                      .col-md-6
+                        .form-group.row
+                          label.col-form-label(for="example-text-input" style="width: 85px;") Full Name
+                          .col-9
+                            input#example-text-input.form-control(type="text" name='fullName' value=clientDetails.full_name)
+                        .form-group.row
+                          label.col-form-label(for="example-email-input" style="width: 85px;") Postcode
+                          .col-9
+                            input#example-email-input.form-control(type="text" name="postcode" value=clientDetails.postcode)
+                        .form-group.row
+                          label.col-form-label(for="example-url-input" style="width: 85px;") Address
+                          .col-9
+                            textarea#example-url-input.form-control(type="text" name='address' rows='5') #{clientDetails.address}
+                      .col-md-6
+                        .form-group.row
+                          label.col-form-label(for="example-text-input" style="width: 85px;") City
+                          .col-9
+                            input#example-text-input.form-control(type="text" name='city' value=clientDetails.city)
+                        //- .form-group.row
+                        //-   label.col-form-label(for="example-date-input" style="width: 85px;") Profile Picture
+                        //-   .col-9
+                        //-     input#example-date-input.form-control-file(type="file" name="profile_pic")
+                        .form-group.row
+                          label.col-form-label(for="example-tel-input" style="width: 85px;") Mobile Number
+                          .col-9
+                            input#example-tel-input.form-control(type="tel" name="mobileNumber" value=clientDetails.mobile_number)
+                        .form-group.row
+                      button.btn.btn-general.btn-blue.special(type='submit') Update
 
 
 

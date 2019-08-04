@@ -3,7 +3,7 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 #card-prof .card {
     padding-top: 20px;
@@ -261,13 +261,15 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     margin-bottom: 17px;
 }
 
-#card-prof .btn {
+/* #card-prof .btn {
     border-radius: 50%;
     width: 32px;
     height: 32px;
     line-height: 23px;
+} */
+.special{
+    margin-top: 32px !important;
 }
-
 
 /*==============================================
                 PROFILE-CONTENT
