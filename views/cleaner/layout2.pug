@@ -26,7 +26,6 @@ html
         link(rel="stylesheet" href="/admin/css/apps/calendar.css")
         link(rel="stylesheet" href="/admin/css/pages/faq.css")
         link(rel="stylesheet" href="/admin/css/ui-elements/timeline.css")
-        link(rel="stylesheet" href="/admin/css/ui-elements/card.css")
     body
         //
             ====================================================
@@ -135,15 +134,15 @@ html
                                         strong Read all messages
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
                                         .msg-profile
-                                            img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="...")
+                                            img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
                                         .msg-body
-                                            h3.h5 Admin
-                                            span Admin
+                                            h3.h5 #{cleanerDetails.full_name}
+                                            span #{cleaner.email}
                                 hr
                                 li
                                     a.dropdown-item(rel="nofollow" href="#")
@@ -260,30 +259,30 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar
-                        img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="...")
+                        img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
                     .title
-                        h1.h4 Admin
+                        h1.h4= cleanerDetails.full_name
                 hr
                 // Sidebar Navidation Menus
                 ul.list-unstyled
                     li.active
-                    a(href="/admin/dashboard")
+                    a(href="/cleaner/dashboard/home/"+cleaner._id)
                         i.icon-home
                         | Home
                     li
-                    a(href="#")
+                    a(href="/cleaner/dashboard/cleaner_finance/"+cleaner._id)
                         i.fa.fa-bar-chart
-                        | Finance
+                        | Wallet
                     li
-                    a(href="/admin/dashboard/clients")
+                    a(href="/cleaner/dashboard/cleaner_calendar/"+cleaner._id)
                         i.icon-grid
-                        | Clients
+                        | Calendar(Due Dates)
                     li
-                    a(href="/admin/dashboard/cleaners")
-                        i.icon-grid
-                        | Cleaners
+                    a(href="/cleaner/dashboard/cleaner_faq/"+cleaner._id)
+                        i.fa.fa-question-circle-o
+                        | FAQs
                     li
-                    a(href="#")
+                    a(href="/cleaner/dashboard/cleaner_requests/"+cleaner._id)
                         i.fa.fa-map-o
                         | Requests
                     //- li

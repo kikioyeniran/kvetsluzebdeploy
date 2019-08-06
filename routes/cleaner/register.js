@@ -1,116 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const LocalStrategy = require('passport-local')
 const multer = require('multer');
 const path = require('path');
 
 //Bring in Cleaner Models
-let Cleaner =  require('../models/cleaner');
-let CleanerDetails =  require('../models/cleaner_details');
+let Cleaner =  require('../../models/cleaner');
+let CleanerDetails =  require('../../models/cleaner_details');
 
-
-//cleaner registration route
-router.get('/cleaner_registration', (req, res) =>{
+router.get('/page', (req, res) =>{
     res.render('cleaner_registration')
 });
 
-//Cleaner Login route
-router.get('/cleaner_login', (req, res) =>{
-    res.render('admin/cleaner_login')
-});
-
-//Cleaner dashboard route
-router.get('/admin/cleaner_dashboard/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        //console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_dashboard',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-
-//Cleaner Finance Page route
-router.get('/admin/cleaner_finance/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_finance',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-//Cleaner Invoice Page route
-router.get('/admin/cleaner_invoice/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_invoice',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-
-//Cleaner Requests Page route
-router.get('/admin/cleaner_requests/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_requests',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-
-//Cleaner Calendar Page route
-router.get('/admin/cleaner_calendar/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_calendar',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-//Cleaner FAQs Page route
-router.get('/admin/cleaner_faq/:id', (req, res) =>{
-    Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
-        CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
-            res.render('admin/cleaner_faq',{
-                cleaner: cleaner,
-                cleanerDetails: cleaner_details[0]
-            });
-        });
-    });
-});
-
 //Cleaner Registration Processes
-router.post('/cleaner_registration', (req, res)=>{
+// /cleaner/register/post
+router.post('/post', (req, res)=>{
     console.log('submitted');
     // Set The Storage Engine
     const storage = multer.diskStorage({
@@ -240,7 +144,7 @@ router.post('/cleaner_registration', (req, res)=>{
                     }else {
                         req.flash('success', 'Cleaner added')
                         //res.redirect('/cleaner/cleaner_dashboard');
-                        res.redirect('/cleaner/cleaner_login');
+                        res.redirect('/cleaner/login');
                         console.log('upload successful!');
                     }
                 });
@@ -252,58 +156,6 @@ router.post('/cleaner_registration', (req, res)=>{
     console.log('form submitted');
 });
 
-//Edit cleaner Details Process
-router.post('/edit/:cleanerID/:id/', (req, res) =>{
-    console.log('code is here');
-    let cleaner = {};
-    cleaner.full_name = req.body.fullName;
-    //console.log(req.body.fullName);
-    cleaner.postcode = req.body.postcode;
-    cleaner.city = req.body.city;
-    cleaner.address = req.body.address;
-    cleaner.mobile_number = req.body.mobileNumber;
-    cleaner.extra_tasks = req.body.extra_tasks;
-    cleaner.profle = req.body.profile;
-    cleaner.income = req.body.income;
-    let query = {cleaner_id : req.params.cleanerID}
-    console.log(query);
-    console.log(req.params.cleanerID)
 
-    CleanerDetails.updateOne(query, cleaner, (err) =>{
-        if(err){
-            console.log(err);
-            return;
-        }else {
-            console.log('found and updated');
-            req.flash('success', 'Account Updated');
-            res.redirect('/cleaner/admin/cleaner_dashboard/'+req.params.id);
-        }
-    });
-});
-
-
-router.post('/cleaner_login',
-  passport.authenticate('cleaner', { failureRedirect: '/cleaner/cleaner_login', failureFlash: true  }),
-  function(req, res) {
-    res.redirect('/cleaner/admin/cleaner_dashboard/'+req.user.id);
-  });
-
-//Logout
-router.get('/cleaner_logout', (req, res)=>{
-    req.logout();
-    req.flash('success', 'You are logged out');
-    res.redirect('/cleaner/cleaner_login')
-});
-
-//Access Control
-function ensureAuthenticated(req, res, next){
-    if(req.isAuthenticated()){
-        console.log('authenticated');
-        return next();
-    } else{
-        console.log('not authenticated');
-        req.flash('danger', 'Please Login');
-        res.redirect('/cleaner/cleaner_login');
-    }
-}
 module.exports = router;
+

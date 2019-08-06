@@ -30,6 +30,7 @@ db.on('error', (err) =>{
 
 //Load View Engine
 app.set('views', path.join(__dirname, 'views'));
+console.log(path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //Body Parse Middleware
@@ -91,12 +92,47 @@ app.get('/', (req, res) =>{
 });
 
 //Route Files
-let cleaner = require('./routes/cleaner');
-let client = require('./routes/client');
+
+//Cleaner Route Files
+//let cleaner = require('./routes/cleaner');
+let cleanerDashboard = require('./routes/cleaner/dashboard');
+let cleanerLogin = require('./routes/cleaner/login');
+let cleanerRegister = require('./routes/cleaner/register');
+let cleanerEdit = require('./routes/cleaner/editDetails');
+//let client = require('./routes/client');
+
+//Client Route Files
+let clientDashboard = require('./routes/client/dashboard');
+let clientBooking = require('./routes/client/booking');
+let clientBookingFinal = require('./routes/client/bookingFinal');
+let clientEdit = require('./routes/client/editDetails');
+let clientRenew = require('./routes/client/renewbooking');
+let clientLogin = require('./routes/client/login')
 let public = require('./routes/public');
 let requests = require('./routes/requests');
-app.use('/cleaner', cleaner);
-app.use('/client', client);
+
+//Admin Route Files
+let adminDashboard = require('./routes/admin/dashboard');
+let adminLogin = require('./routes/admin/login');
+let adminRegister = require('./routes/admin/register')
+
+//app.use('/cleaner', cleaner);
+app.use('/cleaner/dashboard', cleanerDashboard);
+app.use('/cleaner/login', cleanerLogin);
+app.use('/cleaner/register', cleanerRegister);
+app.use('/cleaner/edit', cleanerEdit);
+//app.use('/client', client);
+app.use('/client/dashboard', clientDashboard);
+app.use('/client/booking', clientBooking);
+app.use('/client/final', clientBookingFinal);
+app.use('/client/edit', clientEdit);
+app.use('/client/renew', clientRenew);
+app.use('/client/login', clientLogin);
+
+app.use('/admin/dashboard', adminDashboard);
+app.use('/admin/login', adminLogin);
+app.use('/admin/register', adminRegister);
+
 app.use('/public', public);
 app.use('/requests', requests);
 

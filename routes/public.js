@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// User Models
-let Public =  require('../models/public');
-
-
 //Add route
 router.get('/add', (req, res) =>{
     res.render('add_article', {

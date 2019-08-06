@@ -1,0 +1,98 @@
+extends layout
+
+block content
+    .content-inner
+        // ***** REPORT-1 *****
+        #report1.row
+            .col-sm-3
+                .card
+                    .card-block
+                        .text-left.report1-cont
+                            h2.font-light.m-b-0
+                                i.ti-arrow-up.text-success
+                                |  $9,220
+                            span.text-muted Total Income
+                        span.text-success 80%
+                        .progress
+                            .progress-bar.bg-success(role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                        p
+                            small Last month 10% Growth
+            .col-sm-3
+                .card
+                    .card-block
+                        .text-left.report1-cont
+                            h2.font-light.m-b-0
+                                i.ti-arrow-up.text-danger
+                                |  $5,530
+                            span.text-muted Expected Income
+                        span.text-danger 43%
+                        .progress
+                            .progress-bar.bg-danger(role="progressbar" style="width: 43%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                        p
+                            small Last month 10% Growth
+            .col-sm-3
+                .card
+                    .card-block
+                        .text-left.report1-cont
+                            h2.font-light.m-b-0
+                                i.ti-arrow-up.text-warning
+                                |  3,620
+                            span.text-muted Total Clients
+                        span.text-warning 53%
+                        .progress
+                            .progress-bar.bg-warning(role="progressbar" style="width: 53%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                        p
+                            small Last month 10% Growth
+            .col-sm-3
+                .card
+                    .card-block
+                        .text-left.report1-cont
+                            h2.font-light.m-b-0
+                                i.ti-arrow-up.text-info
+                                |  600
+                            span.text-muted Total Cleaners
+                        span.text-info 70%
+                        .progress
+                            .progress-bar.bg-info(role="progressbar" style="width: 70%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                        p
+                            small Last month 10% Growth
+
+        // ***** REPORT-2 *****
+        #report2.row
+            .col-md-4
+                .card.card-c1
+                    .card-header.card-chart(data-background-color="green")
+                        canvas#myChart1.ct-chart(height="250")
+                    .card-content
+                        h4.title Daily Sales
+                        p.category
+                        span.text-success
+                            i.fa.fa-long-arrow-up
+                            |  55%
+                        |  increase in today sales.
+                    .card-footer
+                        .stats
+                        i.fa.fa-clock-o
+                        |  updated 4 minutes ago
+            .col-md-4
+                .card.card-c1
+                    .card-header.card-chart(data-background-color="orange")
+                        canvas#myChart2.ct-chart(height="250")
+                    .card-content
+                        h4.title Email Subscriptions
+                        p.category Last Campaign Performance
+                    .card-footer
+                        .stats
+                        i.fa.fa-clock-o
+                        |  campaign sent 2 days ago
+            .col-md-4
+                .card.card-c1
+                    .card-header.card-chart(data-background-color="red")
+                        canvas#myChart3.ct-chart(height="250")
+                    .card-content
+                        h4.title Completed Tasks
+                        p.category Last Campaign Performance
+                    .card-footer
+                        .stats
+                        i.fa.fa-clock-o
+                        |  campaign sent 2 days ago

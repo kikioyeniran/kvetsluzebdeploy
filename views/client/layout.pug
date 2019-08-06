@@ -26,6 +26,10 @@ html
         link(rel="stylesheet" href="/admin/css/apps/calendar.css")
         link(rel="stylesheet" href="/admin/css/pages/faq.css")
         link(rel="stylesheet" href="/admin/css/ui-elements/timeline.css")
+        link(rel="stylesheet" href="/admin/css/form.css")
+        link(rel='stylesheet' href='/css/multiform/css/style.css')
+        link(rel='stylesheet' href='/css/multi-select/css/multi-select.css')
+
     body
         //
             ====================================================
@@ -134,15 +138,15 @@ html
                                         strong Read all messages
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
                                         .msg-profile
-                                            img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
+                                            img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="...")
                                         .msg-body
-                                            h3.h5 #{cleanerDetails.full_name}
-                                            span #{cleaner.email}
+                                            h3.h5 #{clientDetails.full_name}
+                                            span #{client.email}
                                 hr
                                 li
                                     a.dropdown-item(rel="nofollow" href="#")
@@ -164,7 +168,7 @@ html
                                             | Setting
                                 hr
                                 li
-                                    a.dropdown-item(rel="nofollow" href="/cleaner/cleaner_logout")
+                                    a.dropdown-item(rel="nofollow" href="/client/logout")
                                         .notification
                                         .notification-content
                                             i.fa.fa-power-off
@@ -259,41 +263,46 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar
-                        img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
+                        img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="...")
                     .title
-                        h1.h4= cleanerDetails.full_name
+                        h1.h4= clientDetails.full_name
                 hr
                 // Sidebar Navidation Menus
                 ul.list-unstyled
                     li.active
-                    a(href="/cleaner/admin/cleaner_dashboard/"+cleaner._id)
+                    a(href="/client/dashboard/home/"+client._id)
                         i.icon-home
                         | Home
                     li
-                    a(href="/cleaner/admin/cleaner_finance/"+cleaner._id)
+                    a(href="/client/dashboard/client_finance/"+client._id)
                         i.fa.fa-bar-chart
                         | Finance
                     li
-                    a(href="/cleaner/admin/cleaner_calendar/"+cleaner._id)
+                    a(href="/client/dashboard/client_calendar/"+client._id)
                         i.icon-grid
                         | Calendar(Due Dates)
                     li
-                    a(href="/cleaner/admin/cleaner_faq/"+cleaner._id)
+                    a(href="/client/dashboard/client_faq/"+client._id)
                         i.fa.fa-question-circle-o
                         | FAQs
                     li
-                    a(href="/cleaner/admin/cleaner_requests/"+cleaner._id)
+                    a(href="/client/dashboard/client_requests/"+client._id)
                         i.fa.fa-map-o
                         | Requests
+                    li
+                    a(href="/client/dashboard/renew/"+client._id)
+                        i.fa.fa-refresh
+                        | Renew  Booking
                     //- li
                     //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
                     //-     i.fa.fa-comments-o
                     //-     | Chats
                     //- ul#forms.collapse.list-unstyled
                     //-     li
-                    //-     a(href="#") Cleaner 1
+                    //-     a(href="#") client 1
                     //-     li
-                    //-     a(href="#") Cleaner 2
+                    //-     a(href="#") client 2
+
             block content
 
 
@@ -304,8 +313,69 @@ html
     script(src="/admin/js/bootstrap.min.js")
     script(src="/admin/js/jquery.cookie.js")
     script(src="/admin/js/jquery.validate.min.js")
+    script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    script(src='/js/conditional.js')
+    script(src='/css/multi-select/js/jquery.multi-select.js')
+    // Multi Select scripts
+    script(src='/css/multi-select/js/jquery.multi-select.js')
+    script.
+        $('#callbacks').multiSelect({
+        afterSelect: function(values) {
+        alert("Select value: " + values);
+        },
+        afterDeselect: function(values) {
+        alert("Deselect value: " + values);
+        }
+        });
+    script.
+        $('#keep-order').multiSelect({ keepOrder: true });
+    script.
+        $('#public-methods').multiSelect();
+        $('#select-all').click(function() {
+        $('#public-methods').multiSelect('select_all');
+        return false;
+        });
+        $('#deselect-all').click(function() {
+        $('#public-methods').multiSelect('deselect_all');
+        return false;
+        });
+        $('#select-100').click(function() {
+        $('#public-methods').multiSelect('select', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+        });
+        $('#deselect-100').click(function() {
+        $('#public-methods').multiSelect('deselect', ['elem_0', 'elem_1'..., 'elem_99']);
+        return false;
+        });
+        $('#refresh').on('click', function() {
+        $('#public-methods').multiSelect('refresh');
+        return false;
+        });
+        $('#add-option').on('click', function() {
+        $('#public-methods').multiSelect('addOption', { value: 42, text: 'test 42', index: 0 });
+        return false;
+        });
+    script.
+        $('#optgroup').multiSelect({ selectableOptgroup: true });
+    script.
+        $('#disabled-attribute').multiSelect();
+    script.
+        $('#custom-headers').multiSelect({
+        selectableHeader: "<div class='custom-header'>Selectable items</div>",
+        selectionHeader: "<div class='custom-header'>Selection items</div>",
+        selectableFooter: "<div class='custom-header'>Selectable footer</div>",
+        selectionFooter: "<div class='custom-header'>Selection footer</div>"
+        });
+
+
+
+
+
+
+
+
     // Core Javascript
     script(src="/admin/js/mychart.js")
     script.
@@ -492,4 +562,5 @@ html
         $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
         });
         })(jQuery);
+
 
