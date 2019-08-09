@@ -8,6 +8,11 @@ router.get('/add', (req, res) =>{
     })
 });
 
+//Client Registration route
+//Cleaner Invoice Page route
+router.get('/booking', (req, res) =>{
+    res.render('booking');
+});
 
 //About route
 router.get('/about', (req, res) =>{

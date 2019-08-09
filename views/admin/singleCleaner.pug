@@ -1,0 +1,47 @@
+extends layout
+
+block content
+        #card-1.row.mt-2
+            .col-sm-6.col-md-4.col-lg-5
+                .card.card-inverse.card-info
+                    img.card-img-top(src="/uploads/"+cleanerDetails.profilePic)
+                    .card-block
+                        h4.card-title #{cleanerDetails.fullName}
+                    .card-footer
+                        small Last updated #{cleanerDetails.updated}
+                        //- button.btn.btn-info.float-right.btn-sm View Details
+            .col-sm-6.col-md-4.col-lg-7
+                .card.card-inverse.card-info
+                    //- img.card-img-top(src="/admin/img/card/c-3.jpg")
+                    .card-block
+                        h5.card-title Additional Information
+                    hr
+                    h6.card-line
+                        strong Postcode :
+                        |  #{cleanerDetails.postcode}
+                    hr
+                    h6.card-line Extra Tasks: #{cleanerDetails.extraTasks}
+                    hr
+                    h6.card-line Date of First Clean: #{cleanerDetails.dateFirstClean}
+                    hr
+                    h6.card-line Experience: #{cleanerDetails.experience} years
+                    hr
+                    h6.card-line Profile: #{cleanerDetails.profile}
+                    hr
+                    h6.card-line Address: #{cleanerDetails.address}
+                    hr
+                    h6.card-line City: #{cleanerDetails.city}
+                    hr
+                    h6.card-line Income: $#{cleanerDetails.income}
+                    hr
+                    h6.card-line National ID:
+                        a(href="/uploads/"+cleanerDetails.nationalID target="_blank")  View
+                    hr
+                    h6.card-line Health Insurance :
+                        a(href="/uploads/"+cleanerDetails.healthInsurance target="_blank")  View
+                    //- hr
+                    //- h6.card-line Postcode
+
+                    //- .card-footer
+                    //-     small Last updated 3 mins ago
+                    //-     button.btn.btn-info.float-right.btn-sm View Details

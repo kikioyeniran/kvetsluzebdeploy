@@ -138,14 +138,14 @@ html
                                         strong Read all messages
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
                                         .msg-profile
-                                            img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="...")
+                                            img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="...")
                                         .msg-body
-                                            h3.h5 #{clientDetails.full_name}
+                                            h3.h5 #{clientDetails.fullName}
                                             span #{client.email}
                                 hr
                                 li
@@ -168,7 +168,7 @@ html
                                             | Setting
                                 hr
                                 li
-                                    a.dropdown-item(rel="nofollow" href="/client/logout")
+                                    a.dropdown-item(rel="nofollow" href="/client/login/logout")
                                         .notification
                                         .notification-content
                                             i.fa.fa-power-off
@@ -263,9 +263,9 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar
-                        img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profile_pic alt="...")
+                        img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="...")
                     .title
-                        h1.h4= clientDetails.full_name
+                        h1.h4= clientDetails.fullName
                 hr
                 // Sidebar Navidation Menus
                 ul.list-unstyled

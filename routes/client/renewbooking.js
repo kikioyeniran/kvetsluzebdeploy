@@ -15,14 +15,14 @@ router.post('/:clientID/:id', (req, res) =>{
     client.bedrooms = req.body.bedrooms;
     //console.log(req.body.fullName);
     client.bathrooms = req.body.bathrooms;
-    client.extra_tasks = req.body.extra_tasks;
-    client.date_first_clean = req.body.date;
-    client.cleaning_hours = req.body.hours;
-    client.more_cleaning_hours = req.body.more_hours;
-    client.apartment_access = req.body.access_type;
-    client.key_hidden_pin = req.body.key_hidden_pin;
-    client.key_safe_pin = req.body.key_safe_pin;
-    client.cleaning_frequency = req.body.schedule;
+    client.extraTasks = req.body.extraTasks;
+    client.dateFirstClean = req.body.date;
+    client.cleaningHours = req.body.hours;
+    client.moreCleaningHours = req.body.more_hours;
+    client.apartmentAccess = req.body.access_type;
+    client.keyHiddenPin = req.body.keyHiddenPin;
+    client.keySafePin = req.body.keySafePin;
+    client.cleaningFrequency = req.body.schedule;
     let query = {clientID : req.params.clientID}
     console.log(query);
     console.log(req.params.clientID)

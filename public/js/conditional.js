@@ -64,22 +64,22 @@ $(function(){
 });
 
 $(function(){
-    $('#key_safe_pin').hide();
-    $('#key_hidden_pin').hide();
+    $('#keySafePin').hide();
+    $('#keyHiddenPin').hide();
     $('input[name=access_type]').on('click', function(){
         var selectedValue = $('input[name=access_type]:checked').val();
         console.log(selectedValue);
         if(selectedValue == 'key_safe'){
-            $('#key_safe_pin').show(1000);
+            $('#keySafePin').show(1000);
         }
         else if(selectedValue != 'key_safe'){
-            $('#key_safe_pin').hide(1000);
+            $('#keySafePin').hide(1000);
         }
         if(selectedValue == 'key_hidden'){
-            $('#key_hidden_pin').show(1000);
+            $('#keyHiddenPin').show(1000);
         }
         else if(selectedValue != 'key_hidden'){
-            $('#key_hidden_pin').hide(1000);
+            $('#keyHiddenPin').hide(1000);
         }
     });
 });

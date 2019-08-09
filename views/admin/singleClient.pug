@@ -1,0 +1,84 @@
+extends layout
+
+block content
+        #card-1.row.mt-2
+            .col-sm-6.col-md-4.col-lg-5
+                .card.card-inverse.card-info
+                    img.card-img-top(src="/uploads/"+clientDetails.profilePic)
+                    .card-block
+                        h4.card-title #{clientDetails.fullName}
+                    h6.card-line
+                        strong Postcode :
+                        |  #{clientDetails.postcode}
+                    h6.card-line
+                        strong Mobile Number :
+                        |  #{clientDetails.mobileNumber}
+                    h6.card-line
+                        strong Address :
+                        |  #{clientDetails.address}
+                    h6.card-line
+                        strong City :
+                        |  #{clientDetails.city}
+                    .card-footer
+                        small Last updated #{clientDetails.updated}
+                        //- button.btn.btn-info.float-right.btn-sm View Details
+            .col-sm-6.col-md-4.col-lg-7
+                .card.card-inverse.card-info
+                    //- img.card-img-top(src="/admin/img/card/c-3.jpg")
+                    .card-block
+                        h5.card-title Booking Information
+                    hr
+                    h6.card-line
+                        strong Number of Bathrooms :
+                        |  #{clientDetails.bathrooms}
+                    h6.card-line
+                        strong NUmber of Bedrooms :
+                        |  #{clientDetails.bedrooms}
+                    h6.card-line
+                        strong Extra Tasks :
+                        |  #{clientDetails.extraTasks}
+                    h6.card-line
+                        strong Date of First Clean :
+                        |  #{clientDetails.dateFirstClean}
+                    h6.card-line
+                        strong Number of Cleaning Hours :
+                        |  #{clientDetails.cleaningHours}
+                    h6.card-line
+                        strong Priority :
+                        |  #{clientDetails.priority}
+                    h6.card-line
+                        strong Apartment Access :
+                        |  #{clientDetails.apartmentAccess}
+                    h6.card-line
+                        strong Key Hidden Pin :
+                        |  #{clientDetails.keyHiddenPin}
+                    h6.card-line
+                        strong Key Safe Pin :
+                        |  #{clientDetails.keySafePin}
+                    h6.card-line
+                        strong Cleaning Frequency :
+                        |  #{clientDetails.cleaningFrequency}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+                    //- h6.card-line
+                    //-     strong Postcode :
+                    //-     |  #{clientDetails.postcode}
+
+                    //- h6.card-line Postcode
+
+                    //- .card-footer
+                    //-     small Last updated 3 mins ago
+                    //-     button.btn.btn-info.float-right.btn-sm View Details

@@ -17,7 +17,7 @@ router.post('',
 router.get('/logout', (req, res)=>{
     req.logout();
     req.flash('success', 'You are logged out');
-    res.redirect('/client/client_login')
+    res.redirect('/client/login')
 });
 
 

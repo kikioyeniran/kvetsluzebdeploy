@@ -25,9 +25,9 @@ router.get('/cleaner_login', (req, res) =>{
 router.get('/admin/cleaner_dashboard/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         //console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_dashboard',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -40,9 +40,9 @@ router.get('/admin/cleaner_dashboard/:id', (req, res) =>{
 router.get('/admin/cleaner_finance/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_finance',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -54,9 +54,9 @@ router.get('/admin/cleaner_finance/:id', (req, res) =>{
 router.get('/admin/cleaner_invoice/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_invoice',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -69,9 +69,9 @@ router.get('/admin/cleaner_invoice/:id', (req, res) =>{
 router.get('/admin/cleaner_requests/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_requests',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -84,9 +84,9 @@ router.get('/admin/cleaner_requests/:id', (req, res) =>{
 router.get('/admin/cleaner_calendar/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_calendar',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -98,9 +98,9 @@ router.get('/admin/cleaner_calendar/:id', (req, res) =>{
 router.get('/admin/cleaner_faq/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
         console.log(cleaner)
-        var query = {cleaner_id: cleaner.cleanerid};
+        var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].full_name);
+            //console.log(cleaner_details[0].fullName);
             res.render('admin/cleaner_faq',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]
@@ -141,7 +141,7 @@ router.post('/cleaner_registration', (req, res)=>{
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }
-    }).fields([{name: 'profile_pic'}, {name: 'national_id'}, {name: 'health_insurance'}])
+    }).fields([{name: 'profilePic'}, {name: 'nationalID'}, {name: 'healthInsurance'}])
 
     upload(req, res, (err) => {
         if(err){
@@ -155,7 +155,7 @@ router.post('/cleaner_registration', (req, res)=>{
             const password2 = req.body.password2;
 
             const postcode = req.body.postcode;
-            const extra_tasks = req.body.extra_tasks;
+            const extraTasks = req.body.extraTasks;
             const experience = req.body.experience;
             const profile = req.body.profile;
             const fullName = req.body.fullname;
@@ -163,11 +163,11 @@ router.post('/cleaner_registration', (req, res)=>{
             const address = req.body.address;
             const city = req.body.city;
             const income = req.body.income;
-            let cleaner_id = bcrypt.hashSync('fullName', 10);
-            const profile_pic = req.files['profile_pic'][0].filename;
-            const national_id = req.files['national_id'][0].filename;
-            const health_insurance = req.files['health_insurance'][0].filename;
-            //const cleaner_id = req.body._id;
+            let cleanerID = bcrypt.hashSync('fullName', 10);
+            const profilePic = req.files['profilePic'][0].filename;
+            const nationalID = req.files['nationalID'][0].filename;
+            const healthInsurance = req.files['healthInsurance'][0].filename;
+            //const cleanerID = req.body._id;
 
             req.checkBody('email', 'Email is required').notEmpty();
             req.checkBody('email', 'Email is not valid').isEmail();
@@ -182,8 +182,8 @@ router.post('/cleaner_registration', (req, res)=>{
             req.checkBody('income', 'Your desired income is required').notEmpty();
             req.checkBody('experience', 'Your years of experience is required').notEmpty();
             req.checkBody('profile', 'Your profile is required').notEmpty();
-            // req.checkBody('national_id', 'Your means of identification is required').notEmpty();
-            // req.checkBody('health_insurance', 'Your Health Insurance is required').notEmpty();
+            // req.checkBody('nationalID', 'Your means of identification is required').notEmpty();
+            // req.checkBody('healthInsurance', 'Your Health Insurance is required').notEmpty();
 
             let errors = req.validationErrors();
 
@@ -196,23 +196,23 @@ router.post('/cleaner_registration', (req, res)=>{
                 let newUser = new Cleaner({
                     email:email,
                     username:username,
-                    cleanerid: cleaner_id,
+                    cleanerid: cleanerID,
                     password:password
                 });
                 let newUserDetails = new CleanerDetails({
                     postcode: postcode,
-                    mobile_number: mobileNumber,
-                    extra_tasks: extra_tasks,
+                    mobileNumber: mobileNumber,
+                    extraTasks: extraTasks,
                     experience: experience,
                     profile: profile,
-                    profile_pic: profile_pic,
-                    national_id: national_id,
-                    health_insurance: health_insurance,
+                    profilePic: profilePic,
+                    nationalID: nationalID,
+                    healthInsurance: healthInsurance,
                     address: address,
-                    full_name: fullName,
+                    fullName: fullName,
                     city: city,
                     income: income,
-                    cleaner_id: cleaner_id,
+                    cleanerID: cleanerID,
                 });
                 bcrypt.genSalt(10, (err, salt)=>{
                     bcrypt.hash(newUser.password, salt, (err, hash)=>{
@@ -256,16 +256,16 @@ router.post('/cleaner_registration', (req, res)=>{
 router.post('/edit/:cleanerID/:id/', (req, res) =>{
     console.log('code is here');
     let cleaner = {};
-    cleaner.full_name = req.body.fullName;
+    cleaner.fullName = req.body.fullName;
     //console.log(req.body.fullName);
     cleaner.postcode = req.body.postcode;
     cleaner.city = req.body.city;
     cleaner.address = req.body.address;
-    cleaner.mobile_number = req.body.mobileNumber;
-    cleaner.extra_tasks = req.body.extra_tasks;
+    cleaner.mobileNumber = req.body.mobileNumber;
+    cleaner.extraTasks = req.body.extraTasks;
     cleaner.profle = req.body.profile;
     cleaner.income = req.body.income;
-    let query = {cleaner_id : req.params.cleanerID}
+    let query = {cleanerID : req.params.cleanerID}
     console.log(query);
     console.log(req.params.cleanerID)
 

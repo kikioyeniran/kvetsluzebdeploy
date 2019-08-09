@@ -29,9 +29,10 @@ html
               h3.text-center
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
-              form(method="POST", action='/client/client_login')
+              h4.text-center CLIENT LOGIN
+              form(method="POST", action='/client/login')
                 .form-group
-                  label(for="username", method="POST", action="/client/client_login") Username
+                  label(for="username") Username
                   input#username.form-control(type="text" placeholder="Enter Username" name="username")
                 .form-group
                   label(for="exampleInputEmail1") Password

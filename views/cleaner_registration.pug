@@ -64,7 +64,7 @@ block content
                             hr
                             .form-group
                                 label.form-label(for='extra-tasks') What Extra Tasks can you handle?
-                                select#keep-order(multiple="multiple" name='extra_tasks')
+                                select#keep-order(multiple="multiple" name='extraTasks')
                                     option(value="ironing") Ironing
                                     option(value="inside_windows") Inside Windows
                                     option(value="inside_oven") Inside Oven
@@ -99,8 +99,8 @@ block content
                                 textarea#profile(name='profile' placeholder='I am a strong energetic person...')
                             hr
                             .form-group
-                                label.form-label(for="profile_pic") Select a profile picture
-                                input#profile_pic.form-control-file(type="file" aria-describedby="fileHelp" name="profile_pic")
+                                label.form-label(for="profilePic") Select a profile picture
+                                input#profilePic.form-control-file(type="file" aria-describedby="fileHelp" name="profilePic")
 
                             .fieldset-footer
                             span Step 2 of 3
@@ -109,12 +109,12 @@ block content
                     fieldset
                         .fieldset-content
                             .form-group
-                                label.form-label(for="national_id") International Passport or National ID
-                                input#national_id.form-control-file(type="file" aria-describedby="fileHelp" name='national_id')
+                                label.form-label(for="nationalID") International Passport or National ID
+                                input#nationalID.form-control-file(type="file" aria-describedby="fileHelp" name='nationalID')
                                 small#fileHelp.form-text.text-muted
                             .form-group
-                                label.form-label(for="health_insurance") Health Insurance
-                                input#health_insurance.form-control-file(type="file" aria-describedby="fileHelp" name='health_insurance')
+                                label.form-label(for="healthInsurance") Health Insurance
+                                input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
                                 small#fileHelp.form-text.text-muted
                             label.custom-control.custom-checkbox
                                 input.custom-control-input(type="checkbox" checked="" name='terms')

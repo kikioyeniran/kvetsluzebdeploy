@@ -13,21 +13,22 @@ block content
                         ul#items.list-inline
                         form#requestForm(method="POST", action="/requests/booking_final")
                             input(type='hidden' name='clientID' value=client.clientID)
-                            input(type='hidden' name='clientName' value=clientDetails.full_name)
-                            input(type='hidden' name='clientPhone' value=clientDetails.mobile_number)
+                            input(type='hidden' name='clientName' value=clientDetails.fullName)
+                            input(type='hidden' name='clientPhone' value=clientDetails.mobileNumber)
                             input(type='hidden' name='clientEmail' value=client.email)
-                            input(type='hidden' name='extraTasks' value=clientDetails.extra_tasks)
-                            input(type='hidden' name='hours' value=clientDetails.cleaning_hours)
-                            input(type='hidden' name='moreHours' value=clientDetails.more_cleaning_hours)
+                            input(type='hidden' name='extraTasks' value=clientDetails.extraTasks)
+                            input(type='hidden' name='hours' value=clientDetails.cleaningHours)
+                            input(type='hidden' name='moreHours' value=clientDetails.moreCleaningHours)
                             input(type='hidden' name='address' value=clientDetails.address)
                             input(type='hidden' name='city' value=clientDetails.city)
+                            input(type='hidden' name='country' value=clientDetails.country)
                             input(type='hidden' name='postcode' value=clientDetails.postcode)
-                            input(type='hidden' name='priority' value=clientDetails.prority)
-                            input(type='hidden' name='accessType' value=clientDetails.apartment_access)
-                            input(type='hidden' name='keyHiddenPin' value=clientDetails.key_hidden_pin)
-                            input(type='hidden' name='keySafePin' value=clientDetails.key_safe_pin)
-                            input(type='hidden' name='frequency' value=clientDetails.cleaning_frequency)
-                            input(type='hidden' name='dateFirstClean' value=clientDetails.date_first_clean)
+                            input(type='hidden' name='priority' value=clientDetails.priority)
+                            input(type='hidden' name='accessType' value=clientDetails.apartmentAccess)
+                            input(type='hidden' name='keyHiddenPin' value=clientDetails.keyHiddenPin)
+                            input(type='hidden' name='keySafePin' value=clientDetails.keySafePin)
+                            input(type='hidden' name='frequency' value=clientDetails.cleaningFrequency)
+                            input(type='hidden' name='dateFirstClean' value=clientDetails.dateFirstClean)
                         //- button.btn.btn-primary.btn-sm.select(role="button" type="submit") Select
                 .contains.col-lg-10
                     if cleanerDetails
@@ -39,13 +40,13 @@ block content
                                             img(src="/img/image-1.jpg")
                                             button.btn.btn-primary.btn-sm.select(role="button" type="submit") Select
                                         .panel-figure
-                                            img.img-fluid.rounded-circle(src="/uploads/"+cleaner.profile_pic)
+                                            img.img-fluid.rounded-circle(src="/uploads/"+cleaner.profilePic)
                                         .panel-body.text-center
                                             h4.panel-header
                                                 .see
-                                                    | #{cleaner.full_name}
-                                                p.hide #{cleaner.cleaner_id}
-                                                    //- | #{cleaner.cleaner_id}
+                                                    | #{cleaner.fullName}
+                                                p.hide #{cleaner.cleanerID}
+                                                    //- | #{cleaner.cleanerID}
                                             small #{cleaner.profile}
                                         .panel-thumbnails
                                             .row
@@ -58,7 +59,7 @@ block content
                                                         i.fa.fa-fw.fa-star
                                                     .col-xs-4
                                                         .cleaner-price
-                                                            | $13.89 per hour
+                                                            | $#{cleaner.income} per hour
                     else
                         i.large.fa.fa-window-restore  Sorry! no cleaner found in your area
                         a(href='/client/client_login')

@@ -45,7 +45,7 @@ router.post('', (req, res)=>{
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }
-    }).single('profile_pic')
+    }).single('profilePic')
 
 
     upload(req, res, (err) => {
@@ -60,20 +60,21 @@ router.post('', (req, res)=>{
             const postcode = req.body.postcode;
             const bedrooms = req.body.bedrooms;
             const bathrooms = req.body.bathrooms;
-            const extra_tasks = req.body.extra_tasks;
+            const extraTasks = req.body.extraTasks;
             const hours  = req.body.hours;
             const more_hours  = req.body.more_hours;
             const priority = req.body.priority;
             const access_type = req.body.access_type;
-            const key_safe_pin = req.body.key_safe_pin;
-            const key_hidden_pin = req.body.key_hidden_pin;
+            const keySafePin = req.body.keySafePin;
+            const keyHiddenPin = req.body.keyHiddenPin;
             const schedule = req.body.schedule;
             const date = req.body.date;
             const fullName = req.body.fullname;
             const mobileNumber = req.body.mobilenumber;
             const address = req.body.address;
             const city = req.body.city;
-            const profile_pic = req.file.filename;
+            const country = req.body.country;
+            const profilePic = req.file.filename;
             let clientID = bcrypt.hashSync('fullName', 10);
             console.log(clientID);
 
@@ -95,16 +96,17 @@ router.post('', (req, res)=>{
             }
             req.checkBody('access_type', 'How cleaner would access your home cannot be empty').notEmpty();
             if(access_type == 'key_safe'){
-                req.checkBody('key_safe_pin', 'Key Safe Pin is required').notEmpty();
+                req.checkBody('keySafePin', 'Key Safe Pin is required').notEmpty();
             }
             if(access_type == 'key_hidden'){
-                req.checkBody('key_hidden_pin', 'Key Hidden location is required').notEmpty();
+                req.checkBody('keyHiddenPin', 'Key Hidden location is required').notEmpty();
             }
             req.checkBody('schedule', 'Schedule is required').notEmpty();
             req.checkBody('fullname', 'Your Full Name  is not valid').notEmpty();
             req.checkBody('mobilenumber', 'Mobile Number is required').notEmpty();
             req.checkBody('address', 'Addresss is required').notEmpty();
             req.checkBody('city', 'City is required').notEmpty();
+            req.checkBody('country', 'Country is required').notEmpty();
 
             let errors = req.validationErrors();
             if(errors){
@@ -123,20 +125,21 @@ router.post('', (req, res)=>{
                     postcode: postcode,
                     bedrooms: bedrooms,
                     bathrooms: bathrooms,
-                    extra_tasks: extra_tasks,
-                    date_first_clean: date,
-                    cleaning_hours: hours,
-                    more_cleaning_hours: more_hours,
-                    cleaning_priority: priority,
-                    apartment_access: access_type,
-                    key_hidden_pin: key_hidden_pin,
-                    key_safe_pin: key_safe_pin,
-                    cleaning_frequency:schedule,
-                    mobile_number: mobileNumber,
+                    extraTasks: extraTasks,
+                    dateFirstClean: date,
+                    cleaningHours: hours,
+                    moreCleaningHours: more_hours,
+                    cleaningPriority: priority,
+                    apartmentAccess: access_type,
+                    keyHiddenPin: keyHiddenPin,
+                    keySafePin: keySafePin,
+                    cleaningFrequency:schedule,
+                    mobileNumber: mobileNumber,
                     address: address,
-                    full_name: fullName,
+                    fullName: fullName,
                     city: city,
-                    profile_pic: profile_pic,
+                    country: country,
+                    profilePic: profilePic,
                     clientID: clientID
                 });
 
@@ -167,7 +170,7 @@ router.post('', (req, res)=>{
                     }else {
                         console.log('done adding details');
                         req.flash('success', 'Client added')
-                        res.redirect('/client/booking_final/'+clientID);
+                        res.redirect('/client/booking_final/'+encodeURIComponent(clientID));
                     }
                 });
             }

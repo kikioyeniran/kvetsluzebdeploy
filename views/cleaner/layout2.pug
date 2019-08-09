@@ -134,14 +134,14 @@ html
                                         strong Read all messages
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profilePic alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
                                         .msg-profile
-                                            img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
+                                            img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profilePic alt="...")
                                         .msg-body
-                                            h3.h5 #{cleanerDetails.full_name}
+                                            h3.h5 #{cleanerDetails.fullName}
                                             span #{cleaner.email}
                                 hr
                                 li
@@ -259,9 +259,9 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar
-                        img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profile_pic alt="...")
+                        img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profilePic alt="...")
                     .title
-                        h1.h4= cleanerDetails.full_name
+                        h1.h4= cleanerDetails.fullName
                 hr
                 // Sidebar Navidation Menus
                 ul.list-unstyled

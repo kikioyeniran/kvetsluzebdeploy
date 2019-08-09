@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //Cleaner schema
 const CleanerSchema = mongoose.Schema({
-    cleanerid:{
+    cleanerID:{
         type: String,
         required: true
     },

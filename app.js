@@ -76,6 +76,8 @@ app.use(expressValidator({
 
 //Passport Config
 require('./config/passport')(passport);
+// require('./config/adpassport')(passport);
+
 //Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -99,6 +101,8 @@ let cleanerDashboard = require('./routes/cleaner/dashboard');
 let cleanerLogin = require('./routes/cleaner/login');
 let cleanerRegister = require('./routes/cleaner/register');
 let cleanerEdit = require('./routes/cleaner/editDetails');
+let cleanerSchedule = require('./routes/cleaner/schedule')
+let paymentRequest = require('./routes/cleaner/paymentRequest')
 //let client = require('./routes/client');
 
 //Client Route Files
@@ -116,23 +120,28 @@ let adminDashboard = require('./routes/admin/dashboard');
 let adminLogin = require('./routes/admin/login');
 let adminRegister = require('./routes/admin/register')
 
-//app.use('/cleaner', cleaner);
+//Cleaner Routes
 app.use('/cleaner/dashboard', cleanerDashboard);
 app.use('/cleaner/login', cleanerLogin);
 app.use('/cleaner/register', cleanerRegister);
 app.use('/cleaner/edit', cleanerEdit);
-//app.use('/client', client);
+app.use('/cleaner/schedule', cleanerSchedule);
+app.use('/cleaner/paymentrequest', paymentRequest);
+
+//Client Routes
 app.use('/client/dashboard', clientDashboard);
 app.use('/client/booking', clientBooking);
-app.use('/client/final', clientBookingFinal);
+app.use('/client/booking_final', clientBookingFinal);
 app.use('/client/edit', clientEdit);
 app.use('/client/renew', clientRenew);
 app.use('/client/login', clientLogin);
 
+//Admin Routes
 app.use('/admin/dashboard', adminDashboard);
 app.use('/admin/login', adminLogin);
 app.use('/admin/register', adminRegister);
 
+//General Routes
 app.use('/public', public);
 app.use('/requests', requests);
 

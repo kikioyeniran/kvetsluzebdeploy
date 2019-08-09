@@ -14,39 +14,39 @@ let ClientDetailsSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    extra_tasks:{
+    extraTasks:{
         type: Array,
         required: true
     },
-    date_first_clean:{
+    dateFirstClean:{
         type: Date,
         required: true
     },
-    cleaning_hours:{
+    cleaningHours:{
         type: Number,
         required: true
     },
-    more_cleaning_hours:{
+    moreCleaningHours:{
         type: Number
     },
-    cleaning_priority:{
+    cleaningPriority:{
         type: String
     },
-    apartment_access:{
+    apartmentAccess:{
         type: String,
         required: true
     },
-    key_hidden_pin:{
+    keyHiddenPin:{
         type: String
     },
-    key_safe_pin:{
+    keySafePin:{
         type: String
     },
-    cleaning_frequency:{
+    cleaningFrequency:{
         type: String,
         required: true
     },
-    mobile_number:{
+    mobileNumber:{
         type: Number,
         required: true
     },
@@ -54,7 +54,7 @@ let ClientDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    full_name:{
+    fullName:{
         type: String,
         required: true
     },
@@ -62,11 +62,15 @@ let ClientDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    country:{
+        type: String,
+        //required: true
+    },
     clientID:{
         type: String,
         required: true
     },
-    profile_pic:{
+    profilePic:{
         type: String,
         required: true
     },

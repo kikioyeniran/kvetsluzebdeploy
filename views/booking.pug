@@ -40,7 +40,7 @@ block content
                         .fieldset-content
                             .form-group
                                 label.form-label(for='post_code') Enter Your Post Code
-                                input#full_name(type='text' name='postcode' placeholder='Post Code')
+                                input#fullName(type='text' name='postcode' placeholder='Post Code')
                             hr
                             .form-group
                                 label.form-label(for='bedrooms') How many bedrooms?
@@ -51,8 +51,8 @@ block content
                                 input#bedrooms(type='number' name='bathrooms' placeholder='1' min='0' max='10')
                             hr
                             .form-group
-                                label.form-label(for='extra_tasks') Extra Tasks?
-                                select#keep-order(multiple="multiple" name="extra_tasks")
+                                label.form-label(for='extraTasks') Extra Tasks?
+                                select#keep-order(multiple="multiple" name="extraTasks")
                                     option(value="ironing") Ironing
                                     option(value="inside_windows") Inside Windows
                                     option(value="inside_oven") Inside Oven
@@ -124,12 +124,12 @@ block content
                                     input#key_hidden(type='radio' name='access_type' value='key_hidden')
                                     label(for='key_hidden')
                                         | Key Hidden
-                            #key_safe_pin.form-group
-                                label.form-label(for='key_safe_pin') Enter Your Pin
-                                input#key_safe_pin(type='text' name='key_safe_pin' placeholder='We will only share this with your cleaner')
-                            #key_hidden_pin.form-group
-                                label.form-label(for='key_hidden_pin') Where is the Key hidden?
-                                input#key_hidden_pin(type='text' name='key_hidden_pin' placeholder='We will only share this with your cleaner')
+                            #keySafePin.form-group
+                                label.form-label(for='keySafePin') Enter Your Pin
+                                input#keySafePin(type='text' name='keySafePin' placeholder='We will only share this with your cleaner')
+                            #keyHiddenPin.form-group
+                                label.form-label(for='keyHiddenPin') Where is the Key hidden?
+                                input#keyHiddenPin(type='text' name='keyHiddenPin' placeholder='We will only share this with your cleaner')
                             hr
                             .form-radio
                                 label.form-label(for='schedule') How often?
@@ -152,8 +152,8 @@ block content
                                 input#fullname(type='text' name='fullname' placeholder='Full Name')
                             hr
                             .form-group
-                                label.form-label(for="profile_pic") Select a profile picture
-                                input#profile_pic.form-control-file(type="file" aria-describedby="fileHelp" name="profile_pic")
+                                label.form-label(for="profilePic") Select a profile picture
+                                input#profilePic.form-control-file(type="file" aria-describedby="fileHelp" name="profilePic")
                             hr
                             .form-group
                                 label.form-label(for='mobile_no') Mobile Number
@@ -167,9 +167,9 @@ block content
                                 label.form-label(for='city') City
                                 input#city(type='text' name='city' placeholder='Your City')
                             hr
-                            //- .form-group
-                            //-     label.form-label(for='postcode') Postcode
-                            //-     input#postcode(type='text' name='postcode' placeholder='postcode')
+                            .form-group
+                                label.form-label(for='country') Country
+                                input#city(type='text' name='country' placeholder='Your Country')
                         .fieldset-footer
                                 span Step 3 of 3
                                 //- input.btn.btn-primary(type='submit', value='Submit')

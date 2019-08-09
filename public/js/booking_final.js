@@ -37,7 +37,7 @@ function addTag(e){
         input.className = 'inputAdded';
         var cleanInput = document.createElement('input');
         cleanInput.type = 'hidden';
-        cleanInput.name = 'selectedCleanerID'+ icount;
+        cleanInput.name = 'selectedcleanerID'+ icount;
         cleanInput.className = 'cleanAdded';
         cleanInput.value = cleanerID;
         li.className = 'list-inline-item';

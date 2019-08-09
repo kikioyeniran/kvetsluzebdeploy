@@ -1,10 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-var empty = require('is-empty');
-const multer = require('multer');
-const path = require('path');
 
 //Bring in Client Models
 let Client =  require('../../models/client');
@@ -25,6 +20,8 @@ router.get('/home/:id', (req, res) =>{
     });
 });
 
+
+//Renew Booking Route
 router.get('/renew/:id', (req, res) =>{
     Client.findById(req.params.id, (err, client) =>{
         //console.log(client)
@@ -39,6 +36,20 @@ router.get('/renew/:id', (req, res) =>{
     });
 });
 
+//Client FAQs Route
+router.get('/client_faq/:id', (req, res) =>{
+    Client.findById(req.params.id, (err, client) =>{
+        //console.log(client)
+        var query = {clientID: client.clientID};
+        ClientDetails.find((query), (err, client_details)=>{
+            //console.log(client_details[0]);
+            res.render('client/client_faq',{
+                client: client,
+                clientDetails: client_details[0]
+            });
+        });
+    });
+});
 
 //Client Finance Page route
 router.get('/client_finance', (req, res) =>{

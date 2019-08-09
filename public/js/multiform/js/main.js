@@ -45,17 +45,17 @@
             address: {
                 required: true,
             },
-            profile_pic:{
+            profilePic:{
                 required: true,
                 extension: "png|jpeg|jpg|gif",
                 // filesize: 10000000,
             },
-            national_id:{
+            nationalID:{
                 required: true,
                 extension: "png|jpeg|jpg|gif|pdf",
                 // filesize: 1048576000,
             },
-            health_insurance:{
+            healthInsurance:{
                 required: true,
                 extension: "png|jpeg|jpg|gif|pdf",
                 // filesize: 10485760,
@@ -67,9 +67,9 @@
             },
             password2: 'Passwords do not match',
             mobilenumber: 'Please enter a valid phone number',
-            profile_pic: 'Your file must be JPG, GIF or PNG and less than 10MB',
-            national_id: 'Your ID must be in JPG, GIF, PNG or PDF format and less than 10MB',
-            health_insurance: 'Your Health Insurance must be in PDF format and less than 10MB'
+            profilePic: 'Your file must be JPG, GIF or PNG and less than 10MB',
+            nationalID: 'Your ID must be in JPG, GIF, PNG or PDF format and less than 10MB',
+            healthInsurance: 'Your Health Insurance must be in PDF format and less than 10MB'
         },
         onfocusout: function(element) {
             $(element).valid();

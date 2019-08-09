@@ -6,15 +6,22 @@ block content
             .row
                 // ***** TIMELINE-1 *****
                 #timeline-1.main-timeline
-                    .timeline
-                        .timeline-icon
-                        .timeline-content
-                            span.date Apr 2017 - Mar 2018
-                            h5.title Cleaning Request
-                            h5.title Ann Stacy (Read the description below)
-                            p.description
-                                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            a.read-more(href="#") Accept
+                    each request, i in requests
+                        .timeline
+                            .timeline-icon
+                            .timeline-content
+                                span.date #{request.dateFirstClean}
+                                h5.title Cleaning Request
+                                h5.title Name: #{request.clientName}
+                                h5.title Email: #{request.clientEmail}
+                                h5.title Phone Number: #{request.clientPhone}
+                                h5.title Postcode: #{request.postcode}
+                                h5.title Apartment Access: #{request.accessType}
+                                h5.title Date of First Clean: #{request.clientPhone}
+                                h5.title Extra Tasks: #{request.clientPhone}
+                                p.description
+                                    | Address: #{request.address}.
+                                a.read-more(href="/cleaner/schedule/"+encodeURIComponent(request.clientID)+"/"+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(request._id)) Accept
                     .timeline
                         .timeline-icon
                         .timeline-content

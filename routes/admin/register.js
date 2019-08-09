@@ -9,18 +9,17 @@ let Admin =  require('../../models/admin');
 //Register Route
 router.get('', (req, res) =>{
     //console('register view called');
-    res.render('admin/dashboard')
+    res.render('admin/register')
 });
 
 //Register Processes
 router.post('', (req, res)=>{
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
     const password2 = req.body.password2;
 
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('username', 'Username is required').notEmpty();
+    req.checkBody('username', 'username is required').notEmpty();
+    //req.checkBody('username', 'Email is not valid').isEmail();
     req.checkBody('password', 'Password is required').notEmpty();
     req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
@@ -32,7 +31,7 @@ router.post('', (req, res)=>{
         });
     }else{
         let newUser = new Admin({
-            email:email,
+            username:username,
             password:password
         });
     bcrypt.genSalt(10, (err, salt)=>{

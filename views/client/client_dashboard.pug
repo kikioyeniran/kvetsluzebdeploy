@@ -13,10 +13,10 @@ block content
           .card.hovercard
             .cardheader
             .avatar
-              img.img-fluid(alt="" src="/uploads/"+clientDetails.profile_pic)
+              img.img-fluid(alt="" src="/uploads/"+clientDetails.profilePic)
             .info
               .title
-                a(target="_blank" href="#") #{clientDetails.full_name}
+                a(target="_blank" href="#") #{clientDetails.fullName}
               .desc #{client.email}
               hr
             nav.nav.text-center.prof-nav
@@ -28,7 +28,7 @@ block content
                 li
                   a(href="#") Setting
                 li
-                  a(href="/client/client_logout") Logout
+                  a(href="/client/login/logout") Logout
             .bottom
               a.btn.btn-info.btn-twitter.btn-sm(href="#")
                 i.fa.fa-twitter
@@ -88,11 +88,15 @@ block content
                           .form-group
                             strong.mr-5
                               i.fa.fa-phone  Phone:
-                            |    #{clientDetails.mobile_number}
+                            |    #{clientDetails.mobileNumber}
                           .form-group
                             strong.mr-5
                               i.fa.fa-map  City:
                             |     #{clientDetails.city}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-map  Country:
+                            |     #{clientDetails.country}
                         .col-6
                           .form-group
                             strong.mr-5
@@ -100,14 +104,10 @@ block content
                             |     #{clientDetails.postcode}
                           .form-group
                             strong.mr-5
-                              i.fa.fa-map-marker  Address:
+                              i.fa.fa-map-marker Address:
                             |    #{clientDetails.address}
-                          .form-group
-                            strong.mr-5
-                              i.fa.fa-money  Income/hour:
-                            |    $#{clientDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
-                  form(method='POST', action='/client/edit/'+client.clientID+'/'+client._id)
+                  form(method='POST', action='/client/edit/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id))
                     .row.mx-2
                       .col-md-12.panel-heading
                         h3.panel-title
@@ -118,7 +118,7 @@ block content
                         .form-group.row
                           label.col-form-label(for="example-text-input" style="width: 85px;") Full Name
                           .col-9
-                            input#example-text-input.form-control(type="text" name='fullName' value=clientDetails.full_name)
+                            input#example-text-input.form-control(type="text" name='fullName' value=clientDetails.fullName)
                         .form-group.row
                           label.col-form-label(for="example-email-input" style="width: 85px;") Postcode
                           .col-9
@@ -132,14 +132,14 @@ block content
                           label.col-form-label(for="example-text-input" style="width: 85px;") City
                           .col-9
                             input#example-text-input.form-control(type="text" name='city' value=clientDetails.city)
-                        //- .form-group.row
-                        //-   label.col-form-label(for="example-date-input" style="width: 85px;") Profile Picture
-                        //-   .col-9
-                        //-     input#example-date-input.form-control-file(type="file" name="profile_pic")
+                        .form-group.row
+                          label.col-form-label(for="example-text-input" style="width: 85px;") Country
+                          .col-9
+                            input#example-text-input.form-control(type="text" name='country' value=clientDetails.country)
                         .form-group.row
                           label.col-form-label(for="example-tel-input" style="width: 85px;") Mobile Number
                           .col-9
-                            input#example-tel-input.form-control(type="tel" name="mobileNumber" value=clientDetails.mobile_number)
+                            input#example-tel-input.form-control(type="tel" name="mobileNumber" value=clientDetails.mobileNumber)
                         .form-group.row
                       button.btn.btn-general.btn-blue.special(type='submit') Update
 

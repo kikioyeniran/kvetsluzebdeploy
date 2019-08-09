@@ -48,8 +48,8 @@ block content
                                         input#sixplus(type='radio' name='more_hours' value='6.5')
                                         label(for='sixplus') 6.5
                                 .form-group
-                                    label.form-label(for='extra_tasks') Extra Tasks?
-                                    select#keep-order(multiple="multiple" name="extra_tasks")
+                                    label.form-label(for='extraTasks') Extra Tasks?
+                                    select#keep-order(multiple="multiple" name="extraTasks")
                                         option(value="ironing") Ironing
                                         option(value="inside_windows") Inside Windows
                                         option(value="inside_oven") Inside Oven
@@ -89,11 +89,11 @@ block content
                                                 input#key_hidden(type='radio' name='access_type' value='key_hidden')
                                                 label(for='key_hidden')
                                                     | Key Hidden
-                                        #key_safe_pin.form-group
-                                            label.form-label(for='key_safe_pin') Enter Your Pin
-                                            input#key_safe_pin(type='text' name='key_safe_pin' placeholder='We will only share this with your cleaner')
-                                        #key_hidden_pin.form-group
-                                            label.form-label(for='key_hidden_pin') Where is the Key hidden?
-                                            input#key_hidden_pin(type='text' name='key_hidden_pin' placeholder='We will only share this with your cleaner')
+                                        #keySafePin.form-group
+                                            label.form-label(for='keySafePin') Enter Your Pin
+                                            input#keySafePin(type='text' name='keySafePin' placeholder='We will only share this with your cleaner')
+                                        #keyHiddenPin.form-group
+                                            label.form-label(for='keyHiddenPin') Where is the Key hidden?
+                                            input#keyHiddenPin(type='text' name='keyHiddenPin' placeholder='We will only share this with your cleaner')
                         button.btn.btn-general.btn-blue.mr-2(type="submit") Submit
                         button.btn.btn-general.btn-white(type="reset") Reset

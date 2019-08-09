@@ -8,7 +8,6 @@ let ClientDetails =  require('../../models/client_details');
 //Cleaner Models
 let CleanerDetails =  require('../../models/cleaner_details');
 
-
 //Booking Final route
 router.get('/:client', (req, res) =>{
     // res.render('booking_final');
@@ -23,13 +22,13 @@ router.get('/:client', (req, res) =>{
             CleanerDetails.find((query2), (err, cleanerDetails)=>{
                 if(empty(cleanerDetails)){
                     console.log('cleaner details empty');
-                    res.render('client/booking_final',{
+                    res.render('booking_final',{
                         client: client,
                         clientDetails: client_details
                     });
                 }else{
                     //console.log(cleanerDetails);
-                    res.render('client/booking_final',{
+                    res.render('booking_final',{
                         client: client,
                         clientDetails: client_details,
                         cleanerDetails: cleanerDetails

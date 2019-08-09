@@ -10,9 +10,9 @@ router.get('/test', (req, res) =>{
 });
 
 
-router.get('/booking_final', (req, res) =>{
-    res.render('admin/client_login');
-});
+// router.get('/booking_final', (req, res) =>{
+//     res.render('admin/client_login');
+// });
 
 router.post('/booking_final', (req, res)=>{
     console.log('form submitted');
@@ -20,7 +20,7 @@ router.post('/booking_final', (req, res)=>{
     const clientName = req.body.clientName;
     const clientPhone = req.body.clientPhone;
     const clientEmail = req.body.clientEmail;
-    const extraTasks = req.body.extaTasks;
+    const extraTasks = req.body.extraTasks;
     const hours = req.body.hours;
     const moreHours = req.body.moreHours;
     const priority = req.body.priority;
@@ -32,19 +32,20 @@ router.post('/booking_final', (req, res)=>{
     const postcode = req.body.postcode;
     const address = req.body.address;
     const city = req.body.city;
+    const country = req.body.country;
     const selectedCleaner0 = req.body.selectedCleaner0;
     const selectedCleaner1 = req.body.selectedCleaner1;
     const selectedCleaner2 = req.body.selectedCleaner2;
-    const selectedCleanerID0 = req.body.selectedCleanerID0;
-    const selectedCleanerID1 = req.body.selectedCleanerID1;
-    const selectedCleanerID2 = req.body.selectedCleanerID2;
+    const selectedcleanerID0 = req.body.selectedcleanerID0;
+    const selectedcleanerID1 = req.body.selectedcleanerID1;
+    const selectedcleanerID2 = req.body.selectedcleanerID2;
     const selectedCleaners = [selectedCleaner0, selectedCleaner1, selectedCleaner2];
-    const selectedCleanerIDs = [selectedCleanerID0, selectedCleanerID1, selectedCleanerID2];
+    const selectedcleanerIDs = [selectedcleanerID0, selectedcleanerID1, selectedcleanerID2];
     const status = false;
 
     console.log(clientID);
     console.log(selectedCleaners);
-    console.log(selectedCleanerIDs);
+    console.log(selectedcleanerIDs);
     req.checkBody('clientID', 'clientID is required').notEmpty();
     req.checkBody('clientName', 'clientName is required').notEmpty();
     req.checkBody('clientPhone', 'clientPhone is required').notEmpty();
@@ -78,6 +79,7 @@ router.post('/booking_final', (req, res)=>{
             moreHours: moreHours,
             address: address,
             city: city,
+            country: country,
             postcode: postcode,
             keySafePin: keySafePin,
             keyHiddenPin: keyHiddenPin,
@@ -86,7 +88,7 @@ router.post('/booking_final', (req, res)=>{
             accessType: accessType,
             dateFirstClean: dateFirstClean,
             selectedCleaners: selectedCleaners,
-            selectedCleanerIDs: selectedCleanerIDs,
+            selectedcleanerIDs: selectedcleanerIDs,
             status: status
         });
 
@@ -96,7 +98,7 @@ router.post('/booking_final', (req, res)=>{
                 return;
             }else {
                 req.flash('success', 'Request completed');
-                res.redirect('/client/client_login');
+                res.redirect('/client/login');
             }
         });
     }

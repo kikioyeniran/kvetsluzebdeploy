@@ -2,36 +2,31 @@ extends layout
 
 block content
     #card-1.row.mt-2
-      .col-sm-6.col-md-4.col-lg-3
-        .card.card-inverse.card-info
-          img.card-img-top(src="/admin/img/card/c-1.jpg")
-          .card-block
-            h4.card-title Goodness Ama
-          .card-footer
-            small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm View Details
-      .col-sm-6.col-md-4.col-lg-3
-        .card.card-inverse.card-info
-          img.card-img-top(src="/admin/img/card/c-2.jpg")
-          .card-block
-            h4.card-title Brian Starf
-          .card-footer
-            small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm View Details
-      .col-sm-6.col-md-4.col-lg-3
-        .card.card-inverse.card-info
-          img.card-img-top(src="/admin/img/card/c-3.jpg")
-          .card-block
-            h4.card-title Ana Horsefall
-          .card-footer
-            small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm View Details
-      .col-sm-6.col-md-4.col-lg-3
-        .card.card-inverse.card-info
-          img.card-img-top(src="/admin/img/card/c-4.jpg")
-          .card-block
-            h4.card-title Brant Noble
-          .card-footer
-            small Last updated 3 mins ago
-            button.btn.btn-info.float-right.btn-sm View Details
+      each cleaner, i in cleanerDetails
+        .col-sm-6.col-md-4.col-lg-4
+          .card.card-inverse.card-info
+            img.card-img-top(src="/uploads/"+cleaner.profilePic)
+            .card-block
+              h4.card-title #{cleaner.fullName}
+            .card-footer
+              small Last updated 3 mins ago
+              a.btn.btn-info.float-right.btn-sm(href="/admin/dashboard/singlecleaner/"+encodeURIComponent(admin._id)+"/"+encodeURIComponent(cleaner.cleanerID)) View Details
+        //- .col-sm-6.col-md-4.col-lg-3
+        //-   .card.card-inverse.card-info
+        //-     img.card-img-top(src="/admin/img/card/c-2.jpg")
+        //-     .card-block
+        //-       h4.card-title Brian Starf
+        //-     .card-footer
+        //-       small Last updated 3 mins ago
+        //-       button.btn.btn-info.float-right.btn-sm View Details
+        //- .col-sm-6.col-md-4.col-lg-3
+        //-   .card.card-inverse.card-info
+        //-     img.card-img-top(src="/admin/img/card/c-3.jpg")
+        //-     .card-block
+        //-       h4.card-title Ana Horsefall
+        //-     .card-footer
+        //-       small Last updated 3 mins ago
+        //-       button.btn.btn-info.float-right.btn-sm View Details
+        //- .col-sm-6.col-md-4.col-lg-3
+
     br.mb-5

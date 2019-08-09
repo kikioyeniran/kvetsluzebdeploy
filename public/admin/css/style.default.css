@@ -212,10 +212,10 @@ input {
 }
 
 .card-header {
-    background: #fff;
+    background: #e9ecef;
     padding: 15px;
     border-bottom: 1px solid #eee;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 2px rgba(169, 159, 159, 0.49);
 }
 
 .card-header h1,
@@ -471,6 +471,74 @@ nav.side-navbar.shrinked .sidebar-header .title {
     display: none;
 }
 
+/* -----------------------
+2.9  Accordions
+-------------------------*/
+
+.accrodion-regular {}
+
+.accrodion-regular .card {
+    margin-bottom: 5px;
+}
+
+.accrodion-regular .card-body {
+    margin-top: -1px;
+}
+
+.accrodion-regular .card .card-header {
+    font-size: 16px;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.accrodion-regular .card .card-header:first-child {
+    border-radius: calc(4px - 1px) calc(4px - 1px) 0 0;
+}
+
+.accrodion-regular .card .card-header .btn-link {
+    color: #3d405c;
+    text-decoration: none;
+}
+
+.accrodion-regular .card .card-header .btn-link:hover {
+    color: #f12357;
+    text-decoration: none;
+}
+
+.accrodion-outline {}
+
+.accrodion-outline .card {
+    margin-bottom: 5px;
+    background-color: transparent;
+    border-color: #d9d9e3;
+    box-shadow: none;
+}
+
+.accrodion-outline .card-body {
+    border: 1px solid #d9d9e3;
+    margin-top: -1px;
+}
+
+.accrodion-outline .card .card-header {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #d9d9e3;
+    background-color: transparent;
+}
+
+.accrodion-outline .card .card-header:first-child {
+    border-radius: calc(4px - 1px) calc(4px - 1px) 0 0;
+}
+
+.accrodion-outline .card .card-header .btn-link {
+    color: #3d405c;
+    text-decoration: none;
+}
+
+.accrodion-outline .card .card-header .btn-link:hover {
+    color: #f12357;
+    text-decoration: none;
+}
 
 /* SIDBAR MEDIAQUERIES ----------------------------------- */
 

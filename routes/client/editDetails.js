@@ -13,12 +13,13 @@ let ClientDetails =  require('../../models/client_details');
 //Edit Client Details Process
 router.post('/:clientID/:id', (req, res) =>{
     let client = {};
-    client.full_name = req.body.fullName;
+    client.fullName = req.body.fullName;
     console.log(req.body.fullName);
     client.postcode = req.body.postcode;
     client.city = req.body.city;
+    client.country = req.body.country;
     client.address = req.body.address;
-    client.mobile_number = req.body.mobileNumber;
+    client.mobileNumber = req.body.mobileNumber;
     let query = {clientID : req.params.clientID}
     console.log(query);
     console.log(req.params.clientID)

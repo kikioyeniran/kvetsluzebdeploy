@@ -6,11 +6,11 @@ let CleanerDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    extra_tasks:{
+    extraTasks:{
         type: Array,
         required: true
     },
-    date_first_clean:{
+    dateFirstClean:{
         type: Date
     },
     experience:{
@@ -20,7 +20,7 @@ let CleanerDetailsSchema = mongoose.Schema({
     profile:{
         type: String
     },
-    mobile_number:{
+    mobileNumber:{
         type: Number,
         required: true
     },
@@ -28,7 +28,7 @@ let CleanerDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    full_name:{
+    fullName:{
         type: String,
         required: true
     },
@@ -36,19 +36,23 @@ let CleanerDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    profile_pic:{
+    country:{
+        type: String,
+        //required: true
+    },
+    profilePic:{
         type: String,
         required: true
     },
-    national_id:{
+    nationalID:{
         type: String,
         required: true
     },
-    health_insurance:{
+    healthInsurance:{
         type: String,
         required: true
     },
-    cleaner_id:{
+    cleanerID:{
         type: String,
         required: true
     },

@@ -31,8 +31,8 @@ html
               br
               form(method="POST", action='/admin/register')
                 .form-group
-                  label(for="username", method="POST", action="/client/client_login") Email
-                  input#username.form-control(type="text" placeholder="Enter Username" name="email")
+                  label(for="username", method="POST", action="/client/client_login") Username
+                  input#username.form-control(type="text" placeholder="Enter Username" name="username")
                 .form-group
                   label(for="password") Password
                   input#example-password-input.form-control(type="password" name="password")
@@ -46,7 +46,7 @@ html
                             div(class="alert alert-danger") #{error.msg}
                 button.btn.btn-general.btn-blue(type="submit")
                   i(fa="" fa-right-arrow="")
-                  | Register
+                  | Login
                 a(href="/" class="homelink")  Back To Home Page
     // Global Javascript
     script(src="/admin/js/jquery.min.js")

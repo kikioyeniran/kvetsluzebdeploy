@@ -1,10 +1,45 @@
 const localStrategy = require('passport-local').Strategy;
 const Client = require('../models/client');
 const Cleaner = require('../models/cleaner');
+const Admin = require('../models/admin');
 const config = require('../config/database');
 const bcrypt = require('bcryptjs');
 
 module.exports = (passport)=>{
+    //Local Strategy For Admin
+    passport.use('admin', new localStrategy((username, password, done)=>{
+        //Match Username
+        console.log(username);
+        let query = {username:username};
+        Admin.findOne(query, (err, admin)=>{
+            if(err) throw err;
+            if(!admin){
+                return done(null, false, {message: 'No Admin found'});
+            }
+
+            //Match password
+            bcrypt.compare(password, admin.password, (err, isMatch)=>{
+                if(err) throw err;
+                if(isMatch){
+                    return done(null, admin);
+                }else{
+                    return done(null, false, {message: 'Wrong password'});
+                }
+            });
+        });
+    }));
+
+    passport.serializeUser((admin, done)=>{
+        console.log(admin);
+        done(null, admin.id);
+    });
+
+    passport.deserializeUser((id, done)=>{
+        Admin.findById(id, (err, admin)=>{
+            done(err, admin);
+        });
+    });
+
     //Local Strategy For Clients
     passport.use('client', new localStrategy((username, password, done)=>{
         //Match Username
@@ -36,6 +71,8 @@ module.exports = (passport)=>{
             done(err, client);
         });
     });
+
+
     //Local Strategy for Cleaners
     passport.use('cleaner', new localStrategy((username, password, done)=>{
         //Match Username
@@ -70,5 +107,4 @@ module.exports = (passport)=>{
             done(err, cleaner);
         });
     });
-
 }

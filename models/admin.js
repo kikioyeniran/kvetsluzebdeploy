@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 
 //Cleaner schema
 const AdminSchema = mongoose.Schema({
-    email:{
+    // email:{
+    //     type: String,
+    //     required: true
+    // },
+    username:{
         type: String,
         required: true
     },

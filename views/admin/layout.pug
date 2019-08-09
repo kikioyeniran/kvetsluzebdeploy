@@ -10,7 +10,7 @@ html
         meta(name="description" content="")
         meta(name="viewport" content="width=device-width, initial-scale=1")
         meta(name="robots" content="all,follow")
-        title Kvet Sluzeb Client Dashboard
+        title Kvet Sluzeb Admin Dashboard
         link(rel="shortcut icon" href="img/favicon.png")
         // global stylesheets
         link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
@@ -135,12 +135,12 @@ html
                                         strong Read all messages
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
                                         .msg-profile
-                                            img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="...")
+                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
                                         .msg-body
                                             h3.h5 Admin
                                             span Admin
@@ -165,7 +165,7 @@ html
                                             | Setting
                                 hr
                                 li
-                                    a.dropdown-item(rel="nofollow" href="/cleaner/login/cleaner_logout")
+                                    a.dropdown-item(rel="nofollow" href="/admin/login/logout")
                                         .notification
                                         .notification-content
                                             i.fa.fa-power-off
@@ -260,32 +260,32 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar
-                        img.img-fluid.rounded-circle(src="admin/img/avatar-2.jpg" alt="...")
+                        img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
                     .title
                         h1.h4 Admin
                 hr
                 // Sidebar Navidation Menus
-                ul.list-unstyled
-                    li.active
-                    a(href="/admin/dashboard")
-                        i.icon-home
-                        | Home
-                    li
-                    a(href="#")
-                        i.fa.fa-bar-chart
-                        | Finance
-                    li
-                    a(href="/admin/dashboard/clients")
-                        i.icon-grid
-                        | Clients
-                    li
-                    a(href="/admin/dashboard/cleaners")
-                        i.icon-grid
-                        | Cleaners
-                    li
-                    a(href="#")
-                        i.fa.fa-map-o
-                        | Requests
+                ul#nav-link.list-unstyled
+                    li.active.linking
+                        a(href="/admin/dashboard/"+admin._id)
+                            i.icon-home
+                            | Home
+                    li.linking
+                        a(href="#")
+                            i.fa.fa-bar-chart
+                            | Finance
+                    li.linking
+                        a(href="/admin/dashboard/clients/"+admin._id)
+                            i.icon-grid
+                            | All Clients
+                    li.linking
+                        a(href="/admin/dashboard/cleaners/"+admin._id)
+                            i.icon-grid
+                            | All Cleaners
+                    li.linking
+                        a(href="#")
+                            i.fa.fa-map-o
+                            | Requests
                     //- li
                     //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
                     //-     i.fa.fa-comments-o
@@ -307,6 +307,17 @@ html
     script(src="/admin/js/jquery.validate.min.js")
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    //- script(src="/admin/js/activepages.js")
+    //navbar
+    script(type="text/javascript").
+      $(document).ready(function () {
+      var url = window.location;
+      $('ul.link-unstyled a[href="'+ url +'"]').parent().addClass('active');
+      $('ul.link-unstyled li').filter(function() {
+      return this.href == url;
+      console.log(this.href);
+      }).parent().addClass('active');
+      });
     // Core Javascript
     script(src="/admin/js/mychart.js")
     script.

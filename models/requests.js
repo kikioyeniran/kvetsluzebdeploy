@@ -14,7 +14,7 @@ let RequestSchema = mongoose.Schema({
         type: Array,
         required: true
     },
-    selectedCleanerIDs:{
+    selectedcleanerIDs:{
         type: Array,
         required: true
     },
@@ -53,7 +53,31 @@ let RequestSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    frequency:{
+        type: String,
+        required: true
+    },
+    hours:{
+        type: String
+    },
+    moreHours:{
+        type: String
+    },
+    keySafePin:{
+        type: String
+    },
+    keyHiddenPin:{
+        type: String
+    },
     status:{
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    confirmedCleanerID:{
+        type: String
+    },
+    confirmedCleaned:{
         type: Boolean,
         default: false,
         required: true

@@ -137,7 +137,7 @@ router.post('/booking', (req, res)=>{
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }
-    }).single('profile_pic')
+    }).single('profilePic')
 
 
     upload(req, res, (err) => {
@@ -152,20 +152,20 @@ router.post('/booking', (req, res)=>{
             const postcode = req.body.postcode;
             const bedrooms = req.body.bedrooms;
             const bathrooms = req.body.bathrooms;
-            const extra_tasks = req.body.extra_tasks;
+            const extraTasks = req.body.extraTasks;
             const hours  = req.body.hours;
             const more_hours  = req.body.more_hours;
             const priority = req.body.priority;
             const access_type = req.body.access_type;
-            const key_safe_pin = req.body.key_safe_pin;
-            const key_hidden_pin = req.body.key_hidden_pin;
+            const keySafePin = req.body.keySafePin;
+            const keyHiddenPin = req.body.keyHiddenPin;
             const schedule = req.body.schedule;
             const date = req.body.date;
             const fullName = req.body.fullname;
             const mobileNumber = req.body.mobilenumber;
             const address = req.body.address;
             const city = req.body.city;
-            const profile_pic = req.file.filename;
+            const profilePic = req.file.filename;
             let clientID = bcrypt.hashSync('fullName', 10);
             console.log(clientID);
 
@@ -187,10 +187,10 @@ router.post('/booking', (req, res)=>{
             }
             req.checkBody('access_type', 'How cleaner would access your home cannot be empty').notEmpty();
             if(access_type == 'key_safe'){
-                req.checkBody('key_safe_pin', 'Key Safe Pin is required').notEmpty();
+                req.checkBody('keySafePin', 'Key Safe Pin is required').notEmpty();
             }
             if(access_type == 'key_hidden'){
-                req.checkBody('key_hidden_pin', 'Key Hidden location is required').notEmpty();
+                req.checkBody('keyHiddenPin', 'Key Hidden location is required').notEmpty();
             }
             req.checkBody('schedule', 'Schedule is required').notEmpty();
             req.checkBody('fullname', 'Your Full Name  is not valid').notEmpty();
@@ -215,20 +215,20 @@ router.post('/booking', (req, res)=>{
                     postcode: postcode,
                     bedrooms: bedrooms,
                     bathrooms: bathrooms,
-                    extra_tasks: extra_tasks,
-                    date_first_clean: date,
-                    cleaning_hours: hours,
-                    more_cleaning_hours: more_hours,
-                    cleaning_priority: priority,
-                    apartment_access: access_type,
-                    key_hidden_pin: key_hidden_pin,
-                    key_safe_pin: key_safe_pin,
-                    cleaning_frequency:schedule,
-                    mobile_number: mobileNumber,
+                    extraTasks: extraTasks,
+                    dateFirstClean: date,
+                    cleaningHours: hours,
+                    moreCleaningHours: more_hours,
+                    cleaningPriority: priority,
+                    apartmentAccess: access_type,
+                    keyHiddenPin: keyHiddenPin,
+                    keySafePin: keySafePin,
+                    cleaningFrequency:schedule,
+                    mobileNumber: mobileNumber,
                     address: address,
-                    full_name: fullName,
+                    fullName: fullName,
                     city: city,
-                    profile_pic: profile_pic,
+                    profilePic: profilePic,
                     clientID: clientID
                 });
 
@@ -272,12 +272,12 @@ router.post('/booking', (req, res)=>{
 //Edit Client Details Process
 router.post('/edit/:clientID/:id', (req, res) =>{
     let client = {};
-    client.full_name = req.body.fullName;
+    client.fullName = req.body.fullName;
     console.log(req.body.fullName);
     client.postcode = req.body.postcode;
     client.city = req.body.city;
     client.address = req.body.address;
-    client.mobile_number = req.body.mobileNumber;
+    client.mobileNumber = req.body.mobileNumber;
     let query = {clientID : req.params.clientID}
     console.log(query);
     console.log(req.params.clientID)
@@ -300,14 +300,14 @@ router.post('/renew/:clientID/:id', (req, res) =>{
     client.bedrooms = req.body.bedrooms;
     //console.log(req.body.fullName);
     client.bathrooms = req.body.bathrooms;
-    client.extra_tasks = req.body.extra_tasks;
-    client.date_first_clean = req.body.date;
-    client.cleaning_hours = req.body.hours;
-    client.more_cleaning_hours = req.body.more_hours;
-    client.apartment_access = req.body.access_type;
-    client.key_hidden_pin = req.body.key_hidden_pin;
-    client.key_safe_pin = req.body.key_safe_pin;
-    client.cleaning_frequency = req.body.schedule;
+    client.extraTasks = req.body.extraTasks;
+    client.dateFirstClean = req.body.date;
+    client.cleaningHours = req.body.hours;
+    client.moreCleaningHours = req.body.more_hours;
+    client.apartmentAccess = req.body.access_type;
+    client.keyHiddenPin = req.body.keyHiddenPin;
+    client.keySafePin = req.body.keySafePin;
+    client.cleaningFrequency = req.body.schedule;
     let query = {clientID : req.params.clientID}
     console.log(query);
     console.log(req.params.clientID)

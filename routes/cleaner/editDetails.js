@@ -9,18 +9,19 @@ let CleanerDetails =  require('../../models/cleaner_details');
 router.post('/:cleanerID/:id/', (req, res) =>{
     console.log('code is here');
     let cleaner = {};
-    cleaner.full_name = req.body.fullName;
+    cleaner.fullName = req.body.fullName;
     //console.log(req.body.fullName);
     cleaner.postcode = req.body.postcode;
     cleaner.city = req.body.city;
+    cleaner.country = req.body.country;
     cleaner.address = req.body.address;
-    cleaner.mobile_number = req.body.mobileNumber;
-    cleaner.extra_tasks = req.body.extra_tasks;
+    cleaner.mobileNumber = req.body.mobileNumber;
+    cleaner.extraTasks = req.body.extraTasks;
     cleaner.profile = req.body.profile;
     cleaner.income = req.body.income;
-    let query = {cleaner_id : req.params.cleanerID}
-    console.log(query);
-    console.log(req.params.cleanerID)
+    let query = {cleanerID : req.params.cleanerID}
+    //console.log(query);
+    //console.log(req.params.cleanerID)
 
     CleanerDetails.updateOne(query, cleaner, (err) =>{
         if(err){
