@@ -1,3 +1,84 @@
 extends layout2
 
 block content
+        .content-inner
+            // ***** REPORT-1 *****
+            #report1.row
+                .col-sm-3
+                    .card
+                        .card-block
+                            .text-left.report1-cont
+                                h2.font-light.m-b-0
+                                    i.ti-arrow-up.text-success
+                                    | &euro; #{wallet.totalIncome}
+                                span.text-muted Total Income
+                            span.text-success 80%
+                            .progress
+                                .progress-bar.bg-success(role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                            p
+                                small Last month 10% Growth
+                .col-sm-3
+                    .card
+                        .card-block
+                            .text-left.report1-cont
+                                h2.font-light.m-b-0
+                                    i.ti-arrow-up.text-danger
+                                    | &euro; #{wallet.expectedIncome}
+                                span.text-muted Expected Income From Last Job
+                            span.text-danger 43%
+                            .progress
+                                .progress-bar.bg-danger(role="progressbar" style="width: 43%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                            p
+                                small Last month 10% Growth
+                .col-sm-3
+                    .card
+                        .card-block
+                            .text-left.report1-cont
+                                h2.font-light.m-b-0
+                                    i.ti-arrow-up.text-warning
+                                    |  &euro; #{wallet.cleanerIncome}
+                                span.text-muted Income per hour
+                            span.text-warning 53%
+                            .progress
+                                .progress-bar.bg-warning(role="progressbar" style="width: 53%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                            p
+                                small Last month 10% Growth
+                .col-sm-3
+                    .card
+                        .card-block
+                            .text-left.report1-cont
+                                h2.font-light.m-b-0
+                                    i.ti-arrow-up.text-info
+                                    |  &euro; #{wallet.cleanerIncome}
+                                span.text-muted Total Paid Income
+                            span.text-info 70%
+                            .progress
+                                .progress-bar.bg-info(role="progressbar" style="width: 70%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                            p
+                                small Last month 10% Growth
+
+            // ***** FORM GROUP *****
+            #form5.card.form
+                .card-header
+                    h3 Edit Account Details
+                br
+                form(method="POST", action="/cleaner/wallet/"+encodeURIComponent(cleaner.cleanerID)+"/"+encodeURIComponent(cleaner._id))
+                    .form-group
+                        label(for="formGroupExampleInput") Account Name
+                        .input-group
+                            .input-group-addon
+                                i.fa.fa-user-o
+                            input#inlineFormInputGroup.form-control(type="text" name="acctName" placeholder="Account Name" value=wallet.acctName)
+                    .form-group
+                        label(for="formGroupExampleInput2") Bank
+                        .input-group
+                            .input-group-addon
+                                i.fa.fa-lock
+                            input#inlineFormInputGroup.form-control(type="text" name="bank" placeholder="Enter your Bank" value=wallet.bank)
+                    .form-group
+                        label(for="icon-number") Account Number
+                        .input-group
+                            .input-group-addon
+                                i.fa.fa-phone
+                            input#icon-number.form-control(type="text" name="acctNumber" placeholder="Enter your Account Number" value=wallet.acctNumber)
+                    button.btn.btn-info.float-right.btn-sm Submit

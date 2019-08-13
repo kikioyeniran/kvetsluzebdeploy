@@ -1,107 +1,50 @@
 extends layout
 
 block content
-        .content-inner.chart-cont
-            // ***** CONTENT *****
-            .row
-                .col-md-12
-                    .invoice-title
-                        div
-                        img(src="img/second_logo.png" alt="")
-                        p.pull-right.mt-3 Order # 12345
-                    hr
-                    .row
-                        .col-md-6
-                            address
-                                strong Billed To:
-                                br
-                                | John Smith
-                                br
-                                | 1234 Main
-                                br
-                                | Apt. 4B
-                                br
-                                | Springfield, ST 54321
-                        .col-md-6.text-right
-                            address
-                                strong Shipped To:
-                                br
-                                | Jane Smith
-                                br
-                                | 1234 Main
-                                br
-                                | Apt. 4B
-                                br
-                                | Springfield, ST 54321
-                    .row
-                        .col-md-6
-                            address
-                                strong Payment Method:
-                                br
-                                | Visa ending **** 4242
-                                br
-                                | jsmith@email.com
-                        .col-md-6.text-right
-                            address
-                                div
-                                    p.mb-0 Order Date : March 7, 2018
-                                    p Term : Due on Receipt
-                                    br
-            .row
-                .col-md-12
-                    .panel.panel-default
-                        .panel-heading
-                            h3.panel-title
-                                strong Order summary
-                        .panel-body
-                            .table-responsive
-                                table.table.borderless
-                                    thead
-                                        tr.bg-info.text-white
-                                            td
-                                                strong Item
-                                            td.text-center
-                                                strong Price
-                                            td.text-center
-                                                strong Quantity
-                                            td.text-right
-                                                strong Totals
-                                    tbody
-                                        tr
-                                            td BS-200
-                                            td.text-center $10.99
-                                            td.text-center 1
-                                            td.text-right $10.99
-                                        tr
-                                            td BS-400
-                                            td.text-center $20.00
-                                            td.text-center 3
-                                            td.text-right $60.00
-                                        tr
-                                            td BS-1000
-                                            td.text-center $600.00
-                                            td.text-center 1
-                                            td.text-right $600.00
-                                        tr
-                                            td.thick-line
-                                            td.thick-line
-                                            td.thick-line.text-center
-                                                strong Subtotal
-                                            td.thick-line.text-right $670.99
-                                        tr
-                                            td.no-line
-                                            td.no-line
-                                            td.no-line.text-center
-                                                strong Shipping
-                                            td.no-line.text-right $15
-                                        tr
-                                            td.no-line
-                                            td.no-line
-                                            td.no-line.text-center
-                                                strong Total
-                                            td.no-line.text-right $685.99
-                                .text-right
-                                    a.btn.btn-general.btn-blue.mr-3(href="invoice-page.html" target="_empty")
-                                        i.fa.fa-print
-                                        |  Go Print
-                                    button.btn.btn-general.btn-white Submit The Invoice
+        .content-inner
+            // ***** REPORT-1 *****
+            #report1.row
+                .col-sm-6
+                    .card
+                        .card-block
+                            .text-left.report1-cont
+                                h2.font-light.m-b-0
+                                    i.ti-arrow-up.text-success
+                                    |  &euro; #{wallet.totalPaid}
+                                h2.text-muted Total Income
+                            span.text-success 80%
+                            .progress
+                                .progress-bar.bg-success(role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
+                            p
+                                small Last updated #{wallet.updated}
+
+                .col-sm-6
+                    .card
+                        //- .card-block
+                        form#requestForm(method="POST", action="/client/transactions")
+                            input(type='hidden' name='clientID' value=client.clientID)
+                            input(type='hidden' name='clientName' value=clientDetails.fullName)
+                            input(type='hidden' name='cleanerID' value=wallet.pendingPay.cleanerID)
+                            input(type='hidden' name='date' value=wallet.pendingPay.cleanDate)
+                            input(type='hidden' name='totalPay' value=wallet.pendingPay.cost)
+                        .card.card-inverse.card-info
+                            //- img.card-img-top(src="/admin/img/card/c-3.jpg")
+                            .card-block
+                                h5.card-title Payment Information
+                            hr
+                            h6.card-line
+                                strong Number of Bathrooms :
+                                |  #{clientDetails.bathrooms}
+                            h6.card-line
+                                strong NUmber of Bedrooms :
+                                |  #{clientDetails.bedrooms}
+                            h6.card-line
+                                strong Extra Tasks :
+                                |  #{clientDetails.extraTasks}
+                            h6.card-line
+                                strong Number of Cleaning Hours :
+                                |  #{clientDetails.cleaningHours}
+                            h6.card-line
+                                strong Total Charge :
+                                |  #{wallet.pendingPay.cost}
+                            a.btn.btn-general.btn-blue.mr-2(href="#") Check Out

@@ -3,7 +3,7 @@ const router = express.Router();
 
 //Bring in cleaner models
 let Cleaner =  require('../../models/cleaner');
-let CleanerDetails =  require('../../models/cleaner_details');
+let CleanerDetails =  require('../../models/cleanerDetails');
 
 //Edit cleaner Details Process
 router.post('/:cleanerID/:id/', (req, res) =>{

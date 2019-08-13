@@ -11,11 +11,11 @@ let Admin =  require('../../models/admin');
 
 //Bring in Client Models
 let Client =  require('../../models/client');
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
 
 //Cleaner Models
 let Cleaner = require('../../models/cleaner');
-let CleanerDetails = require('../../models/cleaner_details');
+let CleanerDetails = require('../../models/cleanerDetails');
 
 //Route for Home Page
 router.get('/:id', (req, res) =>{

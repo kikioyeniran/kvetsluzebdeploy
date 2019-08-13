@@ -7,7 +7,7 @@ const multer = require('multer');
 const path = require('path');
 
 //Bring in Client Models
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
 
 //Renew Client Booking
 router.post('/:clientID/:id', (req, res) =>{

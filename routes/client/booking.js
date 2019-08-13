@@ -6,7 +6,8 @@ const path = require('path');
 
 //Bring in Client Models
 let Client =  require('../../models/client');
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
+let ClientWallet =  require('../../models/clientWallet');
 
 //Bookings route
 router.get('', (req, res) =>{
@@ -142,6 +143,9 @@ router.post('', (req, res)=>{
                     profilePic: profilePic,
                     clientID: clientID
                 });
+                let newWallet = new ClientWallet({
+                    clientID: clientID
+                })
 
                 bcrypt.genSalt(10, (err, salt)=>{
                     bcrypt.hash(newUser.password, salt, (err, hash)=>{
@@ -166,11 +170,17 @@ router.post('', (req, res)=>{
                 newUserDetails.save((err) =>{
                     if(err){
                         console.log(err);
-                        return;
-                    }else {
-                        console.log('done adding details');
-                        req.flash('success', 'Client added')
-                        res.redirect('/client/booking_final/'+encodeURIComponent(clientID));
+                    }else{
+                        newWallet.save((err)=>{
+                            if(err){
+                                console.log(err);
+                                return;
+                            }else {
+                                console.log('done adding details');
+                                req.flash('success', 'Client added')
+                                res.redirect('/client/booking_final/'+encodeURIComponent(clientID));
+                            }
+                        })
                     }
                 });
             }

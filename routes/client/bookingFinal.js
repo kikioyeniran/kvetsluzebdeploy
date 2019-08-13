@@ -4,9 +4,9 @@ var empty = require('is-empty');
 
 //Bring in Client Models
 let Client =  require('../../models/client');
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
 //Cleaner Models
-let CleanerDetails =  require('../../models/cleaner_details');
+let CleanerDetails =  require('../../models/cleanerDetails');
 
 //Booking Final route
 router.get('/:client', (req, res) =>{

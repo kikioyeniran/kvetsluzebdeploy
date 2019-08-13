@@ -3,7 +3,7 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 /*====================================================
                          REPORT-1
@@ -25,7 +25,11 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 	padding-top: 10px;
 	color:#777;
 }
-
+.titleMain{
+    color:#696464;
+    text-align: center;
+    margin-left: 35%;
+}
 /*====================================================
                          REPORT-2
 ======================================================*/
@@ -192,8 +196,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 .card-c1 .card-footer h6 {
     color: #999999;
-} 
- 
+}
+
 /*====================================================
                          REPORT-3
 ======================================================*/
@@ -382,7 +386,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 .card-c2 .card-footer {
     padding: .75rem 1.25rem;
-     background-color: #fff; 
+     background-color: #fff;
     border-top: 1px solid rgba(0,0,0,.125);
 }
 

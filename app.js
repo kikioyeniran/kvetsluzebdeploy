@@ -96,14 +96,14 @@ app.get('/', (req, res) =>{
 //Route Files
 
 //Cleaner Route Files
-//let cleaner = require('./routes/cleaner');
 let cleanerDashboard = require('./routes/cleaner/dashboard');
 let cleanerLogin = require('./routes/cleaner/login');
 let cleanerRegister = require('./routes/cleaner/register');
 let cleanerEdit = require('./routes/cleaner/editDetails');
-let cleanerSchedule = require('./routes/cleaner/schedule')
-let paymentRequest = require('./routes/cleaner/paymentRequest')
-//let client = require('./routes/client');
+let cleanerSchedule = require('./routes/cleaner/schedule');
+let paymentRequest = require('./routes/cleaner/paymentRequest');
+let wallet = require('./routes/cleaner/wallet');
+
 
 //Client Route Files
 let clientDashboard = require('./routes/client/dashboard');
@@ -112,8 +112,11 @@ let clientBookingFinal = require('./routes/client/bookingFinal');
 let clientEdit = require('./routes/client/editDetails');
 let clientRenew = require('./routes/client/renewbooking');
 let clientLogin = require('./routes/client/login')
+
+//General Route File
 let public = require('./routes/public');
 let requests = require('./routes/requests');
+let ratings = require('./routes/ratings');
 
 //Admin Route Files
 let adminDashboard = require('./routes/admin/dashboard');
@@ -127,6 +130,7 @@ app.use('/cleaner/register', cleanerRegister);
 app.use('/cleaner/edit', cleanerEdit);
 app.use('/cleaner/schedule', cleanerSchedule);
 app.use('/cleaner/paymentrequest', paymentRequest);
+app.use('/cleaner/wallet', wallet);
 
 //Client Routes
 app.use('/client/dashboard', clientDashboard);
@@ -144,6 +148,7 @@ app.use('/admin/register', adminRegister);
 //General Routes
 app.use('/public', public);
 app.use('/requests', requests);
+app.use('/rating', ratings);
 
 //Start Server
 app.listen(5000, () => {

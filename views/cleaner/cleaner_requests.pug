@@ -2,42 +2,53 @@ extends layout2
 
 block content
         .content-inner.chart-cont
+            .row
+                h1.titlemain ALL CLIENT REQUESTS
             // ***** CONTENT *****
             .row
                 // ***** TIMELINE-1 *****
                 #timeline-1.main-timeline
-                    each request, i in requests
+                    if requests === null
                         .timeline
                             .timeline-icon
                             .timeline-content
-                                span.date #{request.dateFirstClean}
+                                span.date Date
                                 h5.title Cleaning Request
-                                h5.title Name: #{request.clientName}
-                                h5.title Email: #{request.clientEmail}
-                                h5.title Phone Number: #{request.clientPhone}
-                                h5.title Postcode: #{request.postcode}
-                                h5.title Apartment Access: #{request.accessType}
-                                h5.title Date of First Clean: #{request.clientPhone}
-                                h5.title Extra Tasks: #{request.clientPhone}
+                                h5.title You Currently Have No Clenaing Requests!
                                 p.description
-                                    | Address: #{request.address}.
-                                a.read-more(href="/cleaner/schedule/"+encodeURIComponent(request.clientID)+"/"+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(request._id)) Accept
-                    .timeline
-                        .timeline-icon
-                        .timeline-content
-                            span.date Apr 2018 - Mar 2019
-                            h5.title Cleaning Request
-                            h5.title Ann Stacy (Read the description below)
-                            p.description
-                                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            a.read-more(href="#") Accepted
-                    .timeline
-                        .timeline-icon
-                        .timeline-content
-                            span.date Apr 2018 - Mar 2019
-                            h5.title Cleaning Request
-                            h5.title Ann Stacy (Read the description below)
-                            p.description
-                                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
-                            a.read-more(href="#") Expired
+                                    | You Currently Have No Cleaning Requests! You Currently Have No Clenaing Requests! You Currently Have No Clenaing Requests!
+                                //- a.read-more(href="#") Accepted
+                        .timeline
+                            .timeline-icon
+                            .timeline-content
+                                span.date Date
+                                h5.title Cleaning Request
+                                h5.title You Currently Have No Clenaing Requests!
+                                //- p.description
+                                //-     | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis felis vitae risus pulvinar tincidunt. Nam ac venenatis enim. Aenean hendrerit justo sed.
+                                //- a.read-more(href="#") Expired
+                    else
+                        each request, i in requests
+                            .timeline
+                                .timeline-icon
+                                .timeline-content
+                                    span.date #{request.dateFirstClean}
+                                    h5.date Cleaning Request from #{request.clientName} (Description Below)
+                                    //- h5.title Name: #{request.clientName}
+                                    h5.title Email: #{request.clientEmail}
+                                    h5.title Phone Number: #{request.clientPhone}
+                                    h5.title Postcode: #{request.postcode}
+                                    h5.title Apartment Access: #{request.accessType}
+                                    h5.title Date of First Clean: #{request.clientPhone}
+                                    h5.title Extra Tasks: #{request.clientPhone}
+                                    p.description
+                                        | Address: #{request.address}.
+                                    p.description
+                                        | The Kvet Sluzeb Software would only connect you to you client. However, we provide all the necessary information needed for you to contact the client as well as what to expect in the request. If you're available and satisfied with the request accept it.
+
+
+                                    unless request.status === true
+                                        a.read-more(href="/cleaner/schedule/"+encodeURIComponent(request.clientID)+"/"+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(request._id)) Accept
+                                    else
+                                        a.read-more(href="#") Accepted
 

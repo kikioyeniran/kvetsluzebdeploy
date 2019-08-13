@@ -8,7 +8,7 @@ const path = require('path');
 
 //Bring in Client Models
 let Client =  require('../../models/client');
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
 
 //Edit Client Details Process
 router.post('/:clientID/:id', (req, res) =>{

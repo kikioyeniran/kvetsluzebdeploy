@@ -40,6 +40,10 @@ let CleanerDetailsSchema = mongoose.Schema({
         type: String,
         //required: true
     },
+    rating:{
+        type: Number,
+        default: 0
+    },
     profilePic:{
         type: String,
         required: true

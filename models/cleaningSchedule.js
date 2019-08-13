@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 
-//Cleaner Detils Schema
+//Cleaning Schedule Schema
 let CleaningScheduleSchema = mongoose.Schema({
-    clientID:{
-        type: String,
-        required: true
-    },
-    clientName:{
-        type: String,
-        required: true
-    },
+    // clientDetails:[
+    //     {
+    //         client:{
+    //             type: mongoose.Schema.Types.ObjectId,
+    //             ref: 'client_details'
+    //         }
+    //     }
+    // ],
+    clientDetails:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'client_details'
+    }],
     cleanerID:{
         type: String,
         required: true

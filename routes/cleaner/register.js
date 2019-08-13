@@ -6,7 +6,8 @@ const path = require('path');
 
 //Bring in Cleaner Models
 let Cleaner =  require('../../models/cleaner');
-let CleanerDetails =  require('../../models/cleaner_details');
+let CleanerDetails =  require('../../models/cleanerDetails');
+let CleanerWallet = require('../../models/cleanerWallet');
 
 router.get('/page', (req, res) =>{
     res.render('cleaner_registration')
@@ -121,6 +122,10 @@ router.post('/post', (req, res)=>{
                     income: income,
                     cleanerID: cleanerID,
                 });
+                let newCleanerWallet = new CleanerWallet({
+                    cleanerID: cleanerID,
+                    cleanerIncome: income
+                })
                 bcrypt.genSalt(10, (err, salt)=>{
                     bcrypt.hash(newUser.password, salt, (err, hash)=>{
                         if(err){
@@ -133,7 +138,7 @@ router.post('/post', (req, res)=>{
                                 console.log(err);
                                 return;
                             }else{
-                                req.flash('success', 'You are now registered and can login');
+                                //req.flash('success', 'You are now registered and can login');
                                 console.log('new user save function worked');
                                 // res.redirect('/');
                             }
@@ -145,10 +150,17 @@ router.post('/post', (req, res)=>{
                         console.log(err);
                         return;
                     }else {
-                        req.flash('success', 'Cleaner added')
-                        //res.redirect('/cleaner/cleaner_dashboard');
-                        res.redirect('/cleaner/login');
-                        console.log('upload successful!');
+                        newCleanerWallet.save((err)=>{
+                            if(err){
+                                console.log(err);
+                                return;
+                            }else{
+                                req.flash('success', 'You are now registered and can login')
+                                //res.redirect('/cleaner/cleaner_dashboard');
+                                res.redirect('/cleaner/login');
+                                console.log('upload successful!');
+                            }
+                        });
                     }
                 });
             }

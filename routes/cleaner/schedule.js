@@ -8,10 +8,10 @@ const path = require('path');
 
 //Bring in Cleaner Models
 let Cleaner =  require('../../models/cleaner');
-let CleanerDetails =  require('../../models/cleaner_details');
+let CleanerDetails =  require('../../models/cleanerDetails');
 
 //Bring in Client Model
-let ClientDetails =  require('../../models/client_details');
+let ClientDetails =  require('../../models/clientDetails');
 
 //Bring in Request Model
 let Requests = require('../../models/requests');
@@ -19,7 +19,7 @@ let Requests = require('../../models/requests');
 //Bring in Cleaning Schedule Model
 let CleaningSchedule =  require('../../models/cleaningSchedule');
 
-//Edit Client Details Process
+//Edit Request and create schedule Process
 router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
     let clientID = req.params.clientID;
     let cleanerID = req.params.cleanerID;
@@ -28,13 +28,14 @@ router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
     let request = {};
     request.status = true;
     request.confirmedCleanerID = cleanerID;
+    request
     let query = {_id : requestID};
     Requests.updateOne(query, request, (err) =>{
         if(err){
             console.log(err);
             return;
         }else {
-            console.log('found and updated');
+            console.log('found and updated', clientID);
 
             //req.flash('success', 'Account Updated');
             query2 = {_id: requestID}
@@ -89,35 +90,38 @@ router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
                                 hourCost = hourCost + 1;
                             }
                             var cleanerIncome = newCleaner.income * hourCost;
-                            //console.log(cleanerIncome, ' ', extraTaskCost, ' ', hourCost, '', cleanerCharge);
-                            //console.log(increment);
-                            let newSchedule = new CleaningSchedule({
-                                clientID: clientID,
-                                clientName: clientRequest[0].clientName,
-                                cleanerID: cleanerID,
-                                dateFirstClean: dateFirstClean,
-                                currentClean:[
-                                    {
-                                        currentCleanDate: dateFirstClean,
-                                        nextCleanDate: nextCleanDate,
-                                        increment: increment
+                            query2 = {clientID: req.params.clientID};
+                            ClientDetails.findOne((query2), (err, clientDetails)=>{
+                                //console.log(req.params.clientID, ' + ', clientDetails);
+                                var clientID = clientDetails._id;
+                                let newSchedule = new CleaningSchedule({
+                                    clientDetails: clientID,
+                                    clientName: clientRequest[0].clientName,
+                                    cleanerID: cleanerID,
+                                    dateFirstClean: dateFirstClean,
+                                    currentClean:[
+                                        {
+                                            currentCleanDate: dateFirstClean,
+                                            nextCleanDate: nextCleanDate,
+                                            increment: increment
+                                        }
+                                    ],
+                                    extraTasks: extraTasks,
+                                    cleanerIncome: cleanerCharge,
+                                    totalHours: hourCost,
+                                    totalCharge: cleanerIncome
+                                });
+                                newSchedule.save((err)=>{
+                                    if(err){
+                                        console.log(err);
+                                        return;
+                                    }else{
+                                        req.flash('success', 'Cleaning Request Accepted');
+                                        console.log('Cleaning Request Accepted');
+                                        //console.log(cleanerID);
+                                        res.redirect('/cleaner/dashboard/cleaner_calendar/'+encodeURIComponent(req.params.cleanerID));
                                     }
-                                ],
-                                extraTasks: extraTasks,
-                                cleanerIncome: cleanerCharge,
-                                totalHours: hourCost,
-                                totalCharge: cleanerIncome
-                            });
-                            newSchedule.save((err)=>{
-                                if(err){
-                                    console.log(err);
-                                    return;
-                                }else{
-                                    req.flash('success', 'Cleaning Request Accepted');
-                                    console.log('Cleaning Request Accepted');
-                                    //console.log(cleanerID);
-                                    res.redirect('/cleaner/dashboard/cleaner_calendar/'+encodeURIComponent(cleanerID));
-                                }
+                                })
                             })
                         });
                     });
