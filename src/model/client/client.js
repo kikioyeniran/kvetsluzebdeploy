@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
+const validator = require('validator');
 
 const Schema = mongoose.Schema;
 
@@ -17,6 +18,17 @@ const ClientSchema = Schema({
         type: String,
         required: true
     },
+    passwordConfirm: {
+        type: String,
+        required: [true, 'Please confirm your password'],
+        validate: {
+          // This only works on CREATE and SAVE!!!
+          validator: function(el) {
+            return el === this.password;
+          },
+          message: 'Passwords are not the same!'
+        }
+      },
     passwordResetToken: String,
     passwordResetExpires: Date
     
@@ -30,6 +42,13 @@ ClientSchema.methods.createPasswordResetToken = function() {
     this.passwordResetExpires = Date.now() + 10*60*1000; //10mins
     return resetToken;
 }
+
+ClientSchema.methods.correctPassword =  function(
+    candidatePassword,
+    userPassword
+  ) {
+    return bcrypt.compare(candidatePassword, userPassword);
+  };
 
 ClientSchema.set('timestamps', true);
 let Client = module.exports = mongoose.model('client', ClientSchema);

@@ -530,6 +530,31 @@ export default ({config, db}) => {
         
     })
     
+    api.patch('/passwordUpdate/:id', (req, res) => {
+        // get user from collection
+        Client.findById(req.id, (err, user) => {
+            if (err) {
+                res.send(err);
+            } else if(!(user.correctPassword(req.body.passwordCurrent, user.password))) {
+                res.status(404).send('Your current password is wrong.')
+            }
+        })
+
+        user.password = req.body.password;
+        user.passwordConfirm = req.body.passwordConfirm;
+
+        user.save(err => {
+            if (err) {
+                res.status(404).send(err);
+            } 
+            res.status(201).json({
+                message: 'Successfull'
+            })
+        })
+        
+        
+    })
+    
 
 
     return api;

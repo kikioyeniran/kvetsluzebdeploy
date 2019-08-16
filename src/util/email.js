@@ -16,9 +16,9 @@ const SendEmail = options => {
         service: 'SendGrid',
         auth: {
             user: 'apikey',
-            pass: "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";
+            pass: "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"
         }
-    })
+    });
     const mailOptions = {
         from: 'helpdesk@gmail.com',
         to: options.email,
