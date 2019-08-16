@@ -171,6 +171,47 @@ router.post('/post', (req, res)=>{
     console.log('form submitted');
 });
 
+router.post('/forgotPassword', (req, res)=>{
+  // get user based on posted email
+  const email = req.body.email;
+
+  Cleaner.findOne({email: email}, (err, cleaner) => {
+    if (err) {
+      let status = 404;
+      let result = {};
+      let error = err
+      result.error = error;
+      res.status(status).send(result);
+    }
+
+
+    const resetToken = cleaner.createPasswordResetToken();
+    cleaner.save({validateBeforeSave: false}, err => {
+      if (err) {
+        res.status(400).send()
+      }
+    })
+    cleaner
+  })
+
+
+  passwordChangedAt: Date,
+      passwordResetToken: String,
+      passwordResetExpires: Date,
+      CleanerSchema.methods.createPasswordResetToken = function () {
+        const resetToken = crypto.randomBytes(32).toString('hex');
+
+        this.passwordResetToken =  crypto.createHash('sha256').update(resetToken).digest('hex');
+        console.log({resetToken}, this.passwordResetToken);
+
+        this.passwordResetExpires = Date.now + 10*60*100;  // 10mins
+
+        return resetToken;
+      }
+  // generate random token
+
+  // send it back as an email
+})
+
 
 module.exports = router;
-

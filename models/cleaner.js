@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const crypto  = require('crypto');
 
 //Cleaner schema
 const CleanerSchema = mongoose.Schema({
@@ -19,6 +19,12 @@ const CleanerSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    passwordChangedAt: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    
 
 });
+
+
 const Cleaner = module.exports = mongoose.model('cleaner', CleanerSchema);
