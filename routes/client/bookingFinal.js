@@ -66,6 +66,6 @@ router.post('/pay', (req, res)=>{
         customer: customer.id
       }))
     .then(charge => res.render('pay')) //render the payment successful page
-})
+});
 
 module.exports = router;
