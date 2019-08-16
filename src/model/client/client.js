@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 
 const Schema = mongoose.Schema;
 
@@ -15,11 +17,22 @@ const ClientSchema = Schema({
         type: String,
         required: true
     },
+    passwordResetToken: String,
+    passwordResetExpires: Date
     
 });
 
+ClientSchema.methods.createPasswordResetToken = function() {
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    console.log({resetToken}, this.passwordResetToken);
+    
+    this.passwordResetExpires = Date.now() + 10*60*1000; //10mins
+    return resetToken;
+}
+
 ClientSchema.set('timestamps', true);
-let Client = module.exports = mongoose.model('Client', ClientSchema);
+let Client = module.exports = mongoose.model('client', ClientSchema);
 
 
 module.exports.createUser = (newUser, callback)=> {

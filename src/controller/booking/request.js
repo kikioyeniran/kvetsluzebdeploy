@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import mongoose from 'mongoose';
 
-import Booking from '../../model/booking/booking.requests';
+import Booking from '../../model/booking/requests';
 import Client from '../../model/client/client';
-import ClientDetails from '../../model/client/client.details';
+import ClientDetails from '../../model/client/clientDetails';
 import Cleaner from '../../model/cleaner/cleaner';
-import CleanerDetails from '../../model/cleaner/cleaner.details';
+import CleanerDetails from '../../model/cleaner/cleanerDetails';
 
 export default ({config, db}) => {
     let api = Router();

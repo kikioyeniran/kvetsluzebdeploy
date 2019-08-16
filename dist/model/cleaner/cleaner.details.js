@@ -1,64 +1,70 @@
-import mongoose from 'mongoose';
+'use strict';
 
-const Schema = mongoose.Schema;
+var _mongoose = require('mongoose');
 
-let CleanerDetailsSchema = Schema({
-    postcode:{
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Schema = _mongoose2.default.Schema;
+
+var CleanerDetailsSchema = Schema({
+    postcode: {
         type: String,
         required: true
     },
-    extraTasks:{
+    extraTasks: {
         type: Array,
         required: true
     },
-    dateOfFirstClean:{
+    dateOfFirstClean: {
         type: Date
     },
-    experience:{
+    experience: {
         type: String,
         required: true
     },
-    profile:{
+    profile: {
         type: String
     },
-    mobileNumber:{
+    mobileNumber: {
         type: Number,
         required: true
     },
-    address:{
+    address: {
         type: String,
         required: true
     },
-    fullName:{
+    fullName: {
         type: String,
         required: true
     },
-    city:{
+    city: {
         type: String,
         required: true
     },
-    profilePic:{
+    profilePic: {
         type: String,
         required: true
     },
-    nationalId:{
+    nationalId: {
         type: String,
         required: true
     },
-    healthInsurance:{
+    healthInsurance: {
         type: String,
         required: true
     },
-    cleanerId:{
+    cleanerId: {
         type: String,
         required: true
     },
-    income:{
+    income: {
         type: Number,
         required: true
     }
 });
 
 CleanerDetailsSchema.set('timestamps', true);
-let CleanerDetails = module.exports = mongoose.model('CleanerDetails', CleanerDetailsSchema);
-
+var CleanerDetails = module.exports = _mongoose2.default.model('CleanerDetails', CleanerDetailsSchema);
+//# sourceMappingURL=cleaner.details.js.map

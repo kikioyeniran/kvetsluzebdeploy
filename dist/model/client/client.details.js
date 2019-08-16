@@ -1,73 +1,80 @@
-import mongoose from 'mongoose';
+'use strict';
 
-const Schema = mongoose.Schema; 
+var _mongoose = require('mongoose');
 
-const ClientDetailsSchema = Schema({
-    postcode:{
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Schema = _mongoose2.default.Schema;
+
+var ClientDetailsSchema = Schema({
+    postcode: {
         type: String,
         required: true
     },
-    bedrooms:{
+    bedrooms: {
         type: Number,
         required: true
     },
-    bathrooms:{
+    bathrooms: {
         type: Number,
         required: true
     },
-    extraTasks:{
+    extraTasks: {
         type: Array,
         required: true
     },
-    dateOfFirstClean:{
+    dateOfFirstClean: {
         type: Date,
         required: true
     },
-    cleaningHours:{
+    cleaningHours: {
         type: Number,
         required: true
     },
-    moreCleaningHours:{
+    moreCleaningHours: {
         type: Number
     },
-    cleaningPriority:{
+    cleaningPriority: {
         type: String
     },
-    apartmentAccess:{
+    apartmentAccess: {
         type: String,
         required: true
     },
-    keyHiddenPin:{
+    keyHiddenPin: {
         type: String
     },
-    keySafePin:{
+    keySafePin: {
         type: String
     },
-    cleaningFrequency:{
+    cleaningFrequency: {
         type: String,
         required: true
     },
-    mobileNumber:{
+    mobileNumber: {
         type: Number,
         required: true
     },
-    address:{
+    address: {
         type: String,
         required: true
     },
-    fullName:{
+    fullName: {
         type: String,
         required: true
     },
-    city:{
+    city: {
         type: String,
         required: true
     },
-    clientID:{
+    clientID: {
         type: String,
         required: true
     }
 });
 
 ClientDetailsSchema.set('timestamps', true);
-let ClientDetails = mongoose.exports = mongoose.model('ClientDetails', ClientDetailsSchema);
+var ClientDetails = _mongoose2.default.exports = _mongoose2.default.model('ClientDetails', ClientDetailsSchema);
+//# sourceMappingURL=client.details.js.map

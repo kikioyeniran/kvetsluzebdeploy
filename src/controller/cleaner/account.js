@@ -11,7 +11,8 @@ import { validateToken } from '../../utils';
 
 // importing the models 
 import Cleaner from '../../model/cleaner/cleaner';
-import CleanerDetails from '../../model/cleaner/cleaner.details';
+import CleanerDetails from '../../model/cleaner/cleanerDetails';
+import router from '../../routes';
 
 
 export default ({config, db}) => {
@@ -21,7 +22,7 @@ export default ({config, db}) => {
     // ******* CLEANER AUTHENTICATION ***********
     // ******************************************
 
-    // '/api/v1/account/cleaner/signup'
+    // '/api/v1/account/cleaner/signup'            
     api.post('/signup',  (req, res)=>{
         // Setting the  Storage engine
 
@@ -151,7 +152,7 @@ export default ({config, db}) => {
     });
 
 
-    // '/api/v1/cleaner/account/login'        
+    // '/api/v1/account/cleaner/login'        
     api.post('/login', (req, res)=>{
         let result  = {};
         let status  = 200;
@@ -200,7 +201,7 @@ export default ({config, db}) => {
         })
     });
 
-    
+           
     // '/api/v1/account/cleaner/logout'
     api.get('/logout', (req, res)=>{
         req.logout();
@@ -211,6 +212,67 @@ export default ({config, db}) => {
         res.status(status).send(result);
     });
 
+
+    // ********************************************
+    // ******* CLEANER PROFILE SETTINGS ***********
+    // ********************************************
+
+    // '/api/v1/account/cleaner/profile/:cleanerID/:id'
+    api.post('/profile/:cleanerID/:id/', (req, res) =>{
+        let statusCode  = 200;
+        let result = {};
+
+        let cleaner = {};
+        cleaner.fullName = req.body.fullName;
+        //console.log(req.body.fullName);
+        cleaner.postcode = req.body.postcode;
+        cleaner.city = req.body.city;
+        cleaner.country = req.body.country;
+        cleaner.address = req.body.address;
+        cleaner.mobileNumber = req.body.mobileNumber;
+        cleaner.extraTasks = req.body.extraTasks;
+        cleaner.profile = req.body.profile;
+        cleaner.income = req.body.income;
+        let query = {cleanerID : req.params.cleanerID}
+        //console.log(query);
+        //console.log(req.params.cleanerID)
+    
+        CleanerDetails.updateOne(query, cleaner, (err) =>{
+            if(err){
+                result.statusCode = 401;
+                result.error = err;
+                res.status(statusCode).send(result);
+                
+            }else {
+                result.statusCode = statusCode;
+                result.message = 'found and updated';
+                res.status(statusCode).send(result);
+                
+                // console.log('found and updated');
+                // req.flash('success', 'Account Updated');
+                // res.redirect('/cleaner/dashboard/home/'+req.params.id);
+            }
+        });
+    });
+
+    // **************************************
+    // ******* CLEANER DASHBOARD  ***********
+    // **************************************
+
+    // '/api/v1/account/cleaner/dashboard/:id'
+    api.get('/dashboard/:id', (req, res) =>{
+        Client.findById(req.params.id, (err, client) =>{
+            //console.log(client)
+            var query = {clientID: client.clientID};
+            ClientDetails.find((query), (err, client_details)=>{
+                //console.log(client_details[0]);
+                res.render('client/client_dashboard',{
+                    client: client,
+                    clientDetails: client_details[0]
+                });
+            });
+        });
+    });
 
     return api;
 }

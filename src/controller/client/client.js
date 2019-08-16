@@ -2,7 +2,7 @@ import { Router } from 'express';
 import mongoose from 'mongoose';
 
 import Client from '../../model/client/client';
-import ClientDetails from '../../model/client/client.details';
+import ClientDetails from '../../model/client/clientDetails';
 
 export default ({config, db}) => {
     let api  = Router();

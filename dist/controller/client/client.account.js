@@ -1,28 +1,74 @@
-import { Router } from 'express';
-import bcrypt from 'bcryptjs';
-import mongoose from 'mongoose';
+'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _express = require('express');
 
-import Client from '../../model/client/client';
-import ClientDetails from '../../model/client/client.details';
+var _bcryptjs = require('bcryptjs');
 
-import Cleaner from '../../model/cleaner/cleaner';
-import CleanerDetails from '../../model/cleaner/cleaner.details';
+var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
 
-export default ({config, db}) => {
-    let api = Router();
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _client = require('../../model/client/client');
+
+var _client2 = _interopRequireDefault(_client);
+
+var _client3 = require('../../model/client/client.details');
+
+var _client4 = _interopRequireDefault(_client3);
+
+var _cleaner = require('../../model/cleaner/cleaner');
+
+var _cleaner2 = _interopRequireDefault(_cleaner);
+
+var _cleaner3 = require('../../model/cleaner/cleaner.details');
+
+var _cleaner4 = _interopRequireDefault(_cleaner3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (_ref) {
+    var config = _ref.config,
+        db = _ref.db;
+
+    var api = (0, _express.Router)();
 
     // **************************************************************
     // ******* CLIENT AUTHENTICATION COUPLED WITH BOOKING ***********
     // **************************************************************
 
     // /api/v1/clent/account/signup -- Booking and signup process
-    api.get('/signup', (req, res)=>{
-        const { username, email, password, password2 } = req.body;
-        const { postcode, bedrooms, bathrooms, extraTasks, hours, moreHours, priority, accessType, keySafePin, keyHiddenPin, schedule, dateOfFirstClean, fullName, mobileNumber, address, city } = req.body;
+    api.get('/signup', function (req, res) {
+        var _req$body = req.body,
+            username = _req$body.username,
+            email = _req$body.email,
+            password = _req$body.password,
+            password2 = _req$body.password2;
+        var _req$body2 = req.body,
+            postcode = _req$body2.postcode,
+            bedrooms = _req$body2.bedrooms,
+            bathrooms = _req$body2.bathrooms,
+            extraTasks = _req$body2.extraTasks,
+            hours = _req$body2.hours,
+            moreHours = _req$body2.moreHours,
+            priority = _req$body2.priority,
+            accessType = _req$body2.accessType,
+            keySafePin = _req$body2.keySafePin,
+            keyHiddenPin = _req$body2.keyHiddenPin,
+            schedule = _req$body2.schedule,
+            dateOfFirstClean = _req$body2.dateOfFirstClean,
+            fullName = _req$body2.fullName,
+            mobileNumber = _req$body2.mobileNumber,
+            address = _req$body2.address,
+            city = _req$body2.city;
 
-        let clientID = bcrypt.hashSync('fullName', 10);
+
+        var clientID = _bcryptjs2.default.hashSync('fullName', 10);
 
         req.checkBody('email', 'Email is required').notEmpty();
         req.checkBody('email', 'Email is not valid').isEmail();
@@ -37,7 +83,7 @@ export default ({config, db}) => {
         req.checkBody('bathrooms', 'Bathroom field must be a number').isNumeric();
         req.checkBody('hours', 'Hours for cleaning is required').notEmpty();
         req.checkBody('hours', 'Hours field must be a number').isNumeric();
-        if(moreHours === 'more'){
+        if (moreHours === 'more') {
             req.checkBody('moreHours', 'Extend cleaning hours is required').notEmpty();
         }
         req.checkBody('accessType', 'Access Type field is required').notEmpty();
@@ -54,23 +100,23 @@ export default ({config, db}) => {
         req.checkBody('address', 'Addresss field is required').notEmpty();
         req.checkBody('city', 'City field is required').notEmpty();
 
-        let errors = req.validationErrors();
+        var errors = req.validationErrors();
 
-        if(errors) {
-            let status = 400;
-            let result = {};
-            let error = errors;
-            result.status = status;
-            result.error = error;
-            res.status(status).send(result);
+        if (errors) {
+            var _status = 400;
+            var _result = {};
+            var _error = errors;
+            _result.status = _status;
+            _result.error = _error;
+            res.status(_status).send(_result);
         } else {
-            let newClient = new Client({
+            var newClient = new _client2.default({
                 email: email,
                 username: username,
                 password: password,
                 clientID: clientID
             });
-            let newClientDetails = new ClientDetails({
+            var newClientDetails = new _client4.default({
                 postcode: postcode,
                 bedrooms: bedrooms,
                 bathrooms: bathrooms,
@@ -90,7 +136,7 @@ export default ({config, db}) => {
                 clientID: clientID
             });
 
-            Client.createUser(newClient, (err, user)=>{
+            _client2.default.createUser(newClient, function (err, user) {
                 // let result = {};
                 // let status = 200;
                 if (err) {
@@ -104,45 +150,48 @@ export default ({config, db}) => {
                 res.status(status).send(result);
             });
 
-            newClientDetails.save(err=>{
+            newClientDetails.save(function (err) {
                 if (err) {
-                    let result = {};
-                    let status = 400;
-                    let error = err;
-                    result.status = status;
-                    result.error = error;
-                    res.status(status).send(result)
-                } 
-                let result = {};
-                let status = 201;
-                let message = 'Done adding details';
+                    var _result2 = {};
+                    var _status2 = 400;
+                    var _error2 = err;
+                    _result2.status = _status2;
+                    _result2.error = _error2;
+                    res.status(_status2).send(_result2);
+                }
+                var result = {};
+                var status = 201;
+                var message = 'Done adding details';
                 result.status = status;
                 result.message = message;
                 res.status(status).send(result);
-        })
+            });
         }
     });
 
     // '/api/v1/client/account/login'    
-    api.post('/login', (req, res)=>{
-        let result  = {};
-        let status  = 200;
+    api.post('/login', function (req, res) {
+        var result = {};
+        var status = 200;
 
-        const {email, password}  = req.body;
-        Client.findOne({email}, (err, user)=>{
-            if(!err && user) {
+        var _req$body3 = req.body,
+            email = _req$body3.email,
+            password = _req$body3.password;
+
+        _client2.default.findOne({ email: email }, function (err, user) {
+            if (!err && user) {
                 // if there is no error and a user is found 
-                bcrypt.compare(password, user.password).then(match => {
+                _bcryptjs2.default.compare(password, user.password).then(function (match) {
                     if (match) {
                         status = 200;
 
                         // creating the user token
                         // const payload = { user: user.name};
-                        const payload = { _id:  user._id}
+                        var payload = { _id: user._id };
 
-                        const options = {expiresIn: '1d', issuer: 'http://relicinnova.com.ng'};
-                        const secret = config.secret;
-                        const token = jwt.sign(payload, secret, options);
+                        var options = { expiresIn: '1d', issuer: 'http://relicinnova.com.ng' };
+                        var secret = config.secret;
+                        var token = jwt.sign(payload, secret, options);
 
                         // printing the token 
                         result.token = token;
@@ -155,7 +204,7 @@ export default ({config, db}) => {
                         result = error = 'Authentication error';
                         res.status(status).send(result);
                     }
-                }).catch( err=> {
+                }).catch(function (err) {
                     status = 500;
                     result.status = status;
                     result.error = err;
@@ -169,22 +218,20 @@ export default ({config, db}) => {
                 result.message = message;
                 res.status(status).send(result);
             }
-        })
+        });
     });
 
     // '/api/v1/client/account/logout'    
-    api.get('/logout', (req, res)=>{
+    api.get('/logout', function (req, res) {
         req.logout();
-        let result = {};
-        let status = 201;
-        let message = 'Successfully Logged out';
+        var result = {};
+        var status = 201;
+        var message = 'Successfully Logged out';
         result.status = status;
         result.message = message;
         res.status(status).send(result);
     });
 
-    
-
-
     return api;
-}
+};
+//# sourceMappingURL=client.account.js.map

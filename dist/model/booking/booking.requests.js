@@ -1,60 +1,66 @@
-import mongoose from 'mongoose';
+'use strict';
 
-const Schema = mongoose.Schema;
+var _mongoose = require('mongoose');
 
-const BookingSchema = Schema({
-    clientID:{
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Schema = _mongoose2.default.Schema;
+
+var BookingSchema = Schema({
+    clientID: {
         type: String,
         required: true
     },
-    clientName:{
+    clientName: {
         type: String,
         required: true
     },
-    selectedCleaners:{
+    selectedCleaners: {
         type: Array,
         required: true
     },
-    selectedCleanerIDs:{
+    selectedCleanerIDs: {
         type: Array,
         required: true
     },
-    postcode:{
+    postcode: {
         type: String,
         required: true
     },
-    extraTasks:{
+    extraTasks: {
         type: Array,
         required: true
     },
-    dateFirstClean:{
+    dateFirstClean: {
         type: Date,
         required: true
     },
-    priority:{
+    priority: {
         type: String
     },
-    clientPhone:{
+    clientPhone: {
         type: Number,
         required: true
     },
-    clientEmail:{
+    clientEmail: {
         type: String,
         required: true
     },
-    address:{
+    address: {
         type: String,
         required: true
     },
-    city:{
+    city: {
         type: String,
         required: true
     },
-    accessType:{
+    accessType: {
         type: String,
         required: true
     },
-    status:{
+    status: {
         type: Boolean,
         default: false,
         required: true
@@ -62,4 +68,5 @@ const BookingSchema = Schema({
 });
 
 RequestSchema.set('timestamps', true);
-let Booking = module.exports = mongoose.model('Booking', BookingSchema);
+var Booking = module.exports = _mongoose2.default.model('Booking', BookingSchema);
+//# sourceMappingURL=booking.requests.js.map

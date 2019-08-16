@@ -19,7 +19,7 @@ const CleanerSchema = Schema({
 });
 
 CleanerSchema.set('timestamps', true);
-let Cleaner = module.exports = mongoose.model('Cleaner', CleanerSchema);
+let Cleaner = module.exports = mongoose.model('cleaner', CleanerSchema);
 
 
 module.exports.createUser = (newUser, callback)=> {
