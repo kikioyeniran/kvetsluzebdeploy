@@ -42,22 +42,22 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
         var newCurrentDate = schedule.currentClean[0].nextCleanDate;
         var nextCleanDate = new Date().setDate(newCurrentDate.getDate() + increment);
         var nextCleanDate = new Date(nextCleanDate);
-        // console.log(currentClean);
+        console.log(dbcurrentClean.currentCleanDate);
         // console.log(newCurrentDate, ' ', nextCleanDate);
-        var lastClean = {
+        var lastClean = [{
             cleanStatus : true,
             paidStatus : false,
             requestStatus : true,
             lastCleanDate  : dbcurrentClean.currentCleanDate
-        };
-        var currentClean = {
+        }];
+        var currentClean = [{
                 cleanStatus : true,
                 paidStatus : false,
                 requestStatus : true,
                 currentCleanDate  : newCurrentDate,
                 nextCleanDate: nextCleanDate,
                 increment: increment
-        }
+        }]
         //console.log(lastClean, ' ', currentClean);
         paymentUpdate.lastClean = lastClean;
         paymentUpdate.currentClean = currentClean;
@@ -70,34 +70,42 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
                 }else {
                     console.log('Schedule Updated');
                     let queryWallet = {cleanerID : req.params.cleanerID}
-                    CleanerWallet.findOne((queryWallet), (err, walletFound)=>{
-                        let wallet = {};
-                        wallet.totalIncome = totalCharge + walletFound.totalIncome;
-                        wallet.expectedIncome = totalCharge;
-                        //let query = {cleanerID : req.params.cleanerID}
-                        CleanerWallet.updateOne(queryWallet, wallet, (err) =>{
-                            ClientWallet.findOne((clientQuery),(err, clientFound)=>{
-                                let clientWallet = {};
-                                var pendingPay = {
-                                    cleanDate: newLastCleanDate,
-                                    cleanerID: cleanerID,
-                                    cost: totalCharge
-                                }
-                                clientWallet.totalPaid = totalCharge + clientFound.totalPaid;
-                                clientWallet.pendingPay = pendingPay;
-                                ClientWallet.updateOne(query, clientWallet,(err)=>{
-                                    if(err){
-                                        console.log(err);
-                                        return;
-                                    }else {
-                                        console.log('wallet found and updated');
-                                        //req.flash('success', 'Account Updated');
-                                        res.redirect('/cleaner/dashboard/cleaner_calendar/'+cleanerID);
+                    Cleaner.findById(req.params.cleanerID, (err, cleaner)=>{
+                        var CleanSpecID = cleaner.cleanerID;
+                        // console.log(CleanSpecID);
+                        let queryWallet2 = {cleanerID: CleanSpecID}
+                        CleanerWallet.findOne((queryWallet2), (err, walletFound)=>{
+                            let wallet = {};
+                            wallet.totalIncome = totalCharge + walletFound. totalIncome;
+                            wallet.expectedIncome = totalCharge;
+                            CleanerWallet.updateOne(queryWallet, wallet, (err) =>{
+                                console.log(clientID);
+                                let clientQuery = {clientID: clientID}
+                                ClientWallet.findOne((clientQuery),(err, clientFound)=>{
+                                    let clientWallet = {};
+                                    var pendingPay = {
+                                        cleanDate: newLastCleanDate,
+                                        cleanerID: cleanerID,
+                                        cost: totalCharge
                                     }
+                                    clientWallet.totalPaid = totalCharge + clientFound.totalPaid;
+                                    clientWallet.pendingPay = pendingPay;
+                                    ClientWallet.updateOne(clientQuery, clientWallet,(err)=>{
+                                        if(err){
+                                            console.log(err);
+                                            return;
+                                        }else {
+                                            console.log('wallet found and updated');
+                                            //req.flash('success', 'Account Updated');
+                                            res.redirect('/cleaner/dashboard/cleaner_calendar/'+cleanerID);
+                                        }
+                                    })
                                 })
-                            })
-                        });
+                            });
+                        })
                     })
+
+
                 }
             });
         }

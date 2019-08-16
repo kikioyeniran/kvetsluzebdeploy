@@ -1,0 +1,30 @@
+extends layout
+
+block content
+        .content-inner.chart-cont
+            // ***** CONTENT *****
+            .row
+                if transactionStatus === true
+                    .col-sm-12.col-md-12.col-lg-12
+                        .card.card-inverse.card-info
+                            .card-block
+                                h4.card-title.center SORRY THERE ARE NO PAID TRANSACTIONS YET!
+                else
+                    table.table.table-hover
+                        thead
+                            tr.bg-info.text-white
+                                th #
+                                //- th Client Name
+                                th Cleaner Name
+                                th Transaction Cost
+                                th Date
+                                th Date Last Updated
+                        tbody
+                            each transaction, i in transactions
+                                tr
+                                    th(scope="row") #{i}
+                                    td #{transaction.cleanerName}
+                                    td &euro;#{transaction.totalPaid}
+                                    td #{transaction.Date}
+                                    td #{transaction.updated}
+

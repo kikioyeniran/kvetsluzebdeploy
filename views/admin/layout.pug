@@ -11,7 +11,7 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         meta(name="robots" content="all,follow")
         title Kvet Sluzeb Admin Dashboard
-        link(rel="shortcut icon" href="img/favicon.png")
+        link(rel="shortcut icon" href="/img/favicon.png")
         // global stylesheets
         link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
         link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
@@ -83,56 +83,9 @@ html
                                             | You have 2 followers
                                         .notification-time
                                             small 4 minutes ago
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-upload.bg-blue
-                                            | Server Rebooted
-                                        .notification-time
-                                            small 4 minutes ago
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-twitter.bg-skyblue
-                                            | You have 2 followers
-                                        .notification-time
-                                            small 10 minutes ago
-                                li
                                     a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
                                         strong view all notifications
-                        // Messages
-                        li.nav-item.dropdown
-                            a#messages.nav-link.logout(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                i.fa.fa-envelope-o
-                                span.noti-numb-bg
-                                span.badge 10
-                            ul.dropdown-menu(aria-labelledby="messages")
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Jason Doe
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Frank Williams
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Ashley Wood
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
-                                        strong Read all messages
+
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="..." style="height: 30px; width: 30px;")
@@ -170,87 +123,6 @@ html
                                         .notification-content
                                             i.fa.fa-power-off
                                             | Logout
-                        li.nav-item.d-flex.align-items-center
-                            a#menu-toggle-right.nav-link(href="#")
-                                i.fa.fa-bars
-                            nav#sidebar-wrapper
-                                .sidebar-nav
-                                    .tab(role="tabpanel")
-                                        ul.nav.nav-tabs(role="tablist")
-                                            li.nav-item
-                                                a.nav-link.active(href="#live" role="tab" data-toggle="tab")
-                                                    i.fa.fa-globe
-                                                    |  Live
-                                            li.nav-item
-                                                a.nav-link(href="#trend" role="tab" data-toggle="tab")
-                                                    i.fa.fa-rocket
-                                                    |  Trending
-                                        .tab-content.tabs
-                                            #live.tab-pane.fade.show.active(role="tabpanel")
-                                                h3 Connect Live
-                                                .content.newsf-list
-                                                    ul.list-unstyled
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow " href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 New Innovation world
-                                                                    small Tech soft is great innovation for...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Modified hand-cart
-                                                                    small The idea is to incorporate easy...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-4.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                            #trend.tab-pane.fade(role="tabpanel")
-                                                .card.card-c2(style="box-shadow: 0 0 0;")
-                                                    .header
-                                                        h3.title Trending Items
-                                                        p.category Last Campaign Performance
-                                                    .content
-                                                        canvas#myChart4.ct-chart(height="250")
-                                                        .footer
-                                                            .legend
-                                                                i.fa.fa-circle.text-info
-                                                                |  Open
-                                                                i.fa.fa-circle.text-danger
-                                                                |  Bounce
-                                                                i.fa.fa-circle.text-warning
-                                                                |  Unsubscribe
-                                                            hr
-                                                            .stats
-                                                                i.fa.fa-clock-o
-                                                                |  Campaign sent 2 days ago
         //
             ====================================================
             PAGE CONTENT
@@ -265,36 +137,35 @@ html
                         h1.h4 Admin
                 hr
                 // Sidebar Navidation Menus
-                ul#nav-link.list-unstyled
-                    li.active.linking
+                ul#sidenav.list-unstyled
+                    li.linking
                         a(href="/admin/dashboard/"+admin._id)
                             i.icon-home
                             | Home
                     li.linking
                         a(href="#")
                             i.fa.fa-bar-chart
-                            | Finance
+                            | Software Analytics
                     li.linking
                         a(href="/admin/dashboard/clients/"+admin._id)
-                            i.icon-grid
+                            i.fa.fa-user-o
                             | All Clients
                     li.linking
                         a(href="/admin/dashboard/cleaners/"+admin._id)
-                            i.icon-grid
+                            i.fa.fa-user-o
                             | All Cleaners
                     li.linking
-                        a(href="#")
+                        a(href="/admin/dashboard/requests/"+admin._id)
                             i.fa.fa-map-o
-                            | Requests
-                    //- li
-                    //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
-                    //-     i.fa.fa-comments-o
-                    //-     | Chats
-                    //- ul#forms.collapse.list-unstyled
-                    //-     li
-                    //-     a(href="#") Cleaner 1
-                    //-     li
-                    //-     a(href="#") Cleaner 2
+                            | Job Offers
+                    li.linking
+                        a(href="/admin/dashboard/transactions/"+admin._id)
+                            i.icon-grid
+                            | All Transactions
+                    li.linking
+                        a(href="/admin/login/logout")
+                            i.fa.fa-power-off
+                            | Logout
             block content
 
 
@@ -307,6 +178,7 @@ html
     script(src="/admin/js/jquery.validate.min.js")
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    script(src="/js/active.js")
     //- script(src="/admin/js/activepages.js")
     //navbar
     script(type="text/javascript").
@@ -441,67 +313,4 @@ html
         }
         });
 
-    // FAQ Core Javascript
-    script.
-      new Chart(document.getElementById("myChart-nav").getContext('2d'), {
-      type: 'doughnut',
-      data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-      backgroundColor: [
-      "#2ecc71",
-      "#3498db",
-      "#95a5a6",
-      "#9b59b6",
-      "#f1c40f",
-      "#e74c3c",
-      "#34495e"
-      ],
-      data: [12, 19, 3, 17, 28, 24, 7]
-      }]
-      },
-      options: {
-      legend: { display: false },
-      title: {
-      display: true,
-      text: ''
-      }
-      }
-      });
-    script.
-      (function($) {
-      var mn = $(".vert-tab");
-      mns = "vert-tab-scrolled";
-      $(window).scroll(function() {
-      if ($(this).scrollTop() > $('header').height()) {
-      mn.addClass(mns);
-      } else {
-      mn.removeClass(mns);
-      }
-      });
-      "use strict";
-      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
-        {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-        if (target.length) {
-        $('html, body').animate({
-        scrollTop: (target.offset().top - 22)
-        }, 700, "easeInOutExpo");
-        return false;
-        }
-        }
-        });
-        $('.collapse').on('show.bs.collapse', function() {
-        var id = $(this).attr('id');
-        $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
-        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-minus"></i>');
-        });
-        $('.collapse').on('hide.bs.collapse', function() {
-        var id = $(this).attr('id');
-        $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
-        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
-        });
-        })(jQuery);
 

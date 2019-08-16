@@ -53,9 +53,8 @@ router.post('/post', (req, res)=>{
             console.log(err);
             return;
         } else{
-            const username = req.body.username.toLowerCase();
-
-            const email = req.body.email;
+            // const username = req.body.username.toLowerCase();
+            const email = req.body.email.toLowerCase();
             const password = req.body.password;
             const password2 = req.body.password2;
 
@@ -77,7 +76,6 @@ router.post('/post', (req, res)=>{
 
             req.checkBody('email', 'Email is required').notEmpty();
             req.checkBody('email', 'Email is not valid').isEmail();
-            req.checkBody('username', 'Username is required').notEmpty();
             req.checkBody('password', 'Password is required').notEmpty();
             req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
             req.checkBody('postcode', 'Postcode is required').notEmpty();
@@ -102,7 +100,6 @@ router.post('/post', (req, res)=>{
             else{
                 let newUser = new Cleaner({
                     email:email,
-                    username:username,
                     cleanerID: cleanerID,
                     password:password
                 });

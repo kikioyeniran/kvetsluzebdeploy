@@ -123,7 +123,7 @@ h2 {
   font-weight: 400;
   font-family: 'Roboto Slab';
   margin: 0px;
-  background-image: url("../images/body-bg.jpg");
+  background-image: url("../../../img/pic6.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;
@@ -181,13 +181,14 @@ h2 {
   top: 5px;
   right:0;
   font-size: 16px;
-  color: #3d405c;
+  color: #4b518f;
   line-height: 1;
 }
 
 .header-text{
   align-content: center;
-  color: #fff;
+  text-align: center;
+  color: rgba(4, 4, 4, 0.51);
   font-size: 25px;
   font-weight: bold;
   margin: 5px;

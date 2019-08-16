@@ -10,24 +10,25 @@ block content
                             h4.card-title SORRY YOU HAVE NO ACCEPTED REQUESTS YET!
             if schedules != null
                 each schedule, i in schedules
-                    .col-sm-6.col-md-6.col-lg-4
+                    .col-sm-6.col-md-6
                         .card.card-inverse.card-info
                             img.card-img-top(src="/uploads/"+schedule.clientDetails[0].profilePic)
                             .card-block
-                            h4.card-title #{schedule.clientDetails[0].fullName}
-                            h6 Mobile Number: #{schedule.clientDetails[0].mobileNumber}
-                            h6 Postcode: #{schedule.clientDetails[0].postcode}
+                                h6 Client Name:
+                                    h4.card-title #{schedule.clientDetails[0].fullName}
+                                h6 Mobile Number: #{schedule.clientDetails[0].mobileNumber}
+                                h6 Postcode: #{schedule.clientDetails[0].postcode}
                             //- h4.card-title #{clientDetails.fullName}
                             .card-footer
-                            small Last updated #{schedule.clientDetails[0].updated}
-                            form(method="POST", action="/rating/client/"+encodeURIComponent(schedule.clientDetails[0].clientID)+"/"+encodeURIComponent(cleaner._id))
-                                select.rate(name="rating")
-                                    option(value=1) 1
-                                    option(value=2) 2
-                                    option(value=3) 3
-                                    option(value=4) 4
-                                    option(value=5) 5
-                                button.btn.btn-info.float-right.btn-sm Rate Customer
+                                small Last updated #{schedule.clientDetails[0].updated}
+                                form(method="POST", action="/rating/client/"+encodeURIComponent(schedule.clientDetails[0].clientID)+"/"+encodeURIComponent(cleaner._id))
+                                    select.rate(name="rating")
+                                        option(value=1) 1
+                                        option(value=2) 2
+                                        option(value=3) 3
+                                        option(value=4) 4
+                                        option(value=5) 5
+                                    button.btn.btn-info.float-right.btn-sm Rate Customer
                         .accrodion-regular
                             #accordion3
                                 if schedule.lastCleanDate === undefined
@@ -35,7 +36,7 @@ block content
                                         #headingSeven.card-header
                                             h5.mb-0
                                             button.btn.btn-link(data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven")
-                                                span.fa.fa-sort-desc.mr-3
+                                                span
                                                 | There is no past Clean
                                 else
                                     .card
@@ -50,10 +51,18 @@ block content
                                                 button.btn.btn-info.float-right.btn-sm Last Clean Details
                                         div(id=name2).collapse.show(aria-labelledby="headingSeven" data-parent="#accordion3")
                                             .card-body
-                                                p.lead
-                                                    | Payment Status:
-                                                p
-                                                    | Clean Status:
+                                                if schedule.lastPaidStatus == false
+                                                    p.lead
+                                                        | Payment Status:  Not Paid
+                                                else
+                                                    p.lead
+                                                        | Payment Status:  Paid
+                                                if schedule.lastCleanStatus == false
+                                                    p.lead
+                                                        | Clean Status: Not Cleaned
+                                                else
+                                                    p.lead
+                                                        | Clean Status: Cleaned
                                             //- a.btn.btn-secondary(href="#") Go somewhere
                                 .card.mb-2
                                     -var newClass = schedule.clientDetails[0].fullName.split(" ")
@@ -79,7 +88,7 @@ block content
                                     div(id="headingNine").card-header
                                         h5.mb-0
                                         button.btn.btn-link.collapsed(data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine")
-                                            span.fa.fa-sort-desc.mr-3
+                                            span
                                             | #{schedule.nextCleanDate}
                                             button.btn.btn-warning.float-right.btn-sm Next Clean Date
 

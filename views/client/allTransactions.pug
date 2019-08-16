@@ -4,71 +4,28 @@ block content
         .content-inner.chart-cont
             // ***** CONTENT *****
             .row
-                table.table.table-hover
-                    thead
-                        tr.bg-info.text-white
-                            th #
-                            th First Name
-                            th Last Name
-                            th Username
-                    tbody
-                        tr
-                            th(scope="row") 1
-                            td Mark
-                            td Otto
-                            td @mdo
-                        tr.table-warning
-                            th(scope="row") 2
-                            td Jacob
-                            td Thornton
-                            td @fat
-                        tr
-                            th(scope="row") 3
-                            td Larry
-                            td the Bird
-                            td @twitter
-                        tr.table-success
-                            th(scope="row") 3
-                            td Mark
-                            td Otto
-                            td @mdo
-                        tr
-                            th(scope="row") 4
-                            td Jacob
-                            td Thornton
-                            td @fat
-                        tr.table-danger
-                            th(scope="row") 5
-                            td Larry
-                            td the Bird
-                            td @twitter
-                        tr
-                            th(scope="row") 6
-                            td Mark
-                            td Otto
-                            td @mdo
-                        tr.table-info
-                            th(scope="row") 7
-                            td Jacob
-                            td Thornton
-                            td @fat
-                        tr
-                            th(scope="row") 8
-                            td Larry
-                            td the Bird
-                            td @twitter
-                        tr.table-warning
-                            th(scope="row") 9
-                            td Mark
-                            td Otto
-                            td @mdo
-                        tr
-                            th(scope="row") 10
-                            td Jacob
-                            td Thornton
-                            td @fat
-                        tr.table-success
-                            th(scope="row") 11
-                            td Larry
-                            td the Bird
-                            td @twitter
+                if transactionStatus === true
+                    .col-sm-12.col-md-12.col-lg-12
+                        .card.card-inverse.card-info
+                            .card-block
+                                h4.card-title.center YOU HAVE NO PAID TRANSACTIONS YET!
+                else
+                    table.table.table-hover
+                        thead
+                            tr.bg-info.text-white
+                                th #
+                                th Cleaner Name
+                                th Transaction Cost
+                                th Date
+                                th Date Last Updated
+                        tbody
+                            //- -var count = 0
+                            each transaction, i in transactions
+                                //- -var count++
+                                tr
+                                    th(scope="row") #{i}
+                                    td #{transaction.cleanerName}
+                                    td &euro;#{transaction.totalPaid}
+                                    td #{transaction.Date}
+                                    td #{transaction.updated}
+

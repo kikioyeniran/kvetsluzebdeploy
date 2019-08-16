@@ -101,7 +101,7 @@ router.get('/cleaner_requests/:id', (req, res) =>{
 //Cleaner Schedule Page route
 router.get('/cleaner_calendar/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner) =>{
-        console.log(req.params.id);
+        //console.log(req.params.id);
         var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
             query2 = {cleanerID: req.params.id};
@@ -140,6 +140,7 @@ router.get('/cleaner_calendar/:id', (req, res) =>{
                                         var lastCleanDate = tempSchedule.lastClean[0].lastCleanDate;
                                         var lastCleanDate = new Date(lastCleanDate);
                                         var lastCleanDate = date.format(lastCleanDate, 'ddd, MMM DD YYYY');
+                                        console.log(tempSchedule.lastClean[0].lastCleanDate);
                                     }
                                     var currentCleanDate = tempSchedule.currentClean[0].currentCleanDate;
                                     var currentCleanDate = new Date(currentCleanDate);
@@ -147,14 +148,19 @@ router.get('/cleaner_calendar/:id', (req, res) =>{
                                     var nextCleanDate = tempSchedule.currentClean[0].nextCleanDate;
                                     var nextCleanDate = new Date(nextCleanDate);
                                     var nextCleanDate = date.format(nextCleanDate, 'ddd, MMM DD YYYY');
+                                    var lastCleanStatus = tempSchedule.lastClean[0].cleanStatus;
+                                    var lastPaidStatus = tempSchedule.lastClean[0].paidStatus;
                                     newObject.currentCleanDate = currentCleanDate;
                                     newObject.lastCleanDate = lastCleanDate;
+
                                     newObject.nextCleanDate = nextCleanDate;
                                     newObject.clientDetails = tempSchedule.clientDetails
+                                    newObject.lastCleanStatus = lastCleanStatus;
+                                    newObject.lastPaidStatus = lastPaidStatus;
                                     newArray.push(newObject);
                                     //console.log(tempSchedule.clientDetails);
                                 }
-                                console.log(newArray[0].lastCleanDate);
+                                //console.log(newArray[0].lastCleanDate[0].cleanStatus);
                                 res.render('cleaner/cleaner_calendar',{
                                     cleaner: cleaner,
                                     firstClean: firstClean,

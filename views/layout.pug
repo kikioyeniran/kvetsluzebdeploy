@@ -1,5 +1,5 @@
 doctype html
-html
+html(lang='fr')
   head
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
@@ -15,6 +15,7 @@ html
     link(rel='stylesheet' href='/css/owl-carousel/owl.theme.default.min.css')
     link(rel='stylesheet' href='/css/style.css')
     link(rel='stylesheet' href='/css/form.css')
+    link(rel='stylesheet' href='/css/faq.css')
     link(rel='stylesheet' href='/css/tempusdominus-bootstrap-4.css')
     link(rel='stylesheet' href='/css/conditionals.css')
     link(rel='stylesheet' href='/css/multiform/css/style.css')
@@ -23,6 +24,11 @@ html
     //Core Style Sheets
     link(rel='stylesheet' href='/css/about.css')
     link(rel='stylesheet' href='/admin/css/ui-elements/card.css')
+    script(type="text/javascript" src="https://cdn.weglot.com/weglot.min.js")
+    script.
+      Weglot.initialize({
+      api_key: 'wg_67165334b2bc34d56bda185a04c28be70'
+      });
   //
     ====================================================
     HEADER
@@ -66,13 +72,13 @@ html
         button.navbar-toggler.navbar-toggler-right(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarResponsive.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
+          ul#specnav.navbar-nav.ml-auto
             li.nav-item
               a.nav-link.smooth-scroll(href='/') Home
             li.nav-item
               a.nav-link.smooth-scroll(href='/public/about') About
             li.nav-item
-              a.nav-link.smooth-scroll(href='#') How It Works
+              a.nav-link.smooth-scroll(href='#') Careers
             li.nav-item
               a.nav-link.smooth-scroll(href='/public/faq') FAQs
             li
@@ -116,7 +122,7 @@ html
                           li
                             a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Register
                           li
-                            a.log-top(href='#' data-toggle='modal') Loginsss
+                            a.log-top(href='#' data-toggle='modal') Logins
   //
     ====================================================
     LOGIN OR REGISTER
@@ -132,8 +138,8 @@ html
             form#login-form(method="POST", action="/client/login")
               h3.text-center Login
               .modal-body
-                label(for='username') Username
-                input#login_username.form-control(type='text' placeholder='Enter username ' required='' name="username")
+                label(for='username') Email
+                input#login_username.form-control(type='text' placeholder='Enter email ' required='' name="email")
                 label(for='username') Password
                 input#login_password.form-control(type='password' placeholder='Enter password' required='' name="password")
                 .checkbox
@@ -148,8 +154,8 @@ html
             form#register-form(style='display:none;', method="POST", action="/cleaner/login")
               h3.text-center Cleaner Login
               .modal-body
-                label(for='username') Username
-                input#register_username.form-control(type='text' placeholder='Enter username' required='' name="username")
+                label(for='username') Email
+                input#register_username.form-control(type='text' placeholder='Enter email' required='' name="email")
                 label(for='register_password') Password
                 input#register_password.form-control(type='password' placeholder='Password' required='' name="password")
               .modal-footer
@@ -157,12 +163,11 @@ html
                   button.btn.btn-general.btn-white(type='submit') Login
                 div
                   button#register_login_btn.btn.btn-link(type='button') Not a Cleaner
-
-  .container
-            != messages('message', locals)
-            if errors
-                each error, i in errors
-                    div(class="alert alert-danger") #{error.msg}
+  //- .container
+  //-           != messages('message', locals)
+  //-           if errors
+  //-               each error, i in errors
+  //-                   div(class="alert alert-danger") #{error.msg}
   block content
 
   //
@@ -175,7 +180,7 @@ html
         .container
           .row
             // About Us
-            .col-md-3.col-sm-6
+            .col-md-4.col-sm-6
               div
                 img.img-fluid(src='/img/mainlogo.png' alt='')
               ul.list-unstyled.comp-desc-f
@@ -185,54 +190,41 @@ html
               br
             // End About Us
             // Recent News
-            .col-md-3.col-sm-6
+            .col-md-4.col-sm-6
               .heading-footer
-                h2 Useful Links
+                h2 Quick Links
               ul.list-unstyled.link-list
                 li
-                  a(href='about.html') About us
+                  a(href='/') Home
                   i.fa.fa-angle-right
                 li
-                  a(href='project.html') Project
+                  a(href='/public/about') About
                   i.fa.fa-angle-right
                 li
-                  a(href='careers.html') Career
+                  a(href='/pubic/careers') Careers
                   i.fa.fa-angle-right
                 li
-                  a(href='faq.html') FAQ
+                  a(href='/public/faq') FAQ
                   i.fa.fa-angle-right
                 li
-                  a(href='contact.html') Contact us
+                  a(href='') Contact us
                   i.fa.fa-angle-right
             // End Recent list
-            // Recent Blog Entries
-            .col-md-3.col-sm-6
-              .heading-footer
-                h2 Recent Post Entries
-              ul.list-unstyled.thumb-list
-                li
-                  .overflow-h
-                    a(href='#') Praesent ut consectetur diam.
-                    small 02 OCT, 2017
-                li
-                  .overflow-h
-                    a(href='#') Maecenas pharetra tellus et fringilla.
-                    small 02 OCT, 2017
-            // End Recent Blog Entries
+
             // Latest Tweets
-            .col-md-3.col-sm-6
+            .col-md-4.col-sm-6
               .heading-footer
                 h2 Get In Touch
               address.address-details-f
                 | 25, Dist town Street, Logn
                 br
-                |                     California, US
+                | California, US
                 br
-                |                     Phone: 800 123 3456
+                | Phone: 800 123 3456
                 br
-                |                     Fax: 800 123 3456
+                | Fax: 800 123 3456
                 br
-                |                     Email:
+                | Email:
                 a(href='mailto:info@kvetsluzeb.com') info@kvetsluzeb.com
               ul.list-inline.social-icon-f.top-data
                 li
@@ -265,6 +257,7 @@ html
   script(src='/js/owl-carousel/owl.carousel.min.js')
   script(src='/js/conditional.js')
   script(src='/js/form-validation.js')
+  script(src='/js/active.js')
   //For Multistep Form
   script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
   script(src='/js/multiform/vendor/jquery-validation/dist/additional-methods.min.js')
@@ -281,7 +274,18 @@ html
   // Plugin JavaScript
   script(src='/js/jquery-easing/jquery.easing.min.js')
   script(src='/js/custom.js')
-
+  //For FAQs
+  script.
+      if( jQuery(".toggle .toggle-title").hasClass('active') ){
+      jQuery(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
+      }
+      jQuery(".toggle .toggle-title").click(function(){
+      if( jQuery(this).hasClass('active') ){
+      jQuery(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
+      }
+      else{   jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+      }
+      });
   script(src='/css/multi-select/js/jquery.multi-select.js')
   script.
     $('#callbacks').multiSelect({

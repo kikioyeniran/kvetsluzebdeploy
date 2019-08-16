@@ -1,3 +1,331 @@
 extends layout2
 
 block content
+        .content-inner.chart-cont
+            // ***** CONTENT *****
+            .container
+                .row
+                    .col-md-4
+                        nav.nav.vert-tab.flex-column
+                            a.nav-link.tab-faq.js-scroll-trigger.active(href="#FAQ1")
+                                h3
+                                    i.fa.fa-user-o
+                                    |  Dashboard Usage
+                                small Click to view
+                            a.nav-link.js-scroll-trigger.tab-faq(href="#FAQ2")
+                                h3
+                                    i.fa.fa-credit-card
+                                    |  Finance
+                                small Click to view
+                            a.nav-link.js-scroll-trigger.tab-faq(href="#FAQ3")
+                                h3
+                                    i.fa.fa-refresh
+                                    |  Job Offers
+                                small Click to view
+                            //- a.nav-link.js-scroll-trigger.tab-faq(href="#FAQ4")
+                            //-     h3
+                            //-         i.fa.fa-circle-o-notch
+                            //-         |  Troll Question
+                            //-     small Lorem Ipsum text shadow
+                            //- a.nav-link.js-scroll-trigger.tab-faq(href="#FAQ4")
+                            //-     h3
+                            //-         i.fa.fa-leaf
+                            //-         |  Troll Question
+                            //-     small Lorem Ipsum text shadow
+                    .col-md-8
+                        #FAQ1.faq-cont
+                            .faq-heading-cont
+                                h3
+                                    i.fa.fa-user
+                                    |  Dashboard Usage
+                            #accordion-1.panel-group
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-1")
+                                            h4.panel-title
+                                                | How can I change my personal information such as address, telephone number, e-mail address?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-1.panel-collapse.collapse
+                                        .panel-body
+                                        | Just login to your profile
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-2")
+                                            h4.panel-title
+                                                | What notifications do I receive in my online profile?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-2.panel-collapse.collapse
+                                        .panel-body
+                                        | After you log in to your online profile or app, you'll see a variety of notifications on the homepage: notifications of unrelated invoices, customer change requests, and customer cancellations or messages. In addition, you will receive additional cleaning offers on the start page in addition to your booking requests. These will receive all appropriate cleaning services close to the customer and can be accepted as needed. We advise you to read and answer your notifications on a regular basis
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-3")
+                                            h4.panel-title
+                                                | Who can view my external profile?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-3.panel-collapse.collapse
+                                        .panel-body
+                                        | Your profile can only be viewed via the květ platform.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-4")
+                                            h4.panel-title
+                                                | I want to set my own price. How exactly does it work?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-4.panel-collapse.collapse
+                                        .panel-body
+                                        | As a service provider, you can decide on the Květ platform how much a customer pays for your cleaning per hour. Therefore, there is now the possibility to adjust your customer price in your online profile under "My prices". Just try it out and change the price in 10-cent amounts in the first box for single and regular orders. The květ support team will be happy to help you with any questions
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-5")
+                                            h4.panel-title
+                                                | What can I do if I do not receive any / few cleaning offers at my new price?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-5.panel-collapse.collapse
+                                        .panel-body
+                                        | There are many reasons for this: For example, customers in your area may be used to other prices. Our recommendation: Just take a look at your profile in the board for additional cleaning requests! There you will find more offers - but at a lower hourly rate. Of course, you can also accept these.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-6")
+                                            h4.panel-title
+                                                | When should I increase my price?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-6.panel-collapse.collapse
+                                        .panel-body
+                                        | For a price increase, many factors can play a role. Tests have shown that customers often associate better quality of cleaning, punctuality or reliability with a higher price.
+
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-7")
+                                            h4.panel-title
+                                                | How can I delete my profile?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-7.panel-collapse.collapse
+                                        .panel-body
+                                        |  You no longer want to order from květ and want to delete your profile? Send us a message requesting a data deletion with the email address registered with us: info@kvetsluzeb.com.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-8")
+                                            h4.panel-title
+                                                | What happens to my data after deleting the data?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-8.panel-collapse.collapse
+                                        .panel-body
+                                        | As soon as you have sent us an e-mail asking you to delete your profile, the process of deletion is initiated. In individual cases, however, this process can take up to 3 months.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-1" href="#faq-sub-cat1-9")
+                                            h4.panel-title
+                                                | Additional Information about deleting data
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat1-9.panel-collapse.collapse
+                                        .panel-body
+                                        | If the conditions for the deletion of your data are present, you will receive a new message or confirmation of the deletion.
+                                        | Please note that deletion of your data is only possible if:
+                                        br
+                                        | a)	all outstanding invoices have been processed,
+                                        | b)	no open collection procedures exist,
+                                        | c)	no claim notification is in progress,
+                                        | d)	other clarifications regarding customer feedback are still pending, and
+                                        | e)	There are no more recommendations in the activation process.
+                                        br
+                                        | If none of these points are open, your data will be removed from the system and you will receive a new message with the final confirmation of deletion.
+                                        | However, if there are currently active invoice requests, we ask you to edit them immediately. Otherwise these invoices will automatically be canceled after a period of 21 days (this may result in cancellation fees / processing fees) and the contractual relationship between you and květ služeb ends.
+                                        | In addition, we point out that after the data deletion you no longer have access to the květ platform and thus the invoices for your tax return are no longer available. We recommend that you download all invoices already
+
+                        br
+                        #FAQ2.faq-cont
+                            .faq-heading-cont
+                                h3
+                                    i.fa.fa-credit-card-alt
+                                    |  Finance Questions
+                            #accordion-2.panel-group
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-2" href="#faq-sub-cat2-1")
+                                            h4.panel-title
+                                                | When will I receive my money?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat2-1.panel-collapse.collapse
+                                        .panel-body
+                                        | The payment is free of charge twice a month . The first payout period includes orders from 1-15. of the month and will be paid no later than the 24th of the month. The second payout period includes orders from the 16th to the end of the month and will be paid no later than the 9th of the following month. The money will be transferred directly to the account indicated in your profile.
+                                        | ***Remember, invoices will only be transferred if:
+                                        | 1)	your details (account details, personal details, etc.) are complete
+                                        | 2)	The invoices have been confirmed by you
+                                        strong Endeavor to always update your account details to avoid delay payments
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-2" href="#faq-sub-cat2-2")
+                                            h4.panel-title
+                                                | What is the commission for květ?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat2-2.panel-collapse.collapse
+                                        .panel-body
+                                        | Details on the commission can be found
+                                        a(href="#") here.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-2" href="#faq-sub-cat2-3")
+                                            h4.panel-title
+                                                | May I accept cash?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat2-3.panel-collapse.collapse
+                                        .panel-body
+                                        | Unfortunately, you can not accept cash. All cleaning jobs provided through květ are handled through the platform. Payments of the customers are made exclusively cashless. Otherwise, invoicing and processing via the květ platform is not possible.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-2" href="#faq-sub-cat2-4")
+                                            h4.panel-title
+                                                | How do my clients pay for my cleaning?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub-cat2-4.panel-collapse.collapse
+                                        .panel-body
+                                        | Clients are charged for every successful and completed clean via online via direct transfer or via card immediately. Write us a message through our contact form and let us know how you feel about your cleaning experience.
+                                //- .panel.panel-default.panel-faq
+                                //-     .panel-heading
+                                //-         a(data-toggle="collapse" data-parent="#accordion-2" href="#faq-sub-cat2-5")
+                                //-             h4.panel-title
+                                //-                 | FAQ Item Category #5
+                                //-                 span.pull-right
+                                //-                     i.fa.fa-plus
+                                //-     #faq-sub-cat2-5.panel-collapse.collapse
+                                //-         .panel-body
+                                //-         | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        br
+                        #FAQ3.faq-cont
+                            .faq-heading-cont
+                                h3
+                                    i.fa.fa-refresh
+                                    |  Job Offer Issues
+                            #accordion-3.panel-group
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-1")
+                                            h4.panel-title
+                                                | How do I receive cleaning offers?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub3-1.panel-collapse.collapse
+                                        .panel-body
+                                        | Once you have specified your availability, you will receive the first cleaning offers in your area. They come to you simply via push notification via the Kvet  app, or e-mail - just as you wish!
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-2")
+                                            h4.panel-title
+                                                | How can I respond to cleaning offers?
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub3-2.panel-collapse.collapse
+                                        .panel-body
+                                        | You would find all your job offers in the job offers page. Every offer is arranged in the order of recency and it includes its status. If the over is still available, click on the accept button which would appear in the offer tab.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-3")
+                                            h4.panel-title
+                                                | Push notification
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub3-3.panel-collapse.collapse
+                                        .panel-body
+                                        | Click on the push notification to get all the details on the cleaning offer. In the app, you accept the cleaning offer or reject it, as you wish.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-4")
+                                            h4.panel-title
+                                                | E-Mail (Free of charge)
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub3-4.panel-collapse.collapse
+                                        .panel-body
+                                        | In the e-mail you will already receive extensive details about the order. Each mail would contain a link to your account where you would confirm the offer. Offers can only be confirmed in your dashboard.
+                                .panel.panel-default.panel-faq
+                                    .panel-heading
+                                        a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-5")
+                                            h4.panel-title
+                                                | Hint for Offers
+                                                span.pull-right
+                                                    i.fa.fa-plus
+                                    #faq-sub3-5.panel-collapse.collapse
+                                        .panel-body
+                                        | Pay attention to the date, time, duration, frequency and distance before accepting. As soon as you have accepted the cleaning offer bindingly, the customer will be informed directly by notification about your commitment.
+                            //-    .panel.panel-default.panel-faq
+                            //-         .panel-heading
+                            //-             a(data-toggle="collapse" data-parent="#accordion-3" href="#faq-sub3-6")
+                            //-                 h4.panel-title
+                            //-                     | Hint for Offers
+                            //-                     span.pull-right
+                            //-                         i.fa.fa-plus
+                            //-         #faq-sub3-6.panel-collapse.collapse
+                            //-             .panel-body
+                            //-             | Pay at
+                        //- br
+                        //- #FAQ4.faq-cont
+                        //-     .faq-heading-cont
+                        //-         h3
+                        //-             i.fa.fa-dot-circle-o
+                        //-             |  Troll Question
+                        //-     #accordion-4.panel-group
+                        //-         .panel.panel-default.panel-faq
+                        //-             .panel-heading
+                        //-                 a(data-toggle="collapse" data-parent="#accordion-4" href="#faq-sub4-1")
+                        //-                     h4.panel-title
+                        //-                         | FAQ Item Category #1
+                        //-                         span.pull-right
+                        //-                             i.fa.fa-plus
+                        //-             #faq-sub4-1.panel-collapse.collapse
+                        //-                 .panel-body
+                        //-                 | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        //-         .panel.panel-default.panel-faq
+                        //-             .panel-heading
+                        //-                 a(data-toggle="collapse" data-parent="#accordion-4" href="#faq-sub4-2")
+                        //-                     h4.panel-title
+                        //-                         | FAQ Item Category #2
+                        //-                         span.pull-right
+                        //-                             i.fa.fa-plus
+                        //-             #faq-sub4-2.panel-collapse.collapse
+                        //-                 .panel-body
+                        //-                 | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        //-         .panel.panel-default.panel-faq
+                        //-             .panel-heading
+                        //-                 a(data-toggle="collapse" data-parent="#accordion-4" href="#faq-sub4-3")
+                        //-                     h4.panel-title
+                        //-                         | FAQ Item Category #3
+                        //-                         span.pull-right
+                        //-                             i.fa.fa-plus
+                        //-             #faq-sub4-3.panel-collapse.collapse
+                        //-                 .panel-body
+                        //-                 | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        //-         .panel.panel-default.panel-faq
+                        //-             .panel-heading
+                        //-                 a(data-toggle="collapse" data-parent="#accordion-4" href="#faq-sub4-4")
+                        //-                     h4.panel-title
+                        //-                         | FAQ Item Category #4
+                        //-                         span.pull-right
+                        //-                             i.fa.fa-plus
+                        //-             #faq-sub4-4.panel-collapse.collapse
+                        //-                 .panel-body
+                        //-                 | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        //-         .panel.panel-default.panel-faq
+                        //-             .panel-heading
+                        //-                 a(data-toggle="collapse" data-parent="#accordion-4" href="#faq-sub4-5")
+                        //-                     h4.panel-title
+                        //-                         | FAQ Item Category #5
+                        //-                         span.pull-right
+                        //-                             i.fa.fa-plus
+                        //-             #faq-sub4-5.panel-collapse.collapse
+                        //-                 .panel-body
+                        //-                 | Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        //- br

@@ -1,0 +1,55 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="robots" content="all,follow")
+    title Kvet Reset Password
+    link(rel="shortcut icon" href="/img/favicon.png")
+    // global stylesheets
+    link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
+    link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/admin/font-awesome-4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="/admin/css/font-icon-style.css")
+    link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
+    // Core stylesheets
+    link(rel="stylesheet" href="/admin/css/pages/login.css")
+  body
+    //
+      ====================================================
+      PAGE CONTENT
+      ======================================================
+    section.hero-area
+      .overlay
+      .container
+        .row
+          .col-md-12
+            .contact-h-cont
+              h3.text-center
+                img.img-fluid(src="/img/mainlogo.png" alt="")
+              br
+              h4.text-center CHANGE YOUR PASSWORD(CLEANER)
+              form(method="POST", action='#')
+                .form-group
+                  label(for="exampleInputEmail1") Enter Old Password
+                  input#example-password-input.form-control(type="password" name="password")
+                .form-group
+                  label(for="exampleInputEmail1") New Password
+                  input#example-password-input.form-control(type="password" name="password")
+                .form-group
+                  label(for="exampleInputEmail1") Confirm New Password
+                  input#example-password-input.form-control(type="password" name="password")
+                != messages('message', locals)
+                .container
+                    if errors
+                        each error, i in errors
+                            div(class="alert alert-danger") #{error.msg}
+                button.btn.btn-general.btn-blue(type="submit")
+                  i(fa="" fa-right-arrow="")
+                  | CHANGE PASSWORD
+                a(href="/" class="homelink")  Back To Home Page
+    // Global Javascript
+    script(src="/admin/js/jquery.min.js")
+    script(src="/admin/js/tether.min.js")
+    script(src="/admin/js/bootstrap.min.js")

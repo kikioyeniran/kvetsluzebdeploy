@@ -7,10 +7,13 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (passport)=>{
     //Local Strategy For Admin
-    passport.use('admin', new localStrategy((username, password, done)=>{
+    passport.use('admin', new localStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    },(username, password, done)=>{
         //Match Username
         console.log(username);
-        let query = {username:username};
+        let query = {email:username};
         Admin.findOne(query, (err, admin)=>{
             if(err) throw err;
             if(!admin){
@@ -41,10 +44,15 @@ module.exports = (passport)=>{
     });
 
     //Local Strategy For Clients
-    passport.use('client', new localStrategy((username, password, done)=>{
+    passport.use('client', new localStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    },(username, password, done)=>{
         //Match Username
-        let query = {username:username};
+        console.log(username);
+        let query = {email: username};
         Client.findOne(query, (err, client)=>{
+            console.log(client.email)
             if(err) throw err;
             if(!client){
                 return done(null, false, {message: 'No client found'});
@@ -74,9 +82,12 @@ module.exports = (passport)=>{
 
 
     //Local Strategy for Cleaners
-    passport.use('cleaner', new localStrategy((username, password, done)=>{
+    passport.use('cleaner', new localStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    },(username, password, done)=>{
         //Match Username
-        let query = {username:username};
+        let query = {email:username};
         Cleaner.findOne(query, (err, cleaner)=>{
             if(err) throw err;
             if(!cleaner){

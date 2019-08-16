@@ -1,0 +1,49 @@
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="description" content="")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="robots" content="all,follow")
+    title Kvet Sluzeb
+    link(rel="shortcut icon" href="/img/favicon.png")
+    // global stylesheets
+    link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
+    link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
+    link(rel="stylesheet" href="/admin/font-awesome-4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="/admin/css/font-icon-style.css")
+    link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
+    // Core stylesheets
+    link(rel="stylesheet" href="/admin/css/pages/404.css")
+  body
+    if revisit == false
+        form#requestForm(method="POST", action="/client/transactions")
+            input(type='hidden' name='clientID' value=clientID)
+            input(type='hidden' name='clientName' value=clientName)
+            input(type='hidden' name='cleanerID' value=cleanerID)
+            input(type='hidden' name='date' value=cleanDate)
+            input(type='hidden' name='totalPay' value=totalPay)
+
+    //
+      ====================================================
+      PAGE CONTENT
+      ======================================================
+    section.hero-area
+      .overlay
+      .container
+        .row
+          .col-md-12
+            .block.text-center
+              h1.animated.wow.fadeInLeft(data-wow-delay="0.3s" data-wow-duration=".2s") SUCCESS!
+              p.animated.wow.fadeInRight(data-wow-delay="0.5s" data-wow-duration=".5s") Your Payment Was Successful.
+              .animated.wow.fadeInUp.text-center(data-wow-delay="0.7s" data-wow-duration=".7s")
+                span
+                  a.btn.btn-general.btn-blue(href='/client/dashboard/transactions/'+clientID role="button") Go to Home
+    // Global Javascript
+    script(src="/admin/js/jquery.min.js")
+    script(src="/admin/js/tether.min.js")
+    script(src="/admin/js/bootstrap.min.js")
+    script.
+      window.onload = function(){
+      document.forms['member_signup'].submit();
+      }

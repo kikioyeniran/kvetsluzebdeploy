@@ -16,7 +16,10 @@ span {
     text-decoration: none;
     transition: all 0.3s;
 }
-
+.center{
+    margin: 25%;
+    text-align: center;
+}
 a:hover,
 a:focus,
 i:hover,
@@ -212,7 +215,7 @@ input {
 }
 
 .card-header {
-    background: #e9ecef;
+    background: #b6babd05;
     padding: 15px;
     border-bottom: 1px solid #eee;
     box-shadow: 2px 2px 2px rgba(169, 159, 159, 0.49);
@@ -395,7 +398,10 @@ nav.side-navbar ul a:hover i{
 }
 
 nav.side-navbar ul li.active a {
-    background: #EEF5F9;
+    /* background: #EEF5F9; */
+    background: linear-gradient(to left, #7c8ce4, #2196f3);
+    border-left: 4px solid #130202;
+    color: #fff;
 }
 
 nav.side-navbar ul li.active a:hover {

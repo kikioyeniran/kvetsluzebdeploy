@@ -11,7 +11,7 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         meta(name="robots" content="all,follow")
         title Kvet Sluzeb Client Dashboard
-        link(rel="shortcut icon" href="img/favicon.png")
+        link(rel="shortcut icon" href="/img/favicon.png")
         // global stylesheets
         link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
         link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
@@ -60,7 +60,7 @@ html
                             a.nav-link(href="#")
                                 img.img-fluid(src="/admin/img/expand.png" onclick="toggleFullScreen(document.body)" alt="")
                         // Search
-                        li.nav-item.d-flex.align-items-center
+                        //- li.nav-item.d-flex.align-items-center
                             a#search.nav-link(href="#")
                                 i.icon-search
                         // Notifications
@@ -105,37 +105,8 @@ html
                                 li
                                     a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
                                         strong view all notifications
-                        // Messages
-                        li.nav-item.dropdown
-                            a#messages.nav-link.logout(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                i.fa.fa-envelope-o
-                                span.noti-numb-bg
-                                span.badge 10
-                            ul.dropdown-menu(aria-labelledby="messages")
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Jason Doe
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Frank Williams
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Ashley Wood
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
-                                        strong Read all messages
+
+
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="..." style="height: 30px; width: 30px;")
@@ -173,7 +144,7 @@ html
                                         .notification-content
                                             i.fa.fa-power-off
                                             | Logout
-                        li.nav-item.d-flex.align-items-center
+                        //- li.nav-item.d-flex.align-items-center
                             a#menu-toggle-right.nav-link(href="#")
                                 i.fa.fa-bars
                             nav#sidebar-wrapper
@@ -268,45 +239,35 @@ html
                         h1.h4= clientDetails.fullName
                 hr
                 // Sidebar Navidation Menus
-                ul.list-unstyled
-                    li.active
-                    a(href="/client/dashboard/home/"+client._id)
-                        i.icon-home
-                        | Home
+                ul#sidenav.list-unstyled
                     li
-                    a(href="/client/dashboard/wallet/"+client._id)
-                        i.fa.fa-bar-chart
-                        | Finance and Payments
+                        a(href="/client/dashboard/home/"+client._id)
+                            i.icon-home
+                            | Home
+                    li
+                        a(href="/client/dashboard/wallet/"+client._id)
+                            i.fa.fa-bar-chart
+                            | Finance and Payments
+                    li
+                        a(href="/client/dashboard/transactions/"+client._id)
+                            i.icon-grid
+                            | All Transactions
+                    li
+                        a(href="/client/dashboard/client_faq/"+client._id)
+                            i.fa.fa-question-circle-o
+                            | FAQs
                     //- li
-                    //- a(href="/client/dashboard/client_calendar/"+client._id)
-                    //-     i.icon-grid
-                    //-     | Calendar(Due Dates)
+                    //- a(href="/client/dashboard/client_requests/"+client._id)
+                    //-     i.fa.fa-map-o
+                    //-     | Requests
                     li
-                    a(href="/client/dashboard/transactions/"+client._id)
-                        i.icon-grid
-                        | All Transactions
+                        a(href="/client/dashboard/renew/"+client._id)
+                            i.fa.fa-refresh
+                            | Renew  Booking
                     li
-                    a(href="/client/dashboard/client_faq/"+client._id)
-                        i.fa.fa-question-circle-o
-                        | FAQs
-                    li
-                    a(href="/client/dashboard/client_requests/"+client._id)
-                        i.fa.fa-map-o
-                        | Requests
-                    li
-                    a(href="/client/dashboard/renew/"+client._id)
-                        i.fa.fa-refresh
-                        | Renew  Booking
-                    //- li
-                    //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
-                    //-     i.fa.fa-comments-o
-                    //-     | Chats
-                    //- ul#forms.collapse.list-unstyled
-                    //-     li
-                    //-     a(href="#") client 1
-                    //-     li
-                    //-     a(href="#") client 2
-
+                        a(href='/client/login/logout')
+                            i.fa.fa-power-off
+                            | Logout
             block content
 
 
@@ -320,6 +281,8 @@ html
     script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    script(src="/admin/js/faq.js")
+    script(src="/js/active.js")
     script(src='/js/conditional.js')
     script(src='/css/multi-select/js/jquery.multi-select.js')
     // Multi Select scripts
@@ -372,14 +335,6 @@ html
         selectableFooter: "<div class='custom-header'>Selectable footer</div>",
         selectionFooter: "<div class='custom-header'>Selection footer</div>"
         });
-
-
-
-
-
-
-
-
     // Core Javascript
     script(src="/admin/js/mychart.js")
     script.
@@ -410,70 +365,70 @@ html
         });
     // Calendar Core Javascript
     script.
-      new Chart(document.getElementById("myChart4").getContext('2d'), {
-      type: 'doughnut',
-      data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-      backgroundColor: [
-      "#2ecc71",
-      "#3498db",
-      "#95a5a6",
-      "#9b59b6",
-      "#f1c40f",
-      "#e74c3c",
-      "#34495e"
-      ],
-      data: [12, 19, 3, 17, 28, 24, 7]
-      }]
-      },
-      options: {
-      legend: { display: false },
-      title: {
-      display: true,
-      text: ''
-      }
-      }
-      });
+        new Chart(document.getElementById("myChart4").getContext('2d'), {
+        type: 'doughnut',
+        data: {
+        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        datasets: [{
+        backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e"
+        ],
+        data: [12, 19, 3, 17, 28, 24, 7]
+        }]
+        },
+        options: {
+        legend: { display: false },
+        title: {
+        display: true,
+        text: ''
+        }
+        }
+        });
     script.
-      var d = new Date();
-      var todaysDate = d.getDate();
-      var target = $('#calendar .week .day .date');
-      target.each(function() {
-      var day = $(this).html();
-      if (todaysDate == day) {
-      $(this).addClass('today');
-      }
-      if (todaysDate < day) {
-      $(this).parent().addClass('future');
-      }
-      if (todaysDate >= day) {
-      $(this).parent().addClass('past')
-      }
-      });
-      // handle clicks on days
-      $('.day').click(function() {
-      if ($(this).hasClass('future')) {
-      $('#modal').addClass('active');
-      $('#modal .wrapper .content .box').html("<h2>Naughty, naughty.</h2> <p>You can't look early! Check back on that day to see what I've left for you.</p>");
-      }
-      if ($(this).hasClass('past')) {
-      var content = $(this).children('.surprise').html();
-      $('#modal').addClass('active');
-      $('#modal .wrapper .content .box').html('');
-      $('#modal .wrapper .content .box').html(content);
-      }
-      })
-      // close modal
-      $('.close').click(function() {
-      var ultimateParent = $(this).parent().parent().parent();
-      ultimateParent.addClass('moveOut');
-      setTimeout(function() {
-      ultimateParent.removeClass('moveOut').removeClass('active');
-      }, 250);
-      })
-      // snow effect customizations
-      $(document).snowfall({ flakeCount: 100, collection: '.collectonme', maxSpeed: 10 });
+        var d = new Date();
+        var todaysDate = d.getDate();
+        var target = $('#calendar .week .day .date');
+        target.each(function() {
+        var day = $(this).html();
+        if (todaysDate == day) {
+        $(this).addClass('today');
+        }
+        if (todaysDate < day) {
+        $(this).parent().addClass('future');
+        }
+        if (todaysDate >= day) {
+        $(this).parent().addClass('past')
+        }
+        });
+        // handle clicks on days
+        $('.day').click(function() {
+        if ($(this).hasClass('future')) {
+        $('#modal').addClass('active');
+        $('#modal .wrapper .content .box').html("<h2>Naughty, naughty.</h2> <p>You can't look early! Check back on that day to see what I've left for you.</p>");
+        }
+        if ($(this).hasClass('past')) {
+        var content = $(this).children('.surprise').html();
+        $('#modal').addClass('active');
+        $('#modal .wrapper .content .box').html('');
+        $('#modal .wrapper .content .box').html(content);
+        }
+        })
+        // close modal
+        $('.close').click(function() {
+        var ultimateParent = $(this).parent().parent().parent();
+        ultimateParent.addClass('moveOut');
+        setTimeout(function() {
+        ultimateParent.removeClass('moveOut').removeClass('active');
+        }, 250);
+        })
+        // snow effect customizations
+        $(document).snowfall({ flakeCount: 100, collection: '.collectonme', maxSpeed: 10 });
 
     //Request Timeline Core Javascript
     script.
@@ -502,69 +457,4 @@ html
         }
         }
         });
-
-    // FAQ Core Javascript
-    script.
-      new Chart(document.getElementById("myChart-nav").getContext('2d'), {
-      type: 'doughnut',
-      data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-      backgroundColor: [
-      "#2ecc71",
-      "#3498db",
-      "#95a5a6",
-      "#9b59b6",
-      "#f1c40f",
-      "#e74c3c",
-      "#34495e"
-      ],
-      data: [12, 19, 3, 17, 28, 24, 7]
-      }]
-      },
-      options: {
-      legend: { display: false },
-      title: {
-      display: true,
-      text: ''
-      }
-      }
-      });
-    script.
-      (function($) {
-      var mn = $(".vert-tab");
-      mns = "vert-tab-scrolled";
-      $(window).scroll(function() {
-      if ($(this).scrollTop() > $('header').height()) {
-      mn.addClass(mns);
-      } else {
-      mn.removeClass(mns);
-      }
-      });
-      "use strict";
-      $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-      if (location.pathname.replace(/^\\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
-        {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-        if (target.length) {
-        $('html, body').animate({
-        scrollTop: (target.offset().top - 22)
-        }, 700, "easeInOutExpo");
-        return false;
-        }
-        }
-        });
-        $('.collapse').on('show.bs.collapse', function() {
-        var id = $(this).attr('id');
-        $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
-        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-minus"></i>');
-        });
-        $('.collapse').on('hide.bs.collapse', function() {
-        var id = $(this).attr('id');
-        $('a[href="#' + id + '"]').closest('.panel-heading').removeClass('active-faq');
-        $('a[href="#' + id + '"] .panel-title span').html('<i class="fa fa-plus"></i>');
-        });
-        })(jQuery);
-
 

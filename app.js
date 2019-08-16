@@ -103,6 +103,7 @@ let cleanerEdit = require('./routes/cleaner/editDetails');
 let cleanerSchedule = require('./routes/cleaner/schedule');
 let paymentRequest = require('./routes/cleaner/paymentRequest');
 let wallet = require('./routes/cleaner/wallet');
+let cleanerPswd = require('./routes/cleaner/pswd');
 
 
 //Client Route Files
@@ -112,6 +113,10 @@ let clientBookingFinal = require('./routes/client/bookingFinal');
 let clientEdit = require('./routes/client/editDetails');
 let clientRenew = require('./routes/client/renewbooking');
 let clientLogin = require('./routes/client/login')
+let clientPswd = require('./routes/client/pswd')
+let clientTransactions = require('./routes/client/transactions')
+let clientPay = require('./routes/client/pay')
+let clientSuccess = require('./routes/client/success')
 
 //General Route File
 let public = require('./routes/public');
@@ -122,6 +127,7 @@ let ratings = require('./routes/ratings');
 let adminDashboard = require('./routes/admin/dashboard');
 let adminLogin = require('./routes/admin/login');
 let adminRegister = require('./routes/admin/register')
+let adminPswd = require('./routes/admin/pswd')
 
 //Cleaner Routes
 app.use('/cleaner/dashboard', cleanerDashboard);
@@ -131,6 +137,7 @@ app.use('/cleaner/edit', cleanerEdit);
 app.use('/cleaner/schedule', cleanerSchedule);
 app.use('/cleaner/paymentrequest', paymentRequest);
 app.use('/cleaner/wallet', wallet);
+app.use('/cleaner/pswd', cleanerPswd);
 
 //Client Routes
 app.use('/client/dashboard', clientDashboard);
@@ -139,11 +146,16 @@ app.use('/client/booking_final', clientBookingFinal);
 app.use('/client/edit', clientEdit);
 app.use('/client/renew', clientRenew);
 app.use('/client/login', clientLogin);
+app.use('/client/pswd', clientPswd);
+app.use('/client/transactions', clientTransactions);
+app.use('/client/pay', clientPay);
+app.use('/client/success', clientSuccess);
 
 //Admin Routes
 app.use('/admin/dashboard', adminDashboard);
 app.use('/admin/login', adminLogin);
 app.use('/admin/register', adminRegister);
+app.use('/admin/pswd', adminPswd);
 
 //General Routes
 app.use('/public', public);

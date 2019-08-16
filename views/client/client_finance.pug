@@ -11,7 +11,7 @@ block content
                                 h2.font-light.m-b-0
                                     i.ti-arrow-up.text-success
                                     |  &euro; #{wallet.totalPaid}
-                                h2.text-muted Total Income
+                                h2.text-muted Total Cost Paid for all cleans
                             span.text-success 80%
                             .progress
                                 .progress-bar.bg-success(role="progressbar" style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100")
@@ -21,30 +21,40 @@ block content
                 .col-sm-6
                     .card
                         //- .card-block
-                        form#requestForm(method="POST", action="/client/transactions")
+                        form#requestForm(method="POST", action="/client/pay")
                             input(type='hidden' name='clientID' value=client.clientID)
                             input(type='hidden' name='clientName' value=clientDetails.fullName)
-                            input(type='hidden' name='cleanerID' value=wallet.pendingPay.cleanerID)
-                            input(type='hidden' name='date' value=wallet.pendingPay.cleanDate)
-                            input(type='hidden' name='totalPay' value=wallet.pendingPay.cost)
-                        .card.card-inverse.card-info
-                            //- img.card-img-top(src="/admin/img/card/c-3.jpg")
-                            .card-block
-                                h5.card-title Payment Information
-                            hr
-                            h6.card-line
-                                strong Number of Bathrooms :
-                                |  #{clientDetails.bathrooms}
-                            h6.card-line
-                                strong NUmber of Bedrooms :
-                                |  #{clientDetails.bedrooms}
-                            h6.card-line
-                                strong Extra Tasks :
-                                |  #{clientDetails.extraTasks}
-                            h6.card-line
-                                strong Number of Cleaning Hours :
-                                |  #{clientDetails.cleaningHours}
-                            h6.card-line
-                                strong Total Charge :
-                                |  #{wallet.pendingPay.cost}
-                            a.btn.btn-general.btn-blue.mr-2(href="#") Check Out
+                            if pending === false
+                                input(type='hidden' name='cleanerID' value=wallet.pendingPay[0].cleanerID)
+                                input(type='hidden' name='date' value=wallet.pendingPay[0].cleanDate)
+                                input(type='hidden' name='totalPay' value=wallet.pendingPay[0].cost)
+                                script.stripe-button(src="https://checkout.stripe.com/checkout.js" data-key=stripePublishableKey data-amount=wallet.pendingPay[0].cost * 100 data-name="Cleaning Service" data-description="Payment for cleaning done on "+wallet.pendingPay[0].cleanDate data-image="/img/marketplace2.png" data-locale="auto")
+                                script.
+                                    // Hide default stripe button
+                                    document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+
+                            .card.card-inverse.card-info
+                                //- img.card-img-top(src="/admin/img/card/c-3.jpg")
+                                .card-block
+                                    h3.card-title Payment Information
+                                    hr
+                                    h6.card-line
+                                        strong Number of Bathrooms :
+                                        |  #{clientDetails.bathrooms}
+                                    h6.card-line
+                                        strong Number of Bedrooms :
+                                        |  #{clientDetails.bedrooms}
+                                    h6.card-line
+                                        strong Extra Tasks :
+                                        |  #{clientDetails.extraTasks}
+                                    h6.card-line
+                                        strong Number of Cleaning Hours :
+                                        |  #{clientDetails.cleaningHours}
+                                    if wallet.pendingPay != undefined
+                                        h6.card-line
+                                            strong Total Charge :
+                                            |  &euro;#{wallet.pendingPay[0].cost}
+                                    if costStatus == true
+                                        a.btn.btn-general.btn-blue.mr-2.disabled(href="#") Check Out
+                                    else
+                                        button.btn.btn-general.btn-blue.mr-2(href="#") Check Out

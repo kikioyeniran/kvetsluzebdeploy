@@ -20,24 +20,44 @@ block content
                         strong Postcode :
                         |  #{cleanerDetails.postcode}
                     hr
-                    h6.card-line Extra Tasks: #{cleanerDetails.extraTasks}
+                    h6.card-line
+                        strong Extra Tasks:
+                        | #{cleanerDetails.extraTasks}
                     hr
-                    h6.card-line Date of First Clean: #{cleanerDetails.dateFirstClean}
+                    h6.card-line
+                        strong Date of First Clean:
+                        | #{cleanerDetails.dateFirstClean}
                     hr
-                    h6.card-line Experience: #{cleanerDetails.experience} years
+                    h6.card-line
+                        strong Experience:
+                        | #{cleanerDetails.experience} year(s)
                     hr
-                    h6.card-line Profile: #{cleanerDetails.profile}
+                    h6.card-line
+                        strong Customer Rating:
+                        | #{cleanerDetails.rating}
                     hr
-                    h6.card-line Address: #{cleanerDetails.address}
+                    h6.card-line
+                        strong Profile:
+                        | #{cleanerDetails.profile}
                     hr
-                    h6.card-line City: #{cleanerDetails.city}
+                    h6.card-line
+                        strong Address:
+                        | #{cleanerDetails.address}
                     hr
-                    h6.card-line Income: $#{cleanerDetails.income}
+                    h6.card-line
+                        strong City:
+                        | #{cleanerDetails.city}
                     hr
-                    h6.card-line National ID:
+                    h6.card-line
+                        strong Income:
+                        | &euro; #{cleanerDetails.income}
+                    hr
+                    h6.card-line
+                        strong National ID:
                         a(href="/uploads/"+cleanerDetails.nationalID target="_blank")  View
                     hr
-                    h6.card-line Health Insurance :
+                    h6.card-line
+                        strong Health Insurance :
                         a(href="/uploads/"+cleanerDetails.healthInsurance target="_blank")  View
                     //- hr
                     //- h6.card-line Postcode

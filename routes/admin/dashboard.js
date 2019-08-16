@@ -16,6 +16,8 @@ let ClientDetails =  require('../../models/clientDetails');
 //Cleaner Models
 let Cleaner = require('../../models/cleaner');
 let CleanerDetails = require('../../models/cleanerDetails');
+let Requests = require('../../models/requests');
+let Transactions = require('../../models/allTransactions');
 
 //Route for Home Page
 router.get('/:id', (req, res) =>{
@@ -57,7 +59,33 @@ router.get('/cleaners/:id', (req, res)=>{
         })
     });
 });
+//Route for All Requests
+router.get('/requests/:id', (req, res)=>{
+    Admin.findById(req.params.id, (err, admin) =>{
+        //console.log(admin);
+        Requests.find({}, (err, requests)=>{
+            var active = true;
+            res.render('admin/allRequests',{
+                admin: admin,
+                requests: requests
+            });
+        })
+    });
+});
 
+//Route for All Transactions
+router.get('/transactions/:id', (req, res)=>{
+    Admin.findById(req.params.id, (err, admin) =>{
+        //console.log(admin);
+        Transactions.find({}, (err, transactions)=>{
+            var active = true;
+            res.render('admin/allTransactions',{
+                admin: admin,
+                transactions: transactions
+            });
+        })
+    });
+});
 //Route for Single Cleaner
 router.get('/singlecleaner/:id/:cleanerID', (req, res) =>{
     Admin.findById(req.params.id, (err, admin) =>{

@@ -11,7 +11,7 @@ let ClientWallet =  require('../../models/clientWallet');
 
 //Bookings route
 router.get('', (req, res) =>{
-    res.render('client/booking')
+    res.render('booking')
 });
 
 //Booking and Sign up Processes
@@ -53,8 +53,8 @@ router.post('', (req, res)=>{
         if(err){
             console.log(err);
         }else{
-            const username = req.body.username.toLowerCase();
-            const email = req.body.email;
+            // const username = req.body.username.toLowerCase();
+            const email = req.body.email.toLowerCase();
             const password = req.body.password;
             const password2 = req.body.password2;
 
@@ -81,7 +81,6 @@ router.post('', (req, res)=>{
 
             req.checkBody('email', 'Email is required').notEmpty();
             req.checkBody('email', 'Email is not valid').isEmail();
-            req.checkBody('username', 'Username is required').notEmpty();
             req.checkBody('password', 'Password is required').notEmpty();
             req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
@@ -118,7 +117,6 @@ router.post('', (req, res)=>{
             else{
                 let newUser = new Client({
                     email:email,
-                    username:username,
                     password:password,
                     clientID: clientID
                 });

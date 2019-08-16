@@ -24,13 +24,13 @@ block content
                   a(href="#") Setting
                 li
                   a(href="/cleaner/login/cleaner_logout") Logout
-            .bottom
-              a.btn.btn-info.btn-twitter.btn-sm(href="#")
-                i.fa.fa-twitter
-              a.btn.btn-danger.btn-sm(rel="publisher" href="#")
-                i.fa.fa-google-plus
-              a.btn.btn-primary.btn-sm(rel="publisher" href="#")
-                i.fa.fa-facebook
+            //- .bottom
+            //-   a.btn.btn-info.btn-twitter.btn-sm(href="#")
+            //-     i.fa.fa-twitter
+            //-   a.btn.btn-danger.btn-sm(rel="publisher" href="#")
+            //-     i.fa.fa-google-plus
+            //-   a.btn.btn-primary.btn-sm(rel="publisher" href="#")
+            //-     i.fa.fa-facebook
         .col-md-9
           .card.hovercard
             .tab(role="tabpanel")
@@ -57,22 +57,22 @@ block content
                     .panel-body
                       p
                         | #{cleanerDetails.profile}
-                      #report4.row
-                        .col-md-4
-                          .card.text-center.social-bottom.sb-fb
-                            i.fa.fa-facebook
-                            div 3250 +
-                            p Likes
-                        .col-md-4
-                          .card.text-center.social-bottom.sb-tw
-                            i.fa.fa-twitter
-                            div 2345 +
-                            p Following
-                        .col-md-4
-                          .card.text-center.social-bottom.sb-gp
-                            i.fa.fa-google-plus
-                            div 1253 +
-                            p Followers
+                      //- #report4.row
+                      //-   .col-md-4
+                      //-     .card.text-center.social-bottom.sb-fb
+                      //-       i.fa.fa-facebook
+                      //-       div 3250 +
+                      //-       p Likes
+                      //-   .col-md-4
+                      //-     .card.text-center.social-bottom.sb-tw
+                      //-       i.fa.fa-twitter
+                      //-       div 2345 +
+                      //-       p Following
+                      //-   .col-md-4
+                      //-     .card.text-center.social-bottom.sb-gp
+                      //-       i.fa.fa-google-plus
+                      //-       div 1253 +
+                      //-       p Followers
                       .row.mt-3
                         h5.col-12.mb-2 User Info
                         .col-6
@@ -106,7 +106,7 @@ block content
                               i.fa.fa-money  Income/hour:
                             |    $#{cleanerDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
-                  form(method='POST', action='/cleaner/editDetails/'+encodeURIComponent(cleaner.cleanerID)+'/'+encodeURIComponent(cleaner._id))
+                  form(method='POST', action='/cleaner/edit/'+encodeURIComponent(cleaner.cleanerID)+'/'+encodeURIComponent(cleaner._id))
                     .row.mx-2
                       .col-md-12.panel-heading
                         h3.panel-title

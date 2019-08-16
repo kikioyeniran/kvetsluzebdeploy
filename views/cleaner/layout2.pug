@@ -11,7 +11,7 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         meta(name="robots" content="all,follow")
         title Kvet Sluzeb Client Dashboard
-        link(rel="shortcut icon" href="img/favicon.png")
+        link(rel="shortcut icon" href="/img/favicon.png")
         // global stylesheets
         link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
         link(rel="stylesheet" href="/admin/css/bootstrap.min.css")
@@ -56,10 +56,10 @@ html
                         li.nav-item.d-flex.align-items-center.full_scr_exp
                             a.nav-link(href="#")
                                 img.img-fluid(src="/admin/img/expand.png" onclick="toggleFullScreen(document.body)" alt="")
-                        // Search
-                        li.nav-item.d-flex.align-items-center
-                            a#search.nav-link(href="#")
-                                i.icon-search
+                        //- // Search
+                        //- li.nav-item.d-flex.align-items-center
+                        //-     a#search.nav-link(href="#")
+                        //-         i.icon-search
                         // Notifications
                         li.nav-item.dropdown
                             a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
@@ -102,37 +102,7 @@ html
                                 li
                                     a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
                                         strong view all notifications
-                        // Messages
-                        li.nav-item.dropdown
-                            a#messages.nav-link.logout(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                i.fa.fa-envelope-o
-                                span.noti-numb-bg
-                                span.badge 10
-                            ul.dropdown-menu(aria-labelledby="messages")
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Jason Doe
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Frank Williams
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.d-flex(rel="nofollow" href="#")
-                                        .msg-profile
-                                            img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                        .msg-body
-                                            h3.h5.msg-nav-h3 Ashley Wood
-                                            span Sent You Message
-                                li
-                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
-                                        strong Read all messages
+
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 img.img-fluid.rounded-circle(src="/uploads/"+cleanerDetails.profilePic alt="..." style="height: 30px; width: 30px;")
@@ -170,87 +140,7 @@ html
                                         .notification-content
                                             i.fa.fa-power-off
                                             | Logout
-                        li.nav-item.d-flex.align-items-center
-                            a#menu-toggle-right.nav-link(href="#")
-                                i.fa.fa-bars
-                            nav#sidebar-wrapper
-                                .sidebar-nav
-                                    .tab(role="tabpanel")
-                                        ul.nav.nav-tabs(role="tablist")
-                                            li.nav-item
-                                                a.nav-link.active(href="#live" role="tab" data-toggle="tab")
-                                                    i.fa.fa-globe
-                                                    |  Live
-                                            li.nav-item
-                                                a.nav-link(href="#trend" role="tab" data-toggle="tab")
-                                                    i.fa.fa-rocket
-                                                    |  Trending
-                                        .tab-content.tabs
-                                            #live.tab-pane.fade.show.active(role="tabpanel")
-                                                h3 Connect Live
-                                                .content.newsf-list
-                                                    ul.list-unstyled
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow " href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 New Innovation world
-                                                                    small Tech soft is great innovation for...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Modified hand-cart
-                                                                    small The idea is to incorporate easy...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-4.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                            #trend.tab-pane.fade(role="tabpanel")
-                                                .card.card-c2(style="box-shadow: 0 0 0;")
-                                                    .header
-                                                        h3.title Trending Items
-                                                        p.category Last Campaign Performance
-                                                    .content
-                                                        canvas#myChart4.ct-chart(height="250")
-                                                        .footer
-                                                            .legend
-                                                                i.fa.fa-circle.text-info
-                                                                |  Open
-                                                                i.fa.fa-circle.text-danger
-                                                                |  Bounce
-                                                                i.fa.fa-circle.text-warning
-                                                                |  Unsubscribe
-                                                            hr
-                                                            .stats
-                                                                i.fa.fa-clock-o
-                                                                |  Campaign sent 2 days ago
+
         //
             ====================================================
             PAGE CONTENT
@@ -265,27 +155,31 @@ html
                         h1.h4= cleanerDetails.fullName
                 hr
                 // Sidebar Navidation Menus
-                ul.list-unstyled
-                    li.active
-                    a(href="/cleaner/dashboard/home/"+cleaner._id)
-                        i.icon-home
-                        | Home
+                ul#sidenav.list-unstyled
                     li
-                    a(href="/cleaner/dashboard/wallet/"+cleaner._id)
-                        i.fa.fa-bar-chart
-                        | Wallet
+                        a(href="/cleaner/dashboard/home/"+cleaner._id)
+                            i.icon-home
+                            | Home
                     li
-                    a(href="/cleaner/dashboard/cleaner_calendar/"+cleaner._id)
-                        i.icon-grid
-                        | Calendar(Due Dates)
+                        a(href="/cleaner/dashboard/wallet/"+cleaner._id)
+                            i.fa.fa-bar-chart
+                            | Wallet
                     li
-                    a(href="/cleaner/dashboard/cleaner_faq/"+cleaner._id)
-                        i.fa.fa-question-circle-o
-                        | FAQs
+                        a(href="/cleaner/dashboard/cleaner_calendar/"+cleaner._id)
+                            i.icon-grid
+                            | Calendar(Due Dates)
                     li
-                    a(href="/cleaner/dashboard/cleaner_requests/"+cleaner._id)
-                        i.fa.fa-map-o
-                        | Requests
+                        a(href="/cleaner/dashboard/cleaner_faq/"+cleaner._id)
+                            i.fa.fa-question-circle-o
+                            | FAQs
+                    li
+                        a(href="/cleaner/dashboard/cleaner_requests/"+cleaner._id)
+                            i.fa.fa-map-o
+                            | Job Offers
+                    li
+                        a(href="/cleaner/login/cleaner_logout")
+                            i.fa.fa-power-off
+                            | Logout
                     //- li
                     //- a(href="#forms" aria-expanded="false" data-toggle="collapse")
                     //-     i.fa.fa-comments-o
@@ -307,6 +201,8 @@ html
     script(src="/admin/js/jquery.validate.min.js")
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
+    script(src="/admin/js/faq.js")
+    script(src="/js/active.js")
     // Core Javascript
     script(src="/admin/js/mychart.js")
     script.
@@ -431,32 +327,6 @@ html
         });
 
     // FAQ Core Javascript
-    script.
-      new Chart(document.getElementById("myChart-nav").getContext('2d'), {
-      type: 'doughnut',
-      data: {
-      labels: ["M", "T", "W", "T", "F", "S", "S"],
-      datasets: [{
-      backgroundColor: [
-      "#2ecc71",
-      "#3498db",
-      "#95a5a6",
-      "#9b59b6",
-      "#f1c40f",
-      "#e74c3c",
-      "#34495e"
-      ],
-      data: [12, 19, 3, 17, 28, 24, 7]
-      }]
-      },
-      options: {
-      legend: { display: false },
-      title: {
-      display: true,
-      text: ''
-      }
-      }
-      });
     script.
       (function($) {
       var mn = $(".vert-tab");

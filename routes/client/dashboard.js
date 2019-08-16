@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+var empty = require('is-empty');
+const keys = require('../../config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
 
 //Bring in Client Models
 let Client =  require('../../models/client');
@@ -61,11 +64,31 @@ router.get('/wallet/:id', (req, res) =>{
         ClientDetails.find((query), (err, client_details)=>{
             //console.log(client_details[0]);
             ClientWallet.findOne((query), (err,clientWallet)=>{
-                console.log(clientWallet)
+                var  pending;
+                var costStatus = false;
+                if(empty(clientWallet.pendingPay)){
+                    costStatus = true;
+                    pending = true;
+                    console.log('pending pay is empty')
+                }else{
+                    if(empty(clientWallet.pendingPay[0].cost)){
+                        costStatus = true;
+                        //pending = false;
+                        console.log('cost Status is empty')
+                    }
+                    pending = false;
+                    //costStatus = false;
+                    console.log('pending pay is not empty ', clientWallet.pendingPay[0].cost, ' ', costStatus)
+                }
+
+                //console.log(costStatus)
                 res.render('client/client_finance',{
                     client: client,
                     clientDetails: client_details[0],
-                    wallet: clientWallet
+                    wallet: clientWallet,
+                    costStatus: costStatus,
+                    pending: pending,
+                    stripePublishableKey: keys.stripePublishableKey
                 });
             })
         });
@@ -80,10 +103,16 @@ router.get('/transactions/:id', (req, res) =>{
         ClientDetails.find((query), (err, client_details)=>{
             //console.log(client_details[0]);
             AllTransactions.find((query), (err, transactions)=>{
+                var noTransaction = false;
+                if(empty(transactions)){
+                    noTransaction = true;
+                }
+                // console.log(transactions[0].cleaner);
                 res.render('client/allTransactions',{
                     client: client,
                     clientDetails: client_details[0],
-                    transactions: transactions[0]
+                    transactions: transactions,
+                    transactionStatus: noTransaction
                 });
             })
         });

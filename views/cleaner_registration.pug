@@ -10,7 +10,7 @@ block content
                         span.title_text Account Infomation
                     fieldset
                         .fieldset-content
-                            .form-group
+                            //- .form-group
                                 label.form-label(for='username') Username
                                 input#username(type='text' name='username' placeholder='User Name')
                             .form-group
@@ -60,7 +60,9 @@ block content
                             hr
                             .form-group
                                 label.form-label(for='country') Country
-                                input#country(type='text' name='country' placeholder='Your Country')
+                                select(name="country")
+                                    option(value="Germany") Germany
+                                    option(value="Czech Republic") Czech Republic
                             hr
                             .form-group
                                 label.form-label(for='postcode') Postcode

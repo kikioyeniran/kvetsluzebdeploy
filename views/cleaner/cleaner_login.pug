@@ -32,8 +32,8 @@ html
               h4.text-center CLEANER LOGIN
               form(method="POST", action='/cleaner/login')
                 .form-group
-                  label(for="username") Username
-                  input#username.form-control(type="text" placeholder="Enter Username" name="username")
+                  label(for="email") Email
+                  input#username.form-control(type="text" placeholder="Enter Email" name="email")
                 .form-group
                   label(for="exampleInputEmail1") Password
                   input#example-password-input.form-control(type="password" name="password")
@@ -46,6 +46,8 @@ html
                   i(fa="" fa-right-arrow="")
                   | Login
                 a(href="/" class="homelink")  Back To Home Page
+                small
+                  a(href='/cleaner/pswd/forgotpswd') Forgot Password?
     // Global Javascript
     script(src="/admin/js/jquery.min.js")
     script(src="/admin/js/tether.min.js")

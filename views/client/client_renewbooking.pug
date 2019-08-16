@@ -8,7 +8,7 @@ block content
                 #form1.card.form
                     .card-header
                         h3 Renew Your Booking
-                        h6.info (filling this form will cancel all your previous bookings)
+                        h6.info (Filling this form will cancel all your previous bookings but retain your cleaner)
                     br
                     form(method='POST', action='/client/renew/'+encodeURIComponent(client.clientID)+'/'+client._id)
                         .row

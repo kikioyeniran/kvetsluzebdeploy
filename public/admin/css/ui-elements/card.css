@@ -106,7 +106,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 }
 
 .card-line{
-    border-bottom: #c5c1c13b solid 1px;
+    border-bottom: #2d2b2b3b solid 1px;
     padding: 10px;
 }
 
@@ -367,7 +367,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 #card-3 .panel.panel-card {
     position: relative;
-    height: 241px;
+    height: 350px;
     border: none;
     overflow: hidden;
 }
