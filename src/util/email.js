@@ -1,14 +1,24 @@
+
+import nodemailer from 'nodemailer';
+
+
 const SendEmail = options => {
 
-    let transport  = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-      port: 2525,
-      auth: {
-        user: "54d01d357bfd3f",
-        pass: "a7938949f5d2df"
-      }
-    });
-
+    // let transport  = nodemailer.createTransport({
+    //     host: "smtp.mailtrap.io",
+    //   port: 2525,
+    //   auth: {
+    //     user: "54d01d357bfd3f",
+    //     pass: "a7938949f5d2df"
+    //   }
+    // });
+    let transport = nodemailer.createTransport({
+        service: 'SendGrid',
+        auth: {
+            user: 'apikey',
+            pass: "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";
+        }
+    })
     const mailOptions = {
         from: 'helpdesk@gmail.com',
         to: options.email,
