@@ -26,7 +26,7 @@ block content
                             input(type='hidden' name='clientName' value=clientDetails.fullName)
                             if pending === false
                                 input(type='hidden' name='cleanerID' value=wallet.pendingPay[0].cleanerID)
-                                input(type='hidden' name='date' value=wallet.pendingPay[0].cleanDate)
+                                input(type='hidden' name='cleanDate' value=wallet.pendingPay[0].cleanDate)
                                 input(type='hidden' name='totalPay' value=wallet.pendingPay[0].cost)
                                 script.stripe-button(src="https://checkout.stripe.com/checkout.js" data-key=stripePublishableKey data-amount=wallet.pendingPay[0].cost * 100 data-name="Cleaning Service" data-description="Payment for cleaning done on "+wallet.pendingPay[0].cleanDate data-image="/img/marketplace2.png" data-locale="auto")
                                 script.

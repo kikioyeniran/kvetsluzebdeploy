@@ -2,7 +2,7 @@ extends layout
 
 block content
     .content-inner.chart-cont
-      .container
+      //- .container
         != messages('message', locals)
         if errors
             each error, i in errors
@@ -26,7 +26,7 @@ block content
                 li
                   a(href="#") Profile
                 li
-                  a(href="#") Setting
+                  a(href="/client/pswd/pswdchange/"+client._id) Change Password
                 li
                   a(href="/client/login/logout") Logout
             .bottom

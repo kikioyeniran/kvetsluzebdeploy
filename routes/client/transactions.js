@@ -14,7 +14,7 @@ router.post('', (req, res)=>{
     const clientID = req.body.clientID;
     const clientName = req.body.clientName;
     const cleanerID = req.body.cleanerID;
-    const date = req.body.date;
+    const cleanDate = req.body.cleanDate;
     const totalPay = req.body.totalPay;
     clientQuery = {clientID: clientID};
     Client.findOne((clientQuery), (err, clients)=>{
@@ -34,7 +34,7 @@ router.post('', (req, res)=>{
                     req.checkBody('clientID', 'clientID is required').notEmpty();
                     req.checkBody('clientName', 'clientName is required').notEmpty();
                     req.checkBody('cleanerID', 'clientPhone is required').notEmpty();
-                    req.checkBody('date', 'date is required').notEmpty();
+                    req.checkBody('cleanDate', 'Date is required').notEmpty();
                     req.checkBody('totalPay', 'totalPay is required').notEmpty();
 
                     let errors = req.validationErrors();
@@ -57,7 +57,7 @@ router.post('', (req, res)=>{
                                     clientName: clientName,
                                     cleanerID: cleanerID,
                                     cleanerName: cleanerName,
-                                    Date: date,
+                                    Date: cleanDate,
                                     totalPaid: totalPay,
                                 });
 

@@ -15,6 +15,11 @@ html
     link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
     // Core stylesheets
     link(rel="stylesheet" href="/admin/css/pages/login.css")
+    script(type="text/javascript" src="https://cdn.weglot.com/weglot.min.js")
+    script.
+        Weglot.initialize({
+        api_key: 'wg_67165334b2bc34d56bda185a04c28be70'
+        });
   body
     //
       ====================================================
@@ -29,8 +34,8 @@ html
               h3.text-center
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
-              h4.text-center RESET PASSWORD
-              form(method="POST", action='#')
+              h4.text-center RESET YOUR PASSWORD
+              form(method="PATCH", action='/client/pswd/resetpswd')
                 .form-group
                   label(for="username") Enter New Password
                   input#username.form-control(type="text" placeholder="Enter Password" name="password")
@@ -44,7 +49,7 @@ html
                             div(class="alert alert-danger") #{error.msg}
                 button.btn.btn-general.btn-blue(type="submit")
                   i(fa="" fa-right-arrow="")
-                  | Login
+                  | Reset Password
                 //- a(href="/" class="homelink")  Back To Home Page
     // Global Javascript
     script(src="/admin/js/jquery.min.js")

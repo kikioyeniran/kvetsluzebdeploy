@@ -27,6 +27,11 @@ html
         link(rel="stylesheet" href="/admin/css/pages/faq.css")
         link(rel="stylesheet" href="/admin/css/ui-elements/timeline.css")
         link(rel="stylesheet" href="/admin/css/ui-elements/card.css")
+        script(type="text/javascript" src="https://cdn.weglot.com/weglot.min.js")
+        script.
+            Weglot.initialize({
+            api_key: 'wg_67165334b2bc34d56bda185a04c28be70'
+            });
     body
         //
             ====================================================
@@ -111,11 +116,11 @@ html
                                             i.fa.fa-envelope-o
                                             | Inbox
                                 li
-                                    a.dropdown-item(rel="nofollow" href="#")
+                                    a.dropdown-item(rel="nofollow" href="/admin/pswd/pswdchange/"+admin._id"#")
                                         .notification
                                         .notification-content
                                             i.fa.fa-cog
-                                            | Setting
+                                            | Change Password
                                 hr
                                 li
                                     a.dropdown-item(rel="nofollow" href="/admin/login/logout")

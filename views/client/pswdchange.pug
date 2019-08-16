@@ -15,6 +15,11 @@ html
     link#theme-stylesheet(rel="stylesheet" href="/admin/css/style.default.css")
     // Core stylesheets
     link(rel="stylesheet" href="/admin/css/pages/login.css")
+    script(type="text/javascript" src="https://cdn.weglot.com/weglot.min.js")
+    script.
+        Weglot.initialize({
+        api_key: 'wg_67165334b2bc34d56bda185a04c28be70'
+        });
   body
     //
       ====================================================
@@ -30,16 +35,16 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center CHANGE YOUR PASSWORD(CLIENT)
-              form(method="POST", action='/client/login')
+              form(method="PATCH", action='/client/pswd/pswdchange/'+client._id)
                 .form-group
                   label(for="exampleInputEmail1") Enter Old Password
-                  input#example-password-input.form-control(type="password" name="password")
+                  input#example-password-input.form-control(type="password" name="passwordCurrent")
                 .form-group
                   label(for="exampleInputEmail1") New Password
                   input#example-password-input.form-control(type="password" name="password")
                 .form-group
                   label(for="exampleInputEmail1") Confirm New Password
-                  input#example-password-input.form-control(type="password" name="password")
+                  input#example-password-input.form-control(type="password" name="passwordConfirm")
                 != messages('message', locals)
                 .container
                     if errors
@@ -48,7 +53,7 @@ html
                 button.btn.btn-general.btn-blue(type="submit")
                   i(fa="" fa-right-arrow="")
                   | CHANGE PASSWORD
-                a(href="/" class="homelink")  Back To Home Page
+                a(href="/client/dashboard/home/"+client._id class="homelink")  Back To Home Page
     // Global Javascript
     script(src="/admin/js/jquery.min.js")
     script(src="/admin/js/tether.min.js")
