@@ -14,6 +14,7 @@ html(lang='fr')
     link(rel='stylesheet' href='/css/owl-carousel/owl.carousel.min.css')
     link(rel='stylesheet' href='/css/owl-carousel/owl.theme.default.min.css')
     link(rel='stylesheet' href='/css/style.css')
+    link(rel='stylesheet' href='/css/careers.css')
     link(rel='stylesheet' href='/css/form.css')
     link(rel='stylesheet' href='/css/faq.css')
     link(rel='stylesheet' href='/css/tempusdominus-bootstrap-4.css')
@@ -45,20 +46,20 @@ html(lang='fr')
                   i.fa.fa-envelope
                   |  Email:
                   a(href='#') info@kvetsluzeb.com
-                li
-                  i.fa.fa-phone
-                  |  Hotline: (1) 111 222 33
+                //- li
+                //-   i.fa.fa-phone
+                //-   |  Hotline: (1) 111 222 33
             .col-md-6
               ul.list-inline.top-data
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-facebook
+                    i.fa.fa-facebook-f
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-twitter
+                    i.fa.fa-twitter
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-google-plus
+                    i.fa.fa-google-plus
                 li
                   a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Login
                 li
@@ -78,7 +79,7 @@ html(lang='fr')
             li.nav-item
               a.nav-link.smooth-scroll(href='/public/about') About
             li.nav-item
-              a.nav-link.smooth-scroll(href='#') Careers
+              a.nav-link.smooth-scroll(href='/public/careers') Careers
             li.nav-item
               a.nav-link.smooth-scroll(href='/public/faq') FAQs
             li
@@ -98,31 +99,31 @@ html(lang='fr')
                             i.fa.fa-envelope
                             |  Email:
                             a(href='mailto:info@htmlstream.com') info@kvetsluzeb.com
-                          li
+                          //- li
                             i.fa.fa-phone
                             |  Hotline: (1) 396 4587 99
-                          li
+                          //- li
                             i.fa.fa-phone
                             |  Hotline: (1) 396 4587 99
                       .col-md-3
                         ul.list-inline.top-data
                           li
                             a(href='#' target='_empty')
-                              i.fa.top-social.fa-whatsapp
+                              i.fa.fa-whatsapp
                           li
                             a(href='#' target='_empty')
-                              i.fa.top-social.fa-twitter
+                              i.fa.fa-twitter
                           li
                             a(href='#' target='_empty')
-                              i.fa.top-social.fa-google-plus
+                              i.fa.fa-google-plus
                           li
                             a(href='#' target='_empty')
-                              i.fa.top-social.fa-google-plus
+                              i.fa.fa-google-plus
                           // <li><a href="#"><button class="btn btn-general btn-green wow fadeInUp" role="button">Book A Cleaner Now</button></a></li>
                           li
-                            a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Register
-                          li
-                            a.log-top(href='#' data-toggle='modal') Logins
+                            a.log-top(href='#' data-toggle='modal' data-target='#login-modal') Login
+                          //- li
+                          //-   a.log-top(href='#' data-toggle='modal') Logins
   //
     ====================================================
     LOGIN OR REGISTER
@@ -186,7 +187,7 @@ html(lang='fr')
               ul.list-unstyled.comp-desc-f
                 li
                   p
-                    | Kvet Sluzeb is a company focused on connecting cleaners to clients who need them. We aim to provide te most comofortable cleaning service Europe has ever seen.
+                    | Kvet Sluzeb is a corporation focused on connecting cleaners with clients who need their services. We aim to provide an excellent cleaning services in Europe and Worldwide.
               br
             // End About Us
             // Recent News
@@ -219,23 +220,23 @@ html(lang='fr')
                 | 25, Dist town Street, Logn
                 br
                 | California, US
-                br
-                | Phone: 800 123 3456
-                br
-                | Fax: 800 123 3456
+                //- br
+                //- | Phone: 800 123 3456
+                //- br
+                //- | Fax: 800 123 3456
                 br
                 | Email:
                 a(href='mailto:info@kvetsluzeb.com') info@kvetsluzeb.com
               ul.list-inline.social-icon-f.top-data
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-facebook
+                    i.fa.fa-facebook-f
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-twitter
+                    i.fa.fa-twitter
                 li
                   a(href='#' target='_empty')
-                    i.fa.top-social.fa-google-plus
+                    i.fa.fa-google-plus
             // End Latest Tweets
         // /container
     #footer-bottom
@@ -274,6 +275,10 @@ html(lang='fr')
   // Plugin JavaScript
   script(src='/js/jquery-easing/jquery.easing.min.js')
   script(src='/js/custom.js')
+  script.
+      setTimeout(function() {
+      $("#messages").fadeOut().empty();
+      }, 10000);
   //For FAQs
   script.
       if( jQuery(".toggle .toggle-title").hasClass('active') ){

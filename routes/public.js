@@ -25,8 +25,8 @@ router.get('/faq', (req, res) =>{
 });
 
 //checked route
-router.get('/checked', (req, res) =>{
-    res.render('checked')
+router.get('/careers', (req, res) =>{
+    res.render('careers')
 });
 //checked2 route
 router.get('/checked2', (req, res) =>{

@@ -5,126 +5,260 @@ block content
         .main
             .container2
                 h2 Register as a cleaner
-                form#signup-form.signup-form(method='POST', action='/cleaner/register/post', enctype="multipart/form-data")
-                    h3
-                        span.title_text Account Infomation
-                    fieldset
-                        .fieldset-content
-                            //- .form-group
-                                label.form-label(for='username') Username
-                                input#username(type='text' name='username' placeholder='User Name')
-                            .form-group
-                                label.form-label(for='email') Email
-                                input#email(type='email' name='email' placeholder='Your Email')
-                            .form-group.form-password
-                                label.form-label(for='password') Password
-                                input#password(type='password' name='password' data-indicator='pwindicator')
-                                #pwindicator
-                                    .bar-strength
-                                        .bar-process
-                                            .bar
-                                    .label
-                            .form-group.form-password
-                                label.form-label(for='confirm_password') Confirm Password
-                                input#password2(type='password' name='password2' data-indicator='pwindicator')
-                                #pwindicator
-                                    .bar-strength
-                                        .bar-process
-                                            .bar
-                                    .label
-                        .fieldset-footer
-                                span Step 1 of 3
-                    h3
-                        span.title_text About Yourself
-                    fieldset
-                        .fieldset-content
-                            .form-group
-                                label.form-label(for='fullname') Full Name
-                                input#fullname(type='text' name='fullname' placeholder='Full Name')
-                            hr
-                            .form-group
-                                label.form-label(for='mobile_no') Mobile Number
-                                input#mobilenumber(type='text' name='mobilenumber' placeholder='Mobile Number')
-                            hr
-                            .form-group
-                                label.form-label(for='income') Enter your desired pay rate per hour?
-                                input#income(type='number' name='income' placeholder="Hint: don't charge beyond $15 per hour" min='10' max='20')
-                            hr
-                            .form-textarea
-                                label.form-label(for='address') Address
-                                textarea#address(name='address' placeholder='Please make sure you enter the correct details...')
-                            hr
-                            .form-group
-                                label.form-label(for='city') City
-                                input#city(type='text' name='city' placeholder='Your City')
-                            hr
-                            .form-group
-                                label.form-label(for='country') Country
-                                select(name="country")
-                                    option(value="Germany") Germany
-                                    option(value="Czech Republic") Czech Republic
-                            hr
-                            .form-group
-                                label.form-label(for='postcode') Postcode
-                                input#postcode(type='text' name='postcode' placeholder='postcode')
-                            hr
-                            .form-group
-                                label.form-label(for='extra-tasks') What Extra Tasks can you handle?
-                                select#keep-order(multiple="multiple" name='extraTasks')
-                                    option(value="ironing") Ironing
-                                    option(value="inside_windows") Inside Windows
-                                    option(value="inside_oven") Inside Oven
-                                    option(value="laundry") Laundry
-                                    option(value="inside_fridge") Inside Fridge
-                            hr
-                            .form-radio
-                                label.form-label(for='experience') How many years of experience do you have cleaning?
-                                .form-radio-item
-                                    input#less_1(type='radio' name='experience' value='less_1' checked='checked')
-                                    label(for='less_1') Less than 1
-                                    input#one(type='radio' name='experience' value='1')
-                                    label(for='one') 1
-                                    input#two(type='radio' name='experience' value='2')
-                                    label(for='two') 2
-                                    input#three(type='radio' name='experience' value='3')
-                                    label(for='three') 3
-                                    input#more(type='radio' name='experience' value='more')
-                                    label(for='more') More
-                            hr
-                            .form-group
-                                p *You customer will provide all cleaning products and items for you
-                            //- .form-select
-                            //-     label.form-label(for='country') Country
-                            //-     select#country(name='country')
-                            //-         option(value='') Country
-                            //-         option(value='Australia') Australia
-                            //-         option(value='USA') America
-                            hr
-                            .form-textarea
-                                label.form-label(for='profile') Write a short profile about yourself
-                                textarea#profile(name='profile' placeholder='I am a strong energetic person...')
-                            hr
-                            .form-group
-                                label.form-label(for="profilePic") Select a profile picture
-                                input#profilePic.form-control-file(type="file" aria-describedby="fileHelp" name="profilePic")
+                .container
+                    if errors
+                        each error, i in errors
+                            #messages(class="alert alert-danger") #{error.msg}
 
-                            .fieldset-footer
-                            span Step 2 of 3
-                    h3
-                        span.title_text Documents
-                    fieldset
-                        .fieldset-content
-                            .form-group
-                                label.form-label(for="nationalID") International Passport or National ID
-                                input#nationalID.form-control-file(type="file" aria-describedby="fileHelp" name='nationalID')
-                                small#fileHelp.form-text.text-muted
-                            .form-group
-                                label.form-label(for="healthInsurance") Health Insurance
-                                input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
-                                small#fileHelp.form-text.text-muted
-                            label.custom-control.custom-checkbox
-                                input.custom-control-input(type="checkbox" checked="" name='terms')
-                                span.custom-control-label Do you agree with all our terms and conditions?
-                        .fieldset-footer
-                                span Step 3 of 3
+                form#signup-form.signup-form(method='POST', action='/cleaner/register/post', enctype="multipart/form-data")
+                            if form != null
+                                h3
+                                    span.title_text Account Infomation
+                                fieldset
+                                    .fieldset-content
+                                        //- .form-group
+                                            label.form-label(for='username') Username
+                                            input#username(type='text' name='username' placeholder='User Name')
+                                        .form-group
+                                            label.form-label(for='email') Email
+                                            input#email(type='email' name='email' placeholder='Your Email' value=form.email)
+                                        .form-group.form-password
+                                            label.form-label(for='password') Password
+                                            input#password(type='password' name='password' data-indicator='pwindicator' value=form.password)
+                                            #pwindicator
+                                                .bar-strength
+                                                    .bar-process
+                                                        .bar
+                                                .label
+                                        .form-group.form-password
+                                            label.form-label(for='confirm_password') Confirm Password
+                                            input#password2(type='password' name='password2' data-indicator='pwindicator2' value=form.password2)
+                                            #pwindicator2
+                                                .bar-strength
+                                                    .bar-process
+                                                        .bar
+                                                .label
+                                    .fieldset-footer
+                                            span Step 1 of 3
+                                h3
+                                    span.title_text About Yourself
+                                fieldset
+                                    .fieldset-content
+                                        .form-group
+                                            label.form-label(for='fullname') Full Name
+                                            input#fullname(type='text' name='fullname' placeholder='Full Name' value=form.fullname)
+                                        hr
+                                        .form-group
+                                            label.form-label(for='mobile_no') Mobile Number
+                                            input#mobilenumber(type='text' name='mobilenumber' placeholder='Mobile Number' value=form.mobileNumber)
+                                        hr
+                                        .form-group
+                                            label.form-label(for='income') You can charge between &euro;15 - &euro;25 in Germany per hour and &euro;5.5 - &euro;7.5 in Czech Republic
+                                            //- span.currency-msg
+                                                | You can charge between &euro;15 - &euro;25 per hour and &euro;5.5 - &euro;7.5 in Czech Republic
+                                            input#income(type='number' name='income' placeholder="Enter your desired pay rate" min='5.5' max='25' value=form.income)
+                                        hr
+                                        .form-textarea
+                                            label.form-label(for='address') Address
+                                            textarea#address(name='address' placeholder='Please make sure you enter the correct details...') #{form.address}
+                                        hr
+                                        .form-group
+                                            label.form-label(for='city') City
+                                            input#city(type='text' name='city' placeholder='Your City' value=form.city)
+                                        hr
+                                        .form-group
+                                            label.form-label(for='country') Country
+                                            select(name="country")
+                                                option(value="Germany") Germany
+                                                option(value="Czech Republic") Czech Republic
+                                        hr
+                                        .form-group
+                                            label.form-label(for='postcode') Postcode
+                                            input#postcode(type='text' name='postcode' placeholder='postcode' value=form.postcode)
+                                        hr
+                                        .form-group
+                                            label.form-label(for='extra-tasks') What Extra Tasks can you handle?
+                                            select#keep-order(multiple="multiple" name='extraTasks')
+                                                option(value="ironing") Ironing
+                                                option(value="inside_windows") Inside Windows
+                                                option(value="inside_oven") Inside Oven
+                                                option(value="laundry") Laundry
+                                                option(value="inside_fridge") Inside Fridge
+                                        hr
+                                        .form-radio
+                                            label.form-label(for='experience') How many years of experience do you have cleaning?
+                                            .form-radio-item
+                                                input#less_1(type='radio' name='experience' value='less_1' checked='checked')
+                                                label(for='less_1') Less than 1
+                                                input#one(type='radio' name='experience' value='1')
+                                                label(for='one') 1
+                                                input#two(type='radio' name='experience' value='2')
+                                                label(for='two') 2
+                                                input#three(type='radio' name='experience' value='3')
+                                                label(for='three') 3
+                                                input#more(type='radio' name='experience' value='more')
+                                                label(for='more') More
+                                        hr
+                                        .form-group
+                                            p *Your customer will provide all cleaning products and items for you
+                                        //- .form-select
+                                        //-     label.form-label(for='country') Country
+                                        //-     select#country(name='country')
+                                        //-         option(value='') Country
+                                        //-         option(value='Australia') Australia
+                                        //-         option(value='USA') America
+                                        hr
+                                        .form-textarea
+                                            label.form-label(for='profile') Write a short profile about yourself
+                                            textarea#profile(name='profile' placeholder='I am a strong energetic person...')
+                                        hr
+                                        .form-group
+                                            label.form-label(for="profilePic") Select a profile picture
+                                            input#profilePic.form-control-file(type="file" aria-describedby="fileHelp" name="profilePic")
+
+                                        .fieldset-footer
+                                        span Step 2 of 3
+                                h3
+                                    span.title_text Documents
+                                fieldset
+                                    .fieldset-content
+                                        .form-group
+                                            label.form-label(for="nationalID") International Passport or National ID
+                                            input#nationalID.form-control-file(type="file" aria-describedby="fileHelp" name='nationalID')
+                                            small#fileHelp.form-text.text-muted
+                                        .form-group
+                                            label.form-label(for="healthInsurance") Health Insurance
+                                            input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
+                                            small#fileHelp.form-text.text-muted
+                                        label.custom-control.custom-checkbox
+                                            input.custom-control-input(type="checkbox" checked="" name='terms')
+                                            span.custom-control-label Do you agree with all our terms and conditions?
+                                    .fieldset-footer
+                                            span Step 3 of 3
+
+                            else
+                                h3
+                                    span.title_text Account Infomation
+                                fieldset
+                                    .fieldset-content
+                                        //- .form-group
+                                            label.form-label(for='username') Username
+                                            input#username(type='text' name='username' placeholder='User Name')
+                                        .form-group
+                                            label.form-label(for='email') Email
+                                            input#email(type='email' name='email' placeholder='Your Email')
+                                        .form-group.form-password
+                                            label.form-label(for='password') Password
+                                            input#password(type='password' name='password' data-indicator='pwindicator')
+                                            #pwindicator
+                                                .bar-strength
+                                                    .bar-process
+                                                        .bar
+                                                .label
+                                        .form-group.form-password
+                                            label.form-label(for='confirm_password') Confirm Password
+                                            input#password2(type='password' name='password2' data-indicator='pwindicator2')
+                                            #pwindicator2
+                                                .bar-strength
+                                                    .bar-process
+                                                        .bar
+                                                .label
+                                    .fieldset-footer
+                                            span Step 1 of 3
+                                h3
+                                    span.title_text About Yourself
+                                fieldset
+                                    .fieldset-content
+                                        .form-group
+                                            label.form-label(for='fullname') Full Name
+                                            input#fullname(type='text' name='fullname' placeholder='Full Name')
+                                        hr
+                                        .form-group
+                                            label.form-label(for='mobile_no') Mobile Number
+                                            input#mobilenumber(type='text' name='mobilenumber' placeholder='Mobile Number')
+                                        hr
+                                        .form-group
+                                            label.form-label(for='income') You can charge between &euro;15 - &euro;25 in Germany per hour and &euro;5.5 - &euro;7.5 in Czech Republic
+                                            //- span.currency-msg
+                                                | You can charge between &euro;15 - &euro;25 per hour and &euro;5.5 - &euro;7.5 in Czech Republic
+                                            input#income(type='number' name='income' placeholder="Enter your desired pay rate" min='10' max='20')
+                                        hr
+                                        .form-textarea
+                                            label.form-label(for='address') Address
+                                            textarea#address(name='address' placeholder='Please make sure you enter the correct details...')
+                                        hr
+                                        .form-group
+                                            label.form-label(for='city') City
+                                            input#city(type='text' name='city' placeholder='Your City')
+                                        hr
+                                        .form-group
+                                            label.form-label(for='country') Country
+                                            select(name="country")
+                                                option(value="Germany") Germany
+                                                option(value="Czech Republic") Czech Republic
+                                        hr
+                                        .form-group
+                                            label.form-label(for='postcode') Postcode
+                                            input#postcode(type='text' name='postcode' placeholder='postcode')
+                                        hr
+                                        .form-group
+                                            label.form-label(for='extra-tasks') What Extra Tasks can you handle?
+                                            select#keep-order(multiple="multiple" name='extraTasks')
+                                                option(value="ironing") Ironing
+                                                option(value="inside_windows") Inside Windows
+                                                option(value="inside_oven") Inside Oven
+                                                option(value="laundry") Laundry
+                                                option(value="inside_fridge") Inside Fridge
+                                        hr
+                                        .form-radio
+                                            label.form-label(for='experience') How many years of experience do you have cleaning?
+                                            .form-radio-item
+                                                input#less_1(type='radio' name='experience' value='less_1' checked='checked')
+                                                label(for='less_1') Less than 1
+                                                input#one(type='radio' name='experience' value='1')
+                                                label(for='one') 1
+                                                input#two(type='radio' name='experience' value='2')
+                                                label(for='two') 2
+                                                input#three(type='radio' name='experience' value='3')
+                                                label(for='three') 3
+                                                input#more(type='radio' name='experience' value='more')
+                                                label(for='more') More
+                                        hr
+                                        .form-group
+                                            p *You customer will provide all cleaning products and items for you
+                                        //- .form-select
+                                        //-     label.form-label(for='country') Country
+                                        //-     select#country(name='country')
+                                        //-         option(value='') Country
+                                        //-         option(value='Australia') Australia
+                                        //-         option(value='USA') America
+                                        hr
+                                        .form-textarea
+                                            label.form-label(for='profile') Write a short profile about yourself
+                                            textarea#profile(name='profile' placeholder='I am a strong energetic person...')
+                                        hr
+                                        .form-group
+                                            label.form-label(for="profilePic") Select a profile picture
+                                            input#profilePic.form-control-file(type="file" aria-describedby="fileHelp" name="profilePic")
+
+                                        .fieldset-footer
+                                        span Step 2 of 3
+                                h3
+                                    span.title_text Documents
+                                fieldset
+                                    .fieldset-content
+                                        .form-group
+                                            label.form-label(for="nationalID") International Passport or National ID
+                                            input#nationalID.form-control-file(type="file" aria-describedby="fileHelp" name='nationalID')
+                                            small#fileHelp.form-text.text-muted
+                                        .form-group
+                                            label.form-label(for="healthInsurance") Health Insurance
+                                            input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
+                                            small#fileHelp.form-text.text-muted
+                                        label.custom-control.custom-checkbox
+                                            input.custom-control-input(type="checkbox" checked="" name='terms')
+                                            span.custom-control-label Do you agree with all our terms and conditions?
+                                    .fieldset-footer
+                                            span Step 3 of 3
+
 

@@ -10,7 +10,9 @@ let CleanerDetails =  require('../../models/cleanerDetails');
 let CleanerWallet = require('../../models/cleanerWallet');
 
 router.get('/page', (req, res) =>{
-    res.render('cleaner_registration')
+    res.render('cleaner_registration', {
+        form: null
+    })
 });
 
 //Cleaner Registration Processes
@@ -90,6 +92,23 @@ router.post('/post', (req, res)=>{
             // req.checkBody('nationalID', 'Your means of identification is required').notEmpty();
             // req.checkBody('healthInsurance', 'Your Health Insurance is required').notEmpty();
 
+            //Fields value Holder
+            var form = {
+                email: email,
+                password: password,
+                password2: password2,
+                postcode: postcode,
+                extraTasks: extraTasks,
+                experience: experience,
+                profile: profile,
+                fullName: fullName,
+                mobileNumber: mobileNumber,
+                address: address,
+                city: city,
+                country: country,
+                income: income
+            }
+
             let errors = req.validationErrors();
 
             if(errors){
@@ -133,36 +152,39 @@ router.post('/post', (req, res)=>{
                         newUser.save((err)=>{
                             if(err){
                                 console.log(err);
+                                let errors = [{msg: "This email address has been used by another user"}]
+                                res.render('cleaner_registration', {
+                                    errors: errors,
+                                    form: form
+                                });
                                 return;
                             }else{
                                 //req.flash('success', 'You are now registered and can login');
                                 console.log('new user save function worked');
-                                // res.redirect('/');
+                                newUserDetails.save((err) =>{
+                                    if(err){
+                                        console.log(err);
+                                        return;
+                                    }else {
+                                        newCleanerWallet.save((err)=>{
+                                            if(err){
+                                                console.log(err);
+                                                return;
+                                            }else{
+                                                req.flash('success', 'You are now registered and can login')
+                                                //res.redirect('/cleaner/cleaner_dashboard');
+                                                res.redirect('/cleaner/login');
+                                                console.log('upload successful!');
+                                            }
+                                        });
+                                    }
+                                });
                             }
                         })
                     });
                 });
-                newUserDetails.save((err) =>{
-                    if(err){
-                        console.log(err);
-                        return;
-                    }else {
-                        newCleanerWallet.save((err)=>{
-                            if(err){
-                                console.log(err);
-                                return;
-                            }else{
-                                req.flash('success', 'You are now registered and can login')
-                                //res.redirect('/cleaner/cleaner_dashboard');
-                                res.redirect('/cleaner/login');
-                                console.log('upload successful!');
-                            }
-                        });
-                    }
-                });
             }
             console.log('upload successful');
-
         }
       });
     console.log('form submitted');

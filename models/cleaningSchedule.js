@@ -62,7 +62,7 @@ let CleaningScheduleSchema = mongoose.Schema({
             nextCleanDate:{
                 type: Date
             },
-            increment:{
+            incremental:{
                 type:Number
             }
         }

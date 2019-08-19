@@ -759,13 +759,13 @@ p {
       }
 
       .home-p.pages-head1 {
-        background: url(../img/pic16.jpg) no-repeat;
+        background: url(../img/pic19.jpg) no-repeat;
         background-size: cover;
         background-position: center center;
       }
 
       .home-p.pages-head2 {
-        background: url(../img/img/banner-2.jpg) no-repeat;
+        background: url(../img/pic21.jpg) no-repeat;
         background-size: cover;
         background-position: center center;
       }
@@ -774,6 +774,13 @@ p {
         background: url(../img/img/banner-3.jpg) no-repeat;
         background-size: cover;
         background-position: center center;
+      }
+      .careerbtn{
+          color: #fff !important;
+          width: 120%;
+          border-color: #fff;
+          margin-top: 8%;
+          font-weight: 200;
       }
 
       .home-p.pages-head4 {

@@ -11,7 +11,9 @@ let ClientWallet =  require('../../models/clientWallet');
 
 //Bookings route
 router.get('', (req, res) =>{
-    res.render('booking')
+    res.render('booking',{
+        form: nulls
+    })
 });
 
 //Booking and Sign up Processes
@@ -108,6 +110,26 @@ router.post('', (req, res)=>{
             req.checkBody('city', 'City is required').notEmpty();
             req.checkBody('country', 'Country is required').notEmpty();
 
+            //Fields value Holder
+            var form = {
+                email: email,
+                password: password,
+                password2: password2,
+                postcode: postcode,
+                extraTasks: extraTasks,
+                profile: profile,
+                fullName: fullName,
+                mobileNumber: mobileNumber,
+                address: address,
+                city: city,
+                country: country,
+                bedrooms: bedrooms,
+                bathrooms: bathrooms,
+                priority: priority,
+                keySafePin: keySafePin,
+                keyHiddenPin: keyHiddenPin
+
+            }
             let errors = req.validationErrors();
             if(errors){
                 res.render('booking', {
@@ -155,31 +177,34 @@ router.post('', (req, res)=>{
                         newUser.save((err)=>{
                             if(err){
                                 console.log(err);
+                                let errors = [{msg: "This email address has been used by another user"}]
+                                res.render('booking', {
+                                    errors: errors,
+                                    form: form
+                                });
                                 return;
                             }else{
                                 req.flash('success', 'You are now registered and can login');
                                 console.log('new user save function worked');
-                                //console.log(req.user.id);
-                                // res.redirect('/');
+                                newUserDetails.save((err) =>{
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+                                        newWallet.save((err)=>{
+                                            if(err){
+                                                console.log(err);
+                                                return;
+                                            }else {
+                                                console.log('done adding details');
+                                                req.flash('success', 'Client added')
+                                                res.redirect('/client/booking_final/'+encodeURIComponent(clientID));
+                                            }
+                                        })
+                                    }
+                                });
                             }
                         })
                     });
-                });
-                newUserDetails.save((err) =>{
-                    if(err){
-                        console.log(err);
-                    }else{
-                        newWallet.save((err)=>{
-                            if(err){
-                                console.log(err);
-                                return;
-                            }else {
-                                console.log('done adding details');
-                                req.flash('success', 'Client added')
-                                res.redirect('/client/booking_final/'+encodeURIComponent(clientID));
-                            }
-                        })
-                    }
                 });
             }
         }

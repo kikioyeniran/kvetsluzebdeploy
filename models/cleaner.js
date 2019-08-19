@@ -12,7 +12,8 @@ const CleanerSchema = mongoose.Schema({
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password:{
         type: String,
@@ -20,7 +21,7 @@ const CleanerSchema = mongoose.Schema({
     },
     passwordConfirm: {
         type: String,
-        required: [true, 'Please confirm your password'],
+        // required: [true, 'Please confirm your password'],
         validate: {
           // This only works on CREATE and SAVE!!!
           validator: function(el) {

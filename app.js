@@ -9,7 +9,7 @@ const passport = require('passport');
 const multer  = require('multer');
 const config = require('./config/database')
 
-mongoose.connect(config.database);
+mongoose.connect(config.database, {useNewUrlParser: true});
 let db  = mongoose.connection;
 
 //Init App

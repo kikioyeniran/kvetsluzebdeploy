@@ -24,9 +24,7 @@ let CleanerWallet = require('../../models/cleanerWallet');
 let CleaningSchedule =  require('../../models/cleaningSchedule');
 
 router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
-    let scheduleID = req.params.scheduleID;
-    let cleanerID = req.params.cleanerID;
-    let clientID = req.params.clientID;
+    const {scheduleID, cleanerID, clientID} = req.params;
 
     CleaningSchedule.findById(scheduleID, (err, schedule)=>{
         if(err){
@@ -38,9 +36,9 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
         var cleanerIncome = schedule.cleanerIncome;
         var dblastClean = schedule.lastClean[0];
         var dbcurrentClean = schedule.currentClean[0];
-        var increment = schedule.currentClean[0].increment;
+        var incremental = schedule.currentClean[0].incremental;
         var newCurrentDate = schedule.currentClean[0].nextCleanDate;
-        var nextCleanDate = new Date().setDate(newCurrentDate.getDate() + increment);
+        var nextCleanDate = new Date().setDate(newCurrentDate.getDate() + incremental);
         var nextCleanDate = new Date(nextCleanDate);
         //console.log(dbcurrentClean.currentCleanDate);
         // console.log(newCurrentDate, ' ', nextCleanDate);
@@ -56,7 +54,7 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
                 requestStatus : true,
                 currentCleanDate  : newCurrentDate,
                 nextCleanDate: nextCleanDate,
-                increment: increment
+                incremental: incremental
         }]
         //console.log(lastClean, ' ', currentClean);
         paymentUpdate.lastClean = lastClean;

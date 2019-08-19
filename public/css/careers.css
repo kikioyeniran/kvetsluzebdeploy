@@ -3,7 +3,7 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 /*====================================================
                        CAREER-P1
@@ -42,7 +42,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 @media (max-width: 767px) {
  .career-p1-himg{
         padding: 0;
-    }   
+    }
 .career-p1-desc{
     padding:40px;
 }
@@ -59,14 +59,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 /*====================================================
                        CAREER-P2
 ======================================================*/
- 
-    .career-p2-bg{  
+
+    .career-p2-bg{
         height: 250px;
-        background-image: url(../img/thought-bg.jpg);  
+        background-image: url(../img/pic20.jpg);
         padding:0;
         margin: 0;
-    } 
- 
+    }
+
     .title-bar-career-p2{
     	padding:50px;
     }
@@ -117,13 +117,13 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 @media(max-width: 767px){
 
-    .career-p2-bg{  
+    .career-p2-bg{
         height: 400px;
-        background-image: url(../img/thought-bg.jpg);  
+        background-image: url(../img/thought-bg.jpg);
         padding:0;
         margin: 0;
-    } 
- 
+    }
+
     .title-bar-career-p2{
         padding:50px;
     }
@@ -152,17 +152,17 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         color: #fff;
         font-size: 17px;
         text-align: center;
-    }    
+    }
 }
 
 @media (max-width: 420px){
-    .career-p2-bg{  
+    .career-p2-bg{
         height: 520px;
-        background-image: url(../img/thought-bg.jpg);  
+        background-image: url(../img/thought-bg.jpg);
         padding:0;
         margin: 0;
-    } 
- 
+    }
+
     .title-bar-career-p2{
         padding:50px 20px;
     }
@@ -172,7 +172,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         width: 100%;
         height: 520px;
         background: rgba(59, 59, 60, 0.53);
-    } 
+    }
 }
 
 /*====================================================
@@ -181,7 +181,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 #career-p3{
     width: 100%;
-    background: #f0f0f0; 
+    background: #f0f0f0;
 	padding:100px ;
  }
 
@@ -197,7 +197,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 	background: #fff;
 	box-shadow: 2px 2px 2px #ddd;
   	-webkit-transition: all .5s ease-in-out;
-  	transition: all .5s ease-in-out; 
+  	transition: all .5s ease-in-out;
 }
 
 #career-p3 .career-p3-cont:hover{
@@ -226,7 +226,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         background: #fff;
         box-shadow: 2px 2px 2px #ddd;
         -webkit-transition: all .5s ease-in-out;
-        transition: all .5s ease-in-out; 
+        transition: all .5s ease-in-out;
     }
 }
 
@@ -235,13 +235,13 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         -ms-flex: 0 0 33.33%;
         flex: 0 0 33.33%;
         max-width: 33.33%;
-    }    
+    }
 }
 
 @media (max-width: 420px){
     #career-p3{
         width: 100%;
-        background: #f0f0f0; 
+        background: #f0f0f0;
         padding:100px 30px ;
      }
          #career-p3 .career-p3-cont {
@@ -250,6 +250,6 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         background: #fff;
         box-shadow: 2px 2px 2px #ddd;
         -webkit-transition: all .5s ease-in-out;
-        transition: all .5s ease-in-out; 
+        transition: all .5s ease-in-out;
     }
 }

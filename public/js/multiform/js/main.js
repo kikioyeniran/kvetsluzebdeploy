@@ -45,6 +45,9 @@
             address: {
                 required: true,
             },
+            income: {
+                required: true
+            },
             profilePic:{
                 required: true,
                 extension: "png|jpeg|jpg|gif",
@@ -52,12 +55,12 @@
             },
             nationalID:{
                 required: true,
-                extension: "png|jpeg|jpg|gif|pdf",
+                extension: "png|jpeg|jpg|pdf",
                 // filesize: 1048576000,
             },
             healthInsurance:{
                 required: true,
-                extension: "png|jpeg|jpg|gif|pdf",
+                extension: "pdf",
                 // filesize: 10485760,
             }
         },

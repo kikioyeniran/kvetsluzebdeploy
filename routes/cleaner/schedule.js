@@ -46,14 +46,14 @@ router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
                     //console.log(clientRequest[0].cleanerID)
                     var dateFirstClean = clientRequest[0].dateFirstClean;
                     var frequency = clientRequest[0].frequency;
-                    var increment = 0;
+                    var incremental = 0;
 
                     if(frequency == "weekly"){
                         var nextCleanDate = new Date().setDate(dateFirstClean.getDate() + 7);
                         var nextCleanDate = new Date(nextCleanDate);
                         var followingDate = new Date().setDate(nextCleanDate.getDate() + 7);
                         var followingDate = new Date(followingDate);
-                        var increment = 7;
+                        var incremental = 7;
                         //console.log(nextCleanDate);
                     }
                     if(frequency == "fortnightly"){
@@ -61,12 +61,12 @@ router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
                         var nextCleanDate = new Date(nextCleanDate);
                         var followingDate = new Date().setDate(nextCleanDate.getDate() + 14);
                         var followingDate = new Date(followingDate);
-                        var increment = 14;
+                        var incremental = 14;
                         //console.log(nextCleanDate);
                     }
                     if(frequency == "one-off"){
                         var nextCleanDate = new Date(dateFirstClean);
-                        var increment = 0;
+                        var incremental = 0;
                         //console.log(nextCleanDate);
                     }
                     Cleaner.findById(cleanerID, (err, cleanerDetail)=>{
@@ -103,7 +103,7 @@ router.get('/:clientID/:cleanerID/:requestID', (req, res) =>{
                                         {
                                             currentCleanDate: dateFirstClean,
                                             nextCleanDate: nextCleanDate,
-                                            increment: increment
+                                            incremental: incremental
                                         }
                                     ],
                                     extraTasks: extraTasks,

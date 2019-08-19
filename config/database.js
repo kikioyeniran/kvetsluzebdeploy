@@ -1,15 +1,23 @@
-// module.exports = {
-//     database:'mongodb://localhost:27017/kvetdb',
-//     secret: 'yoursecret'
-// }
-if(process.env.NODE_ENV === 'production'){
-    module.exports = {
-        database:'mongodb+srv://kikioyeniran:cAncel78$@cluster0-9rntd.mongodb.net/test',
-        secret: 'yoursecret'
-    }
-  } else {
-    module.exports = {
-        database:'mongodb://localhost:27017/kvetdb',
-        secret: 'yoursecret'
-    }
-  }
+module.exports = {
+    database:'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
+    secret: 'yoursecret'
+}
+
+// var mongoClient = require("mongodb").MongoClient;
+// mongoClient.connect("mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test", {
+//   uri_decode_auth: true
+// }, function (err, db) {
+//   db.close();
+// });
+
+// if(process.env.NODE_ENV === 'production'){
+//     module.exports = {
+//         database:'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
+//         secret: 'yoursecret'
+//     }
+//   } else {
+//     module.exports = {
+//         database:'mongodb://localhost:27017/kvetdb',
+//         secret: 'yoursecret'
+//     }
+//   }

@@ -83,7 +83,7 @@ router.patch('/resetpswd/:token', (req, res)=>{
 //Password Change Route
 router.get('/pswdchange/:id', (req, res) =>{
     Cleaner.findById(req.params.id, (err, cleaner)=>{
-        res.render('cleaner.pswdchange',{
+        res.render('cleaner/pswdchange',{
             cleaner: cleaner
         });
     })
