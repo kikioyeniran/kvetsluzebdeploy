@@ -46,6 +46,7 @@ block content
                                                 .see
                                                     | #{cleaner.fullName}
                                                 p.hide #{cleaner.cleanerID}
+                                                p.hide #{cleaner.email}
                                                     //- | #{cleaner.cleanerID}
                                             small #{cleaner.profile}
                                         .panel-thumbnails
@@ -54,11 +55,11 @@ block content
                                                     .cleaner-rating
                                                         //- var n = 1;
                                                         //- while n <= cleaner.rating
-                                                        i.fa.fa-fw.fa-star
-                                                        i.fa.fa-fw.fa-star
-                                                        i.fa.fa-fw.fa-star
-                                                        i.fa.fa-fw.fa-star
-                                                        i.fa.fa-fw.fa-star
+                                                        i.fa.fa-fw.fa-star #{cleaner.rating}
+                                                        //- i.fa.fa-fw.fa-star
+                                                        //- i.fa.fa-fw.fa-star
+                                                        //- i.fa.fa-fw.fa-star
+                                                        //- i.fa.fa-fw.fa-star
                                                     .col-xs-4
                                                         .cleaner-price
                                                             | $#{cleaner.income} per hour

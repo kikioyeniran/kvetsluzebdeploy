@@ -12,7 +12,7 @@ let ClientWallet =  require('../../models/clientWallet');
 //Bookings route
 router.get('', (req, res) =>{
     res.render('booking',{
-        form: nulls
+        form: null
     })
 });
 
@@ -117,7 +117,6 @@ router.post('', (req, res)=>{
                 password2: password2,
                 postcode: postcode,
                 extraTasks: extraTasks,
-                profile: profile,
                 fullName: fullName,
                 mobileNumber: mobileNumber,
                 address: address,
@@ -143,6 +142,7 @@ router.post('', (req, res)=>{
                     clientID: clientID
                 });
                  let newUserDetails = new ClientDetails({
+                     email: email,
                     postcode: postcode,
                     bedrooms: bedrooms,
                     bathrooms: bathrooms,

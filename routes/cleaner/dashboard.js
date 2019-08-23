@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var empty = require('is-empty');
 const date = require('date-and-time');
+var authenticated = require('../authenticated')
 
 //Bring in Cleaner Models
 // let Cleaner =  require('/projects/kvetsluzeb/models/cleaner')

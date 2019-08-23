@@ -35,19 +35,19 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center RESET PASSWORD
-              form(method="PATCH", action='/cleaner/pswd/resetpswd')
+              form(method="POST", action='/cleaner/pswd/resetpswd/'+token)
                 .form-group
-                  label(for="username") Enter New Password
-                  input#username.form-control(type="text" placeholder="Enter Password" name="password")
+                  label(for="password") Enter New Password
+                  input#password.form-control(type="password" placeholder="Enter Password" name="password")
                 .form-group
                   label(for="exampleInputEmail1") Confirm New Password
-                  input#example-password-input.form-control(type="password" name="password2")
+                  input#password2.form-control(type="password" name="password2")
                 != messages('message', locals)
                 .container
                     if errors
                         each error, i in errors
-                            div(class="alert alert-danger") #{error.msg}
-                button.btn.btn-general.btn-blue(type="submit")
+                            #messages(class="alert alert-danger") #{error.msg}
+                button#submit.btn.btn-general.btn-blue.disabled(type="submit")
                   i(fa="" fa-right-arrow="")
                   | Reset Password
                 //- a(href="/" class="homelink")  Back To Home Page
@@ -55,3 +55,8 @@ html
     script(src="/admin/js/jquery.min.js")
     script(src="/admin/js/tether.min.js")
     script(src="/admin/js/bootstrap.min.js")
+    script.
+      setTimeout(function() {
+      $("#messages").fadeOut().empty();
+      }, 10000);
+

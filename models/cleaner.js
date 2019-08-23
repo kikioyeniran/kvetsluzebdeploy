@@ -47,15 +47,27 @@ CleanerSchema.methods.correctPassword =  function(
     candidatePassword,
     userPassword
   ) {
-    return bcrypt.compare(candidatePassword, userPassword);
+    bcrypt.compare(candidatePassword, userPassword, (err, match) => {
+      if(match) {
+          // passwords match
+          // callback(null, true);
+          return match;
+      } else {
+          // passwords do not match
+          // callback('Invalid password match', null);
+          return match
+      }
+    });
   };
+
+
 const Cleaner = module.exports = mongoose.model('cleaner', CleanerSchema);
 
-module.exports.createUser = (newUser, callback)=> {
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) =>{
-            newUser.password = hash;
-            newUser.save(callback);
-        })
-    })
-}
+// module.exports.createUser = (newUser, callback)=> {
+//     bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(newUser.password, salt, (err, hash) =>{
+//             newUser.password = hash;
+//             newUser.save(callback);
+//         })
+//     })
+// }

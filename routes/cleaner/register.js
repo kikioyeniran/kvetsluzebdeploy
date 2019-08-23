@@ -106,7 +106,9 @@ router.post('/post', (req, res)=>{
                 address: address,
                 city: city,
                 country: country,
-                income: income
+                income: income,
+                profile: profile
+
             }
 
             let errors = req.validationErrors();
@@ -123,6 +125,7 @@ router.post('/post', (req, res)=>{
                     password:password
                 });
                 let newUserDetails = new CleanerDetails({
+                    email: email,
                     postcode: postcode,
                     mobileNumber: mobileNumber,
                     extraTasks: extraTasks,

@@ -143,10 +143,10 @@ html(lang='fr')
                 input#login_username.form-control(type='text' placeholder='Enter email ' required='' name="email")
                 label(for='username') Password
                 input#login_password.form-control(type='password' placeholder='Enter password' required='' name="password")
-                .checkbox
-                  label
-                    input(type='checkbox')
-                    | Remember me
+                //- .checkbox
+                //-   label
+                //-     input(type='checkbox')
+                //-     | Remember me
               .modal-footer.text-center
                 div
                   button.btn.btn-general.btn-white(type='submit') Login
@@ -189,6 +189,9 @@ html(lang='fr')
                   p
                     | Kvet Sluzeb is a corporation focused on connecting cleaners with clients who need their services. We aim to provide an excellent cleaning services in Europe and Worldwide.
               br
+              div
+                img.img-fluid.appstore(src='/img/app-store-icon.png' alt='')
+                img.img-fluid.playstore(src='/img/google_play_store.png' alt='')
             // End About Us
             // Recent News
             .col-md-4.col-sm-6
@@ -207,7 +210,7 @@ html(lang='fr')
                 li
                   a(href='/public/faq') FAQ
                   i.fa.fa-angle-right
-                li
+                //- li
                   a(href='') Contact us
                   i.fa.fa-angle-right
             // End Recent list
@@ -217,9 +220,9 @@ html(lang='fr')
               .heading-footer
                 h2 Get In Touch
               address.address-details-f
-                | 25, Dist town Street, Logn
+                | Kamýcká 126, Prague 6 - Suchdol
                 br
-                | California, US
+                | Germany
                 //- br
                 //- | Phone: 800 123 3456
                 //- br

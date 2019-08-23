@@ -35,7 +35,7 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center CHANGE YOUR PASSWORD(CLEANER)
-              form(method="PATCH", action='/admin/pswd/pswdchange/'+admin._id)
+              form(method="POST", action='/admin/pswd/pswdchange/'+admin._id)
                 .form-group
                   label(for="exampleInputEmail1") Enter Old Password
                   input#example-password-input.form-control(type="password" name="passwordCurrent")

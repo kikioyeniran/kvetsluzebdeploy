@@ -82,7 +82,7 @@ block content
                           .form-group
                             strong.mr-5
                               i.fa.fa-money  Income/hour:
-                            |    $#{cleanerDetails.income}
+                            |    &euro;#{cleanerDetails.income}
                 #references.tab-pane.fade(role="tabpanel")
                   form(method='POST', action='/cleaner/edit/'+encodeURIComponent(cleaner.cleanerID)+'/'+encodeURIComponent(cleaner._id))
                     .row.mx-2

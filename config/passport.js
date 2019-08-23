@@ -52,7 +52,7 @@ module.exports = (passport)=>{
         console.log(username);
         let query = {email: username};
         Client.findOne(query, (err, client)=>{
-            console.log(client.email)
+            //console.log(client.email)
             if(err) throw err;
             if(!client){
                 return done(null, false, {message: 'No client found'});

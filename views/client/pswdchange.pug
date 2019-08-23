@@ -35,7 +35,7 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center CHANGE YOUR PASSWORD(CLIENT)
-              form(method="PATCH", action='/client/pswd/pswdchange/'+client._id)
+              form(method="POST", action='/client/pswd/pswdchange/'+client._id)
                 .form-group
                   label(for="exampleInputEmail1") Enter Old Password
                   input#example-password-input.form-control(type="password" name="passwordCurrent")

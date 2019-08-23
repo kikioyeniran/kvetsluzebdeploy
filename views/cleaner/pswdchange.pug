@@ -5,7 +5,7 @@ html
     meta(name="description" content="")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     meta(name="robots" content="all,follow")
-    title Kvet Reset Password
+    title Kvet Change Password
     link(rel="shortcut icon" href="/img/favicon.png")
     // global stylesheets
     link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet")
@@ -35,7 +35,10 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center CHANGE YOUR PASSWORD(CLEANER)
-              form(method="PATCH", action='/cleaner/pswd/pswdchange/'+cleaner._id)
+              .container
+                    if message
+                      #messages(class="alert alert-success") #{message}
+              form(method="POST", action='/cleaner/pswd/pswdchange/'+cleaner._id)
                 .form-group
                   label(for="exampleInputEmail1") Enter Old Password
                   input#example-password-input.form-control(type="password" name="passwordCurrent")
@@ -58,3 +61,8 @@ html
     script(src="/admin/js/jquery.min.js")
     script(src="/admin/js/tether.min.js")
     script(src="/admin/js/bootstrap.min.js")
+    script.
+      setTimeout(function() {
+      $("#messages").fadeOut().empty();
+      }, 10000);
+

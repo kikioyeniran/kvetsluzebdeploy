@@ -22,24 +22,36 @@ function addTag(e){
         var cousin = uncle2.firstChild;
         var goal = cousin.firstChild;
         var goalSibling = goal.nextSibling;
+        var emailSibling = goalSibling.nextSibling;
+
         console.log(goal);
         console.log(goalSibling);
+        console.log(emailSibling);
 
         //Create New List Item
         var newItems = goal.textContent;
         var cleanerID = goalSibling.textContent;
+        var cleanerEmail = emailSibling.textContent;
         console.log(newItems);
         var li  = document.createElement('li');
+        //Add Cleaner Name
         var input  = document.createElement('input');
         input.type = 'hidden';
         input.name = 'selectedCleaner' + icount;
         input.value = newItems;
         input.className = 'inputAdded';
+        //Add Cleaner ID
         var cleanInput = document.createElement('input');
         cleanInput.type = 'hidden';
         cleanInput.name = 'selectedcleanerID'+ icount;
         cleanInput.className = 'cleanAdded';
         cleanInput.value = cleanerID;
+        //Add Cleaner Email
+        var emailInput = document.createElement('input');
+        emailInput.type = 'hidden';
+        emailInput.name = 'selectedcleanerMail'+ icount;
+        emailInput.className = 'emailAdded';
+        emailInput.value = cleanerEmail;
         li.className = 'list-inline-item';
         li.appendChild(document.createTextNode(newItems));
         icount++;
@@ -59,6 +71,7 @@ function addTag(e){
         itemList.appendChild(li);
         requestForm.appendChild(input);
         requestForm.appendChild(cleanInput);
+        requestForm.appendChild(emailInput);
     }
     //Create Checkout button
     if(icount==3){

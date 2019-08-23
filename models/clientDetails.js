@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 //Client Detils Schema
 let ClientDetailsSchema = mongoose.Schema({
+    email:{
+        type: String,
+        required: true
+    },
     postcode:{
         type: String,
         required: true

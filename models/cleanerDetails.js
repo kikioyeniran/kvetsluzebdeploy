@@ -6,6 +6,10 @@ let CleanerDetailsSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    email:{
+        type: String,
+        required: true
+    },
     extraTasks:{
         type: Array,
         required: true

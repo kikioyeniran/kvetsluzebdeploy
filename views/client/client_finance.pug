@@ -58,3 +58,24 @@ block content
                                         a.btn.btn-general.btn-blue.mr-2.disabled(href="#") Check Out
                                     else
                                         button.btn.btn-general.btn-blue.mr-2(href="#") Check Out
+
+            .row
+                .col-sm-6.col-md-4.col-lg-3
+                    .card.card-inverse.card-info
+                        img.card-img-top(src="/uploads/"+cleaner.profilePic)
+                        .card-block
+                            h6 Client Name:
+                                h4.card-title #{cleaner.fullName}
+                            h6 Mobile Number: #{cleaner.mobileNumber}
+                            h6 Postcode: #{cleaner.postcode}
+                        //- h4.card-title #{clientDetails.fullName}
+                        .card-footer
+                            small Last updated #{cleaner.updated}
+                            form(method="POST", action="/rating/cleaner/"+encodeURIComponent(client.clientID)+"/"+encodeURIComponent(cleaner.cleanerID))
+                                select.rate(name="rating")
+                                    option(value=1) 1
+                                    option(value=2) 2
+                                    option(value=3) 3
+                                    option(value=4) 4
+                                    option(value=5) 5
+                                button.btn.btn-info.float-right.btn-sm Rate Customer

@@ -1,18 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const sendEmail  = require('../email');
+const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 //Bring in Admin Models
 let Admin =  require('../../models/admin');
+// const domain = 'sandboxfdf76a99b5044d6c96c28e0971d8e9ca.mailgun.org';
+// const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const mailgun = require("mailgun-js");
+const DOMAIN = 'kvetsluzeb.com';
+const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
+// var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-//Forgot Password Page Route
+
 router.get('/forgotpswd', (req, res) =>{
     res.render('admin/forgotpswd');
 });
 
-//Reset Password Mailing Route
+//Forgot Password Post Process
 router.post('/forgotpswd',  (req,res) =>{
     // get user based on posted email
     Admin.findOne({email: req.body.email}, (err, user) =>{
+        console.log(req.body.email);
         if (err) {
             res.status(404).send(err);
         }
@@ -23,97 +32,158 @@ router.post('/forgotpswd',  (req,res) =>{
         user.save({validateBeforeSave: false})
 
         const resetUrl = `${req.protocol}://${req.get('host')}/admin/pswd/resetpswd/${resetToken}`
-        const message = `Forgot Password? Submit a PATCH request with your new Password and passwordConfirn to: ${resetUrl}.\n If you didnt forget your password, please ignore this email!`
-        try {
-            const sendEmail = ({
-                email: user.email,
-                subject: 'Password Reset Link (Valid for 10Mins)',
-                message: message
-            })
-            res.status(200).json({
-                status: 'success',
-                message: 'Token sent to mail'
-            })
-        } catch(err) {
-            user.passwordResetToken = undefined;
-            user.passwordResetExpires = undefined;
-            user.save({validateBeforeSave: false})
-            console.log(err);
-        }
+        const msg = `<strong>Forgot Password?</strong> Please click this link and enter your new password: ${resetUrl}.\n If you didnt forget your password, please ignore this email!`
+        var data = {
+            from: 'Kvet Sluzeb (Bloom Services) <support@kvetsluzeb.com>',
+            to: req.body.email,
+            subject: 'Password Reset Token',
+            text: msg,
+            html: msg
+          };
+        mg.messages().send(data, function (error, body) {
+            if(error){
+                console.log(error)
+                res.render('admin/forgotpswd', {
+                  adminID: user._id,
+                  message: 'Please make sure you entered the right password'
+              })
+            }else{
+              res.render('admin/forgotpswd', {
+                  adminID: user._id,
+                  message: 'The password reset token has been sent to your mail'
+              })
+              console.log(body);
+            }
+            // console.log(body);
+        });
     })
     // send it to user email
+
 })
 
-//Reset Password Page Route
-router.get('/resetpswd', (req, res) =>{
-    res.render('admin/resetpswd');
+//Reset Password Route
+router.get('/resetpswd/:token', (req, res) =>{
+    res.render('admin/resetpswd',{
+        token: req.params.token
+    })
 });
 
-//Reset Password Submit form Route
-router.patch('/resetpswd/:token', (req, res)=>{
-
-    // get user based on the token
-    const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
-    // const user =
-     Admin.findOne({passwordResetToken: hashedToken, passwordResetExpires: {$gt: Date.now()} }, (err, user) => {
-         if(err) {
-             res.status(404).send(err);
-         }
-
-         user.password = req.body.password
-         user.password2 = req.body.password2
-         user.passwordResetToken = undefined;
-         user.passwordResetExpires = undefined;
-
-         user.save(err => {
-             if(err) {
-                 res.status(200).send(err);
-             }else{
-             res.status(201).json({
-                 message: 'Successful'
-             })
-             res.redirect('/admin/login');
-            }
-         })
-
-        //  Redirect the user to login
-
-     });
-    // if token has not expired and user exists we set the new password
-})
+router.post('/resetpswd/:token', (req, res)=>{
+        var password = req.body.password;
+        var password2 = req.body.password2;
+        req.checkBody('password', 'Password is required').notEmpty();
+        req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+        let errors = req.validationErrors();
+        if(errors){
+            // res.redirect('/admin/pswd/resetpswd/'+req.params.token)
+            res.render('admin/resetpswd',{
+                token: req.params.token,
+                errors: errors
+            });
+            console.log(errors);
+            return;
+        }else{
+            // get user based on the token
+            const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
+            Admin.findOne({passwordResetToken: hashedToken, passwordResetExpires: {$gt: Date.now()} }, (err, user) => {
+                if(err) {
+                    res.status(404).send(err);
+                }
+                if (user == null){
+                    res.render('admin/forgotpswd',{
+                        message: 'Your reset token has expired. Please resend the token'
+                    })
+                }else{
+                    //console.log(user)
+                    user.password = req.body.password
+                    //user.password2 = req.body.password2
+                    user.passwordResetToken = undefined;
+                    user.passwordResetExpires = undefined;
+                    bcrypt.genSalt(10, (err, salt)=>{
+                        bcrypt.hash(user.password, salt, (err, hash)=>{
+                            if(err){
+                                console.log(err);
+                            }
+                            user.password = hash;
+                            user.save((err)=>{
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    console.log('password change function worked');
+                                    res.redirect('/admin/login');
+                                }
+                            })
+                        });
+                    });
+                }
+            });
+        }
+    })
 
 //Password Change Route
 router.get('/pswdchange/:id', (req, res) =>{
-    ApplicationCache.findById(req.params.id, (err, admin)=>{
-        res.render('admin.pswdchange',{
+    Admin.findById(req.params.id, (err, admin)=>{
+        console.log(admin);
+        res.render('admin/pswdchange',{
             admin: admin
         });
     })
 });
 
 //Password Change Process
-router.patch('/pswdchange/:id', (req, res) => {
+router.post('/pswdchange/:id', (req, res) => {
     // get user from collection
-    Admin.findById(req.id, (err, user) => {
+    Admin.findById(req.params.id, (err, user) => {
         if (err) {
-            res.send(err);
-        } else if(!(user.correctPassword(req.body.passwordCurrent, user.password))) {
-            res.status(404).send('Your current password is wrong.')
-        }
-    })
-
-    user.password = req.body.password;
-    user.passwordConfirm = req.body.passwordConfirm;
-
-    user.save(err => {
-        if (err) {
-            res.status(404).send(err);
+            console.log(err);
+            return;
         }else{
-            // res.status(201).json({
-            //     message: 'Successfull'
-            // })
-            req.flash('success', 'Password Changed')
-            res.redirect('/admin/login');
+            //Check Old Password
+            bcrypt.compare(req.body.passwordCurrent, user.password, (err, match) => {
+                if(!match) {
+                    //Passwords Do Not Match
+                    res.render('admin/pswdchange',{
+                        message: 'Your current password is incorrect. Please try again',
+                        admin: user
+                    })
+                } else {
+                    //Password Match
+                    var password = req.body.password;
+                    var passwordConfirm = req.body.passwordConfirm;
+                    // console.log(password, passwordConfirm);
+                    req.checkBody('password', 'Password is required').notEmpty();
+                    req.checkBody('passwordConfirm', 'Passwords do not match').equals(req.body.password);
+                    let errors = req.validationErrors();
+                    console.log(errors);
+                    if(errors){
+                        console.log(errors);
+                        res.render('admin/pswdchange',{
+                            errors: errors,
+                            admin: user
+                        });
+                        return;
+                    }else{
+                        user.password = password;
+                        // user.passwordConfirm = passwordConfirm;
+                        bcrypt.genSalt(10, (err, salt)=>{
+                            bcrypt.hash(user.password, salt, (err, hash)=>{
+                                if(err){
+                                    console.log(err);
+                                }
+                                user.password = hash;
+                                user.save((err)=>{
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+                                        console.log('password change function worked');
+                                        res.redirect('/admin/login');
+                                    }
+                                })
+                            });
+                        });
+                    }
+                }
+            });
         }
     })
 })

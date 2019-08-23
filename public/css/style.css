@@ -82,7 +82,13 @@ p {
         border-bottom: solid 1px #f0f0f0;
     }
 
-
+    /*Mobile App Icons*/
+    .appstore{
+        width: 50% !important;
+    }
+    .playstore{
+        width: 50% !important;
+    }
     /*Top Contacts*/
 
     header .topmenu ul {

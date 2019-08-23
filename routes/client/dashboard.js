@@ -9,6 +9,7 @@ let Client =  require('../../models/client');
 let ClientDetails =  require('../../models/clientDetails');
 let ClientWallet =  require('../../models/clientWallet');
 let AllTransactions =  require('../../models/allTransactions');
+let CleanerDetails = require('../../models/cleanerDetails');
 
 //Client Dashboard route
 router.get('/home/:id', (req, res) =>{
@@ -80,16 +81,19 @@ router.get('/wallet/:id', (req, res) =>{
                     //costStatus = false;
                     console.log('pending pay is not empty ', clientWallet.pendingPay[0].cost, ' ', costStatus)
                 }
-
-                //console.log(costStatus)
-                res.render('client/client_finance',{
-                    client: client,
-                    clientDetails: client_details[0],
-                    wallet: clientWallet,
-                    costStatus: costStatus,
-                    pending: pending,
-                    stripePublishableKey: keys.stripePublishableKey
-                });
+                var cleanQuery = {cleanerID: clientWallet.cleanerID}
+                CleanerDetails.findOne((cleanQuery), (err, cleaner)=>{
+                    //console.log(costStatus)
+                    res.render('client/client_finance',{
+                        client: client,
+                        clientDetails: client_details[0],
+                        wallet: clientWallet,
+                        costStatus: costStatus,
+                        cleaner: cleaner,
+                        pending: pending,
+                        stripePublishableKey: keys.stripePublishableKey
+                    });
+                })
             })
         });
     });
@@ -131,6 +135,10 @@ router.get('/client_calendar', (req, res) =>{
 router.get('/client_faq', (req, res) =>{
     res.render('client/client_faq')
 });
+
+router.get('/cleaner', (req,res)=>{
+    res.render
+})
 
 
 module.exports = router;

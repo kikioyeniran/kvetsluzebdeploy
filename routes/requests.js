@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const mailgun = require("mailgun-js");
+const DOMAIN = 'kvetsluzeb.com';
+const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
 //Models
 let Request =  require('../models/requests');
 
@@ -39,8 +43,12 @@ router.post('/booking_final', (req, res)=>{
     const selectedcleanerID0 = req.body.selectedcleanerID0;
     const selectedcleanerID1 = req.body.selectedcleanerID1;
     const selectedcleanerID2 = req.body.selectedcleanerID2;
+    const selectedcleanerMail0 = req.body.selectedcleanerMail0;
+    const selectedcleanerMail1 = req.body.selectedcleanerMail1;
+    const selectedcleanerMail2 = req.body.selectedcleanerMail2;
     const selectedCleaners = [selectedCleaner0, selectedCleaner1, selectedCleaner2];
     const selectedcleanerIDs = [selectedcleanerID0, selectedcleanerID1, selectedcleanerID2];
+    const selectedcleanerMails = [selectedcleanerMail0, selectedcleanerMail1, selectedcleanerMail2];
     const status = false;
 
     console.log(clientID);
@@ -69,38 +77,61 @@ router.post('/booking_final', (req, res)=>{
         console.log(errors);
     }
     else{
-        let newUser = new Request({
-            clientID: clientID,
-            clientName: clientName,
-            clientEmail: clientEmail,
-            clientPhone: clientPhone,
-            extraTasks: extraTasks,
-            hours: hours,
-            moreHours: moreHours,
-            address: address,
-            city: city,
-            country: country,
-            postcode: postcode,
-            keySafePin: keySafePin,
-            keyHiddenPin: keyHiddenPin,
-            frequency: frequency,
-            priority: priority,
-            accessType: accessType,
-            dateFirstClean: dateFirstClean,
-            selectedCleaners: selectedCleaners,
-            selectedcleanerIDs: selectedcleanerIDs,
-            status: status
-        });
+        //Mailing happens here
+        var msg = `<strong>You have just been selected</strong> by ${clientName} to clean.\n Please Login to your account to view details and accept this offer. Ignore this request if you're not interested in this offer!`
+        var data = {
+            from: 'Kvet Sluzeb <info@kvetsluzeb.com>',
+            to: selectedcleanerMail0,
+            cc: selectedcleanerMail1,
+            cc: selectedcleanerMail2,
+            subject: 'Cleaning Request',
+            text: msg,
+            html: msg
+          };
+        mg.messages().send(data, function (error, body) {
+            if(error){
+                console.log(error)
+                res.render('cleaner/forgotpswd', {
+                  cleanerID: user._id,
+                  message: 'Please make sure you entered the right password'
+              })
+            }else{
+                let newUser = new Request({
+                    clientID: clientID,
+                    clientName: clientName,
+                    clientEmail: clientEmail,
+                    clientPhone: clientPhone,
+                    extraTasks: extraTasks,
+                    hours: hours,
+                    moreHours: moreHours,
+                    address: address,
+                    city: city,
+                    country: country,
+                    postcode: postcode,
+                    keySafePin: keySafePin,
+                    keyHiddenPin: keyHiddenPin,
+                    frequency: frequency,
+                    priority: priority,
+                    accessType: accessType,
+                    dateFirstClean: dateFirstClean,
+                    selectedCleaners: selectedCleaners,
+                    selectedcleanerIDs: selectedcleanerIDs,
+                    status: status
+                });
 
-        newUser.save((err) =>{
-            if(err){
-                console.log(err);
-                return;
-            }else {
-                req.flash('success', 'Request completed');
-                res.redirect('/client/login');
+                newUser.save((err) =>{
+                    if(err){
+                        console.log(err);
+                        return;
+                    }else {
+                        req.flash('success', 'Request completed');
+                        res.redirect('/client/login');
+                    }
+                });
+              console.log(body);
             }
         });
+
     }
 });
 module.exports = router;

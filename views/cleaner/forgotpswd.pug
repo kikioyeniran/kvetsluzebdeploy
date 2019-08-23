@@ -34,7 +34,10 @@ html
               h3.text-center
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
-              h4.text-center FORGOT PASSWORD
+              h4.text-center CLEANER FORGOT PASSWORD
+              .container
+                    if message
+                      #messages(class="alert alert-success") #{message}
               form(method="POST", action='/cleaner/pswd/forgotpswd')
                 .form-group
                   label(for="email") Please enter your email (confirm reset from your mail box)
@@ -53,3 +56,7 @@ html
     script(src="/admin/js/jquery.min.js")
     script(src="/admin/js/tether.min.js")
     script(src="/admin/js/bootstrap.min.js")
+    script.
+      setTimeout(function() {
+      $("#messages").fadeOut().empty();
+      }, 10000);

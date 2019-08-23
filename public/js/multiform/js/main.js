@@ -1,8 +1,26 @@
 
 (function($) {
-    $.validator.addMethod('filesize', function (value, elemet, param){
-        return this.optional(element) || (element.files[0].size <= param)
-    }, 'File size must be less than {0}');
+    // $.validator.addMethod('filesize', function (value, elemet, param){
+    //     return this.optional(element) || (element.files[0].size <= param)
+    // }, 'File size must be less than {0}');
+    // Limit the size of each individual file in a FileList.
+    $.validator.addMethod( "maxsize", function( value, element, param ) {
+        if ( this.optional( element ) ) {
+            return true;
+        }
+
+        if ( $( element ).attr( "type" ) === "file" ) {
+            if ( element.files && element.files.length ) {
+                for ( var i = 0; i < element.files.length; i++ ) {
+                    if ( element.files[ i ].size > param ) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }, $.validator.format( "File size must not exceed {0} bytes each." ) );
     var form = $("#signup-form");
     form.validate({
         errorPlacement: function errorPlacement(error, element) {
@@ -51,17 +69,17 @@
             profilePic:{
                 required: true,
                 extension: "png|jpeg|jpg|gif",
-                // filesize: 10000000,
+                maxsize: 20000000,
             },
             nationalID:{
                 required: true,
                 extension: "png|jpeg|jpg|pdf",
-                // filesize: 1048576000,
+                maxsize: 20000000,
             },
             healthInsurance:{
                 required: true,
                 extension: "pdf",
-                // filesize: 10485760,
+                maxsize: 20000000,
             }
         },
         messages : {
@@ -70,9 +88,9 @@
             },
             password2: 'Passwords do not match',
             mobilenumber: 'Please enter a valid phone number',
-            profilePic: 'Your file must be JPG, GIF or PNG and less than 10MB',
-            nationalID: 'Your ID must be in JPG, GIF, PNG or PDF format and less than 10MB',
-            healthInsurance: 'Your Health Insurance must be in PDF format and less than 10MB'
+            profilePic: 'Your file must be JPG, GIF or PNG and less than 2MB',
+            nationalID: 'Your ID must be in JPG, GIF, PNG or PDF format and less than 2MB',
+            healthInsurance: 'Your Health Insurance must be in PDF format and less than 2MB'
         },
         onfocusout: function(element) {
             $(element).valid();

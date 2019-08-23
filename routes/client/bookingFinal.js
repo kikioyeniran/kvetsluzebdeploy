@@ -18,8 +18,8 @@ router.get('/:client', (req, res) =>{
         console.log(client)
         ClientDetails.findOne(({clientID: req.params.client}), (err, client_details)=>{
             console.log(client_details.city);
-            var query2 = {city: client_details.city};
-            CleanerDetails.find((query2), (err, cleanerDetails)=>{
+            // var query2 = {city: client_details.city}, {country: client_details.country};
+            CleanerDetails.find(({city: client_details.city}, {country: client_details.country}), (err, cleanerDetails)=>{
                 if(empty(cleanerDetails)){
                     console.log('cleaner details empty');
                     res.render('booking_final',{
@@ -34,7 +34,6 @@ router.get('/:client', (req, res) =>{
                         cleanerDetails: cleanerDetails
                     });
                 }
-
             });
         });
     });

@@ -35,7 +35,7 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center RESET PASSWORD
-              form(method="PATCH", action='/admin/pswd/resetpswd')
+              form(method="POST", action='/admin/pswd/resetpswd')
                 .form-group
                   label(for="username") Enter New Password
                   input#username.form-control(type="text" placeholder="Enter Password" name="password")

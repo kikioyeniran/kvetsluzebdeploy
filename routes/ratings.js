@@ -44,7 +44,7 @@ router.post('/cleaner/:clientID/:cleanerID/', (req, res) =>{
         }else {
             console.log(' cleaner rating updated');
             //req.flash('success', 'Account Updated');
-            res.redirect('/cleaner/dashboard/client_finance/'+req.params.clientID);
+            res.redirect('/client/dashboard/wallet/'+req.params.clientID);
         }
     });
 });
