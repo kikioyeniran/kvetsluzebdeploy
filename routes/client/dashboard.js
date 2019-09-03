@@ -83,7 +83,7 @@ router.get('/wallet/:id', (req, res) =>{
                 }
                 var cleanQuery = {cleanerID: clientWallet.cleanerID}
                 CleanerDetails.findOne((cleanQuery), (err, cleaner)=>{
-                    //console.log(costStatus)
+                    console.log(clientWallet.pendingPay);
                     res.render('client/client_finance',{
                         client: client,
                         clientDetails: client_details[0],

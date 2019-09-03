@@ -14,12 +14,12 @@ router.get('', (req, res) =>{
 
 //Register Processes
 router.post('', (req, res)=>{
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     const password2 = req.body.password2;
 
-    req.checkBody('username', 'username is required').notEmpty();
-    //req.checkBody('username', 'Email is not valid').isEmail();
+    req.checkBody('email', 'email is required').notEmpty();
+    //req.checkBody('email', 'Email is not valid').isEmail();
     req.checkBody('password', 'Password is required').notEmpty();
     req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
@@ -31,7 +31,7 @@ router.post('', (req, res)=>{
         });
     }else{
         let newUser = new Admin({
-            username:username,
+            email:email,
             password:password
         });
     bcrypt.genSalt(10, (err, salt)=>{

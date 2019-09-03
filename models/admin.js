@@ -6,10 +6,6 @@ const validator = require('validator');
 
 //Cleaner schema
 const AdminSchema = mongoose.Schema({
-    adminID:{
-        type: String,
-        required: true
-    },
     email:{
         type: String,
         required: true,
