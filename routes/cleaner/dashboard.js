@@ -128,7 +128,6 @@ router.get('/cleaner_calendar/:id', (req, res) =>{
                                 //console.log('Count is ' + c);
                                 var count = c;
                                 let newArray = [];
-
                                 //console.log(typeof(count));
                                 for(var i=0; i<count; i++){
                                     let newObject = {};

@@ -8,7 +8,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 /*====================================================
                          REPORT-1
 ======================================================*/
-
+.delete-icon{
+    color: #c82333;
+    font-size: 150%;
+}
 #report1 .card-block {
 	padding:10px 10px 0 10px;
 }

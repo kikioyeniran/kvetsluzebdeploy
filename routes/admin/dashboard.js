@@ -121,4 +121,35 @@ router.get('/singleclient/:id/:clientid', (req, res) =>{
         });
     });
 });
+
+//Route for Delete Client
+router.delete('/deleteclient/:clientid', (req, res) =>{
+    let query = {clientID: req.params.clientid}
+
+    Client.deleteOne(query, (err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            ClientDetails.deleteOne(query, (err)=>{
+                res.send('Success');
+            })
+        }
+    });
+
+})
+//Route for Delete Cleaner
+router.delete('/deletecleaner/:cleanerid', (req, res) =>{
+    let query = {cleanerID: req.params.cleanerid}
+
+    Cleaner.deleteOne(query, (err)=>{
+        if(err){
+            console.log(err)
+        }else{
+            CleanerDetails.deleteOne(query, (err)=>{
+                res.send('Success');
+            })
+        }
+    });
+
+})
 module.exports = router;

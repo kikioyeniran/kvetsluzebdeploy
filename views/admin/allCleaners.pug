@@ -9,8 +9,10 @@ block content
             .card-block
               h4.card-title #{cleaner.fullName}
             .card-footer
-              small Last updated 3 mins ago
-              a.btn.btn-info.float-right.btn-sm(href="/admin/dashboard/singlecleaner/"+encodeURIComponent(admin._id)+"/"+encodeURIComponent(cleaner.cleanerID)) View Details
+              small These are the details for all the cleaners
+              a.btn.btn-info.float-left.btn-sm(href="/admin/dashboard/singlecleaner/"+encodeURIComponent(admin._id)+"/"+encodeURIComponent(cleaner.cleanerID)) View Details
+              a.delete-cleaner.float-right.delete-icon(href='#', data-id=cleaner.cleanerID, data-id2=admin._id)
+                i.fa.fa-trash-o
         //- .col-sm-6.col-md-4.col-lg-3
         //-   .card.card-inverse.card-info
         //-     img.card-img-top(src="/admin/img/card/c-2.jpg")
