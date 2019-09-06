@@ -7,17 +7,22 @@ const CleanerWalletSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    acctNumber:{
-        type: Number,
-        default: 0
-        //required: true
-    },
+    // acctNumber:{
+    //     type: Number,
+    //     default: 0
+    //     //required: true
+    // },
     acctName:{
         type: String,
         default: ""
         //required: true
     },
-    bank:{
+    ibanNumber:{
+        type: String,
+        default: ''
+        //required: true
+    },
+    swiftCode:{
         type: String,
         default: ''
         //required: true

@@ -32,7 +32,20 @@ block content
                             .timeline
                                 .timeline-icon
                                 .timeline-content
-                                    span.date #{request.dateFirstClean}
+                                    - function changeDate(dateString){
+                                        //- -var newDate = new Date(dateString);
+                                        //- -var newDate = date.format(newDate, 'ddd, MMM DD YYYY');
+                                        //- -return newDate;
+                                        -var date = new Date(dateString);
+                                        -var d = date.getDate();
+                                        -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+                                        -var m = monthNames[date.getMonth()];
+                                        -var y = date.getFullYear();
+                                        -var h = date.getHours();
+                                        -var min = date.getMinutes();
+                                        -return d+' '+m+' '+y+ ', '+h+ ':'+min;}
+
+                                    span.date #{changeDate(request.dateFirstClean)}
                                     h5.date Cleaning Request from #{request.clientName} (Description Below)
                                     //- h5.title Name: #{request.clientName}
                                     h5.title Email: #{request.clientEmail}

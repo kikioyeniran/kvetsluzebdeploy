@@ -49,7 +49,7 @@ block content
                             .text-left.report1-cont
                                 h2.font-light.m-b-0
                                     i.ti-arrow-up.text-info
-                                    |  &euro; #{wallet.cleanerIncome}
+                                    |  &euro; #{wallet.totalIncome}
                                 span.text-muted Total Paid Income
                             span.text-info 70%
                             .progress
@@ -70,12 +70,18 @@ block content
                                 i.fa.fa-user-o
                             input#inlineFormInputGroup.form-control(type="text" name="acctName" placeholder="Account Name" value=wallet.acctName)
                     .form-group
-                        label(for="formGroupExampleInput2") Bank
+                        label(for="formGroupExampleInput2") IBAN number
                         .input-group
                             .input-group-addon
                                 i.fa.fa-lock
-                            input#inlineFormInputGroup.form-control(type="text" name="bank" placeholder="Enter your Bank" value=wallet.bank)
+                            input#inlineFormInputGroup.form-control(type="text" name="ibanNumber" placeholder="Enter your IBAN number" value=wallet.ibanNumber)
                     .form-group
+                        label(for="formGroupExampleInput2") Swift Code
+                        .input-group
+                            .input-group-addon
+                                i.fa.fa-lock
+                            input#inlineFormInputGroup.form-control(type="text" name="swiftCode" placeholder="Enter your Swift code" value=wallet.swiftCode)
+                    //- .form-group
                         label(for="icon-number") Account Number
                         .input-group
                             .input-group-addon

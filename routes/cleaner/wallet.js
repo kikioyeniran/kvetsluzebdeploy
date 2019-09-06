@@ -9,8 +9,9 @@ router.post('/:cleanerID/:id', (req, res) =>{
     //console.log('code is here');
     let wallet = {};
     wallet.acctName = req.body.acctName;
-    wallet.bank = req.body.bank;
-    wallet.acctNumber = req.body.acctNumber;
+    wallet.ibanNumber = req.body.ibanNumber;
+    wallet.swiftCode = req.body.swiftCode;
+    // wallet.acctNumber = req.body.acctNumber;
     let query = {cleanerID : req.params.cleanerID}
 
     CleanerWallet.updateOne(query, wallet, (err) =>{
