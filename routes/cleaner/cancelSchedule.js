@@ -44,7 +44,7 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
             var clientMail = schedule.clientDetails[0].email;
             // console.log(schedule.clientDetails[0].email)
 
-            var msg = `<strong>Your cleaning Schedule has just been cancelled</strong> by your client. Please contact you client for clarity on this change of plans and for a reschedule. Sorry for the inconvenience. <br/> Regards. Kvet`
+            var msg = `<strong>Your cleaning Schedule has just been cancelled</strong> by your cleaner. Please contact you client for clarity on this change of plans and for a reschedule. Sorry for the inconvenience. <br/> Regards. <br/>Kvet Sluzeb Team`
             var data = {
                 from: 'Kvet Sluzeb <info@kvetsluzeb.com>',
                 to: clientMail,

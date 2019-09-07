@@ -12,12 +12,15 @@ let Admin =  require('../../models/admin');
 //Bring in Client Models
 let Client =  require('../../models/client');
 let ClientDetails =  require('../../models/clientDetails');
+let ClientWallet =  require('../../models/clientWallet');
 
 //Cleaner Models
 let Cleaner = require('../../models/cleaner');
 let CleanerDetails = require('../../models/cleanerDetails');
 let Requests = require('../../models/requests');
 let Transactions = require('../../models/allTransactions');
+let CleaningSchedule = require('../../models/cleaningSchedule');
+let CleanerWallet = require('../../models/cleanerWallet');
 
 //Route for Home Page
 router.get('/:id', (req, res) =>{
@@ -130,8 +133,15 @@ router.delete('/deleteclient/:clientid', (req, res) =>{
         if(err){
             console.log(err)
         }else{
-            ClientDetails.deleteOne(query, (err)=>{
-                res.send('Success');
+            ClientDetails.find((query), (err, clientDetails)=>{
+                var query2 = {clientDetails:{_id: clientDetails[0]._id}};
+                ClientDetails.deleteOne(query, (err)=>{
+                    CleaningSchedule.deleteOne(query2, (err)=>{
+                        ClientWallet.deleteOne(query, (err)=>{
+                            res.send('Success');
+                        })
+                    })
+                })
             })
         }
     });
@@ -140,13 +150,20 @@ router.delete('/deleteclient/:clientid', (req, res) =>{
 //Route for Delete Cleaner
 router.delete('/deletecleaner/:cleanerid', (req, res) =>{
     let query = {cleanerID: req.params.cleanerid}
-
+    let query2 = {confirmedCleanerID: req.params.cleanerID}
     Cleaner.deleteOne(query, (err)=>{
         if(err){
             console.log(err)
         }else{
             CleanerDetails.deleteOne(query, (err)=>{
-                res.send('Success');
+                CleanerWallet.deleteOne(query, (err)=>{
+                    let request = {};
+                    request.status = false;
+                    request.confirmedCleanerID = "";
+                    Requests.updateOne(query2, request, (err) =>{
+                        res.send('Success');
+                    })
+                })
             })
         }
     });
