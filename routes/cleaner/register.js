@@ -44,7 +44,7 @@ router.post('/post', (req, res)=>{
     // Initialise Upload
     const upload = multer({
     storage: storage,
-    limits:{fileSize: 10000000},
+    limits:{fileSize: 15728640},
     fileFilter: function(req, file, cb){
         checkFileType(file, cb);
     }

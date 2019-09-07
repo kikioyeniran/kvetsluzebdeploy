@@ -1,10 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const LocalStrategy = require('passport-local')
-const multer = require('multer');
-const path = require('path');
 
 //Bring in Cleaner Models
 let Cleaner =  require('../../models/cleaner');
@@ -45,13 +40,13 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
         var lastClean = [{
             cleanStatus : true,
             paidStatus : false,
-            requestStatus : true,
+            cancelStatus : false,
             lastCleanDate  : dbcurrentClean.currentCleanDate
         }];
         var currentClean = [{
                 cleanStatus : true,
                 paidStatus : false,
-                requestStatus : true,
+                cancelStatus : false,
                 currentCleanDate  : newCurrentDate,
                 nextCleanDate: nextCleanDate,
                 incremental: incremental

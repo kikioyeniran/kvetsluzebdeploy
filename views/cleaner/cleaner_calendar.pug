@@ -63,6 +63,10 @@ block content
                                                 else
                                                     p.lead
                                                         | Clean Status: Cleaned
+                                                if schedule.cancelStatus == true
+                                                    button.btn.btn-danger.btn-sm Schedule Canceled
+                                                p.lead
+                                                    | Total Hours: #{schedule.totalHours}
                                             //- a.btn.btn-secondary(href="#") Go somewhere
                                 .card.mb-2
                                     -var newClass = schedule.clientDetails[0].fullName.split(" ")
@@ -82,8 +86,10 @@ block content
                                                 | Clean Status: Not Cleaned
                                             p.lead
                                                 | Income per hour: &euro;#{cleanerDetails.income}
-                                            a.btn.btn-danger(href="#") Cancel
-                                            a.btn.btn-primary(href="/cleaner/paymentrequest/"+encodeURIComponent(scheduleID)+'/'+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(schedule.clientDetails[0].clientID)) Request Payment
+                                            p.lead
+                                                    | Total Hours: #{schedule.totalHours} Hours
+                                            a.btn.btn-danger(href="/cleaner/cancelschedule/"+encodeURIComponent(scheduleID)+'/'+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(schedule.clientDetails[0].clientID)) Cancel
+                                            a.btn.btn-primary.float-right(href="/cleaner/paymentrequest/"+encodeURIComponent(scheduleID)+'/'+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(schedule.clientDetails[0].clientID)) Request Payment
                                 .card.mb-2
                                     div(id="headingNine").card-header
                                         h5.mb-0

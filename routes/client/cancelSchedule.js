@@ -1,0 +1,100 @@
+const express = require('express');
+const router = express.Router();
+const date = require('date-and-time');
+const mailgun = require("mailgun-js");
+const DOMAIN = 'kvetsluzeb.com';
+const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
+
+//Bring in Cleaner Models
+let Cleaner =  require('../../models/cleaner');
+let CleanerDetails =  require('../../models/cleanerDetails');
+
+//Bring in Client Model
+let ClientDetails =  require('../../models/clientDetails');
+
+//Bring in Client Wallet Model
+let ClientWallet = require('../../models/clientWallet');
+
+
+//Bring in Cleaner Wallet Model
+let CleanerWallet = require('../../models/cleanerWallet');
+
+//Bring in Cleaning Schedule Model
+let CleaningSchedule =  require('../../models/cleaningSchedule');
+
+router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
+    const {scheduleID, cleanerID, clientID} = req.params;
+    CleaningSchedule
+        .findById(scheduleID)
+        .populate('clientDetails')
+        .exec((err, schedule)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            let cancelUpdate = {};
+            var dblastClean = schedule.lastClean[0];
+            var dbcurrentClean = schedule.currentClean[0];
+            var incremental = schedule.currentClean[0].incremental;
+            var newCurrentDate = schedule.currentClean[0].nextCleanDate;
+            var nextCleanDate = new Date().setDate(newCurrentDate.getDate() + incremental);
+            var nextCleanDate = new Date(nextCleanDate);
+            var clientName = schedule.clientDetails[0].fullName;
+            var mailDate = new Date(dbcurrentClean.currentCleanDate);
+            var mailDate = date.format(mailDate, 'ddd, MMM DD YYYY');
+            // console.log(schedule.clientDetails[0].email)
+            var query = {cleanerID: cleanerID};
+            CleanerDetails.find((query), (err, cleanerDetails)=>{
+                var cleanerMail = cleanerDetails[0].email;
+                var msg = `<strong>Your cleaning Schedule has just been cancelled</strong> by your client ${clientName} for ${mailDate}. Please contact this client for clarity on this change of plans and for a reschedule. Sorry for the inconvenience. <br/> Regards. Kvet Sluzeb Team`
+                var data = {
+                    from: 'Kvet Sluzeb <info@kvetsluzeb.com>',
+                    to: cleanerMail,
+                    subject: 'Schedule Changes',
+                    text: msg,
+                    html: msg
+                };
+                mg.messages().send(data, function (error, body) {
+                    if(error){
+                        console.log(error);
+                    }
+                    else{
+                        var lastClean = [{
+                            cleanStatus : false,
+                            paidStatus : false,
+                            cancelStatus : true,
+                            lastCleanDate  : dbcurrentClean.currentCleanDate
+                        }];
+                        var currentClean = [{
+                                cleanStatus : true,
+                                paidStatus : false,
+                                cancelStatus : false,
+                                currentCleanDate  : newCurrentDate,
+                                nextCleanDate: nextCleanDate,
+                                incremental: incremental
+                        }]
+                        //console.log(lastClean, ' ', currentClean);
+                        cancelUpdate.lastClean = lastClean;
+                        cancelUpdate.currentClean = currentClean;
+                        var newLastCleanDate = dbcurrentClean.currentCleanDate;
+                        console.log(newLastCleanDate);
+                        var query = {_id: scheduleID};
+                        CleaningSchedule.updateOne(query, cancelUpdate, (err) =>{
+                            if(err){
+                                console.log(err);
+                                return;
+                            }else {
+                                res.redirect('/client/dashboard/schedule/'+clientID);
+                            }
+                        });
+                    }
+                });
+            })
+
+
+        }
+    });
+})
+
+module.exports = router;

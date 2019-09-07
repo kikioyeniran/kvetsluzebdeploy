@@ -35,8 +35,9 @@ let CleaningScheduleSchema = mongoose.Schema({
                 type:  Boolean,
                 default: false
             },
-            requestStatus:{
-                type: Boolean
+            cancelStatus:{
+                type: Boolean,
+                default: false
             },
             lastCleanDate:{
                 type: Date
@@ -53,7 +54,7 @@ let CleaningScheduleSchema = mongoose.Schema({
                 type:  Boolean,
                 default: false
             },
-            requestStatus:{
+            cancelStatus:{
                 type: Boolean
             },
             currentCleanDate:{

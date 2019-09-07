@@ -102,6 +102,7 @@ let cleanerRegister = require('./routes/cleaner/register');
 let cleanerEdit = require('./routes/cleaner/editDetails');
 let cleanerSchedule = require('./routes/cleaner/schedule');
 let paymentRequest = require('./routes/cleaner/paymentRequest');
+let cancelSchedule = require('./routes/cleaner/cancelSchedule');
 let wallet = require('./routes/cleaner/wallet');
 let cleanerPswd = require('./routes/cleaner/pswd');
 
@@ -115,6 +116,7 @@ let clientRenew = require('./routes/client/renewbooking');
 let clientLogin = require('./routes/client/login')
 let clientPswd = require('./routes/client/pswd')
 let clientTransactions = require('./routes/client/transactions')
+let cancelSchedule2 = require('./routes/client/cancelSchedule');
 let clientPay = require('./routes/client/pay')
 let clientSuccess = require('./routes/client/success')
 
@@ -136,6 +138,7 @@ app.use('/cleaner/register', cleanerRegister);
 app.use('/cleaner/edit', cleanerEdit);
 app.use('/cleaner/schedule', cleanerSchedule);
 app.use('/cleaner/paymentrequest', paymentRequest);
+app.use('/cleaner/cancelschedule', cancelSchedule);
 app.use('/cleaner/wallet', wallet);
 app.use('/cleaner/pswd', cleanerPswd);
 
@@ -148,6 +151,7 @@ app.use('/client/renew', clientRenew);
 app.use('/client/login', clientLogin);
 app.use('/client/pswd', clientPswd);
 app.use('/client/transactions', clientTransactions);
+app.use('/client/cancelschedule', cancelSchedule2);
 app.use('/client/pay', clientPay);
 app.use('/client/success', clientSuccess);
 

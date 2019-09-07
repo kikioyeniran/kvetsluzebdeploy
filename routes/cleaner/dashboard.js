@@ -142,6 +142,7 @@ router.get('/cleaner_calendar/:id', (req, res) =>{
                                         var lastCleanDate = date.format(lastCleanDate, 'ddd, MMM DD YYYY');
                                         var lastCleanStatus = tempSchedule.lastClean[0].cleanStatus;
                                         var lastPaidStatus = tempSchedule.lastClean[0].paidStatus;
+                                        var cancelStatus = tempSchedule.lastClean[0].cancelStatus;
                                         console.log(tempSchedule.lastClean[0].lastCleanDate);
                                     }
                                     var currentCleanDate = tempSchedule.currentClean[0].currentCleanDate;
@@ -157,6 +158,8 @@ router.get('/cleaner_calendar/:id', (req, res) =>{
                                     newObject.clientDetails = tempSchedule.clientDetails
                                     newObject.lastCleanStatus = lastCleanStatus;
                                     newObject.lastPaidStatus = lastPaidStatus;
+                                    newObject.cancelStatus = cancelStatus;
+                                    newObject.totalHours = tempSchedule.totalHours;
                                     newArray.push(newObject);
                                     //console.log(tempSchedule.clientDetails);
                                 }
