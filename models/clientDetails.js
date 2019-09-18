@@ -3,32 +3,26 @@ const mongoose = require('mongoose');
 //Client Detils Schema
 let ClientDetailsSchema = mongoose.Schema({
     email:{
-        type: String,
-        required: true
+        type: String
     },
     postcode:{
         type: String,
         required: true
     },
     bedrooms:{
-        type: Number,
-        required: true
+        type: Number
     },
     bathrooms:{
-        type: Number,
-        required: true
+        type: Number
     },
     extraTasks:{
-        type: Array,
-        required: true
+        type: Array
     },
     dateFirstClean:{
-        type: Date,
-        required: true
+        type: Date
     },
     cleaningHours:{
-        type: Number,
-        required: true
+        type: Number
     },
     moreCleaningHours:{
         type: Number
@@ -37,8 +31,7 @@ let ClientDetailsSchema = mongoose.Schema({
         type: String
     },
     apartmentAccess:{
-        type: String,
-        required: true
+        type: String
     },
     keyHiddenPin:{
         type: String
@@ -47,24 +40,19 @@ let ClientDetailsSchema = mongoose.Schema({
         type: String
     },
     cleaningFrequency:{
-        type: String,
-        required: true
+        type: String
     },
     mobileNumber:{
-        type: Number,
-        required: true
+        type: Number
     },
     address:{
-        type: String,
-        required: true
+        type: String
     },
     fullName:{
-        type: String,
-        required: true
+        type: String
     },
     city:{
-        type: String,
-        required: true
+        type: String
     },
     country:{
         type: String,
@@ -75,8 +63,7 @@ let ClientDetailsSchema = mongoose.Schema({
         default: 0
     },
     clientID:{
-        type: String,
-        required: true
+        type: String
     },
     profilePic:{
         type: String,

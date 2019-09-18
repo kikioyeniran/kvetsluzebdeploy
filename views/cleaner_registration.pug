@@ -130,9 +130,11 @@ block content
                                             label.form-label(for="healthInsurance") Health Insurance
                                             input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
                                             small#fileHelp.form-text.text-muted
-                                        label.custom-control.custom-checkbox
-                                            input.custom-control-input(type="checkbox" checked="" name='terms')
-                                            span.custom-control-label Do you agree with all our terms and conditions?
+                                        .form-group
+                                            label.form-label(for="terms") Do you agree with our terms and conditions?
+                                            //- input.custom-control-input(type="checkbox" disabled="")
+                                            input(type="checkbox" name="vehicle" value="Bike")
+                                            //- span.custom-control-label Default Checkbox
                                     .fieldset-footer
                                             span Step 3 of 3
 
@@ -255,9 +257,10 @@ block content
                                             label.form-label(for="healthInsurance") Health Insurance
                                             input#healthInsurance.form-control-file(type="file" aria-describedby="fileHelp" name='healthInsurance')
                                             small#fileHelp.form-text.text-muted
-                                        label.custom-control.custom-checkbox
-                                            input.custom-control-input(type="checkbox" checked="" name='terms')
-                                            span.custom-control-label Do you agree with all our terms and conditions?
+                                        .form-group
+                                            label.form-label(for="terms") Do you agree with our terms and conditions?
+                                            input.custom-control-input(type="checkbox" disabled="")
+                                            //- input(type="checkbox" name="terms" value="Terms")
                                     .fieldset-footer
                                             span Step 3 of 3
 
