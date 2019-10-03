@@ -28,6 +28,11 @@ router.get('/faq', (req, res) =>{
 router.get('/careers', (req, res) =>{
     res.render('careers')
 });
+
+//checked route
+router.get('/privacy-policy', (req, res) =>{
+    res.render('privacy')
+});
 //checked2 route
 router.get('/checked2', (req, res) =>{
     res.render('checked2')

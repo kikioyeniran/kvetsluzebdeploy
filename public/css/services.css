@@ -3,7 +3,7 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 /*====================================================
                    BUSINESS-GROWTH-P1
@@ -100,14 +100,42 @@ ul.service-spec li p {
 /*====================================================
                    FINANCIAL-P1
 ======================================================*/
- 
+
 .financial-p2-bg {
-    background-image: url(../img/image-1.jpg);
+    background-image: url(../img/pic24.jpg);
     background-repeat: no-repeat;
 }
 
 .financial-p3-bg {
-    background-image: url(../img/image-2.jpg);
+    background-image: url(../img/pic20.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p4-bg {
+    background-image: url(../img/access.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p5-bg {
+    background-image: url(../img/sec.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p6-bg {
+    background-image: url(../img/parents.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p7-bg {
+    background-image: url(../img/sec2.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p8-bg {
+    background-image: url(../img/electronics.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p9-bg {
+    background-image: url(../img/pic21.jpg);
+    background-repeat: no-repeat;
+}
+.financial-p10-bg {
+    background-image: url(../img/info.jpg);
     background-repeat: no-repeat;
 }
 
@@ -243,7 +271,7 @@ ul.service-spec li p {
 @media (min-width: 1600px) {
     .financial-p5 .what-we-desc p {
         font-size: 16px;
-    }    
+    }
 
     .financial-p6 .financial-p6-cont p{
         font-size: 16px;
