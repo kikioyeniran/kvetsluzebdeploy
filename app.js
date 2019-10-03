@@ -33,10 +33,11 @@ app.set('views', path.join(__dirname, 'views'));
 console.log(path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-//Body Parse Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
 //parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '20mb'}));
+//Body Parse Middleware
+app.use(bodyParser.urlencoded({ extended: false, limit: '20mb' }));
+
 
 
 //Set Public folder
