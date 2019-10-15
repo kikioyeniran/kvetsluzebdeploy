@@ -3,7 +3,7 @@ const router = express.Router();
 const date = require('date-and-time');
 const mailgun = require("mailgun-js");
 const DOMAIN = 'kvetsluzeb.com';
-const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const api_key = 'key-574b470a222d9b71a2b31386d4e4dc5d';
 const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
 
 //Bring in Cleaner Models

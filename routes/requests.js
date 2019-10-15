@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mailgun = require("mailgun-js");
 const DOMAIN = 'kvetsluzeb.com';
-const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const api_key = 'key-574b470a222d9b71a2b31386d4e4dc5d';
 const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
 //Models
 let Request =  require('../models/requests');
@@ -91,10 +91,10 @@ router.post('/booking_final', (req, res)=>{
         mg.messages().send(data, function (error, body) {
             if(error){
                 console.log(error)
-                res.render('cleaner/forgotpswd', {
-                  cleanerID: user._id,
-                  message: 'Please make sure you entered the right password'
-              })
+            //     res.render('cleaner/forgotpswd', {
+            //       cleanerID: user._id,
+            //       message: 'Please make sure you entered the right password'
+            //   })
             }else{
                 let newUser = new Request({
                     clientID: clientID,

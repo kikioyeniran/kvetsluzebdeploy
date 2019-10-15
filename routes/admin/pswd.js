@@ -5,10 +5,10 @@ const bcrypt = require('bcryptjs');
 //Bring in Admin Models
 let Admin =  require('../../models/admin');
 // const domain = 'sandboxfdf76a99b5044d6c96c28e0971d8e9ca.mailgun.org';
-// const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+// const api_key = 'key-574b470a222d9b71a2b31386d4e4dc5d';
 const mailgun = require("mailgun-js");
 const DOMAIN = 'kvetsluzeb.com';
-const api_key = '3896a986c536ba4c44b6278b43417c4a-2ae2c6f3-9188bee6';
+const api_key = 'key-574b470a222d9b71a2b31386d4e4dc5d';
 const mg = mailgun({apiKey: api_key, domain: DOMAIN, host: 'api.eu.mailgun.net'});
 // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
