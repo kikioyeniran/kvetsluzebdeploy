@@ -7,8 +7,15 @@ block content
         .col-md-3
           .card.hovercard
             .cardheader
-            .avatar
-              img.img-fluid(alt="" src="/uploads/"+cleanerDetails.profilePic)
+            form(method='POST', action='/cleaner/edit/images/'+encodeURIComponent(cleaner.cleanerID)+'/'+encodeURIComponent(cleaner._id))
+              .avatar.image-upload
+                label(for="file-input")
+                  img.img-fluid.image(alt="" src="/uploads/"+cleanerDetails.profilePic)
+                  .overlay
+                    a.icon(href="#" title="Click Image to Update Picture")
+                      i.fa.fa-user
+                input#file-input(type="file")
+              button.btn.btn-general.btn-blue.special(type='submit') Change picture
             .info
               .title
                 a(target="_blank" href="#") #{cleanerDetails.fullName}

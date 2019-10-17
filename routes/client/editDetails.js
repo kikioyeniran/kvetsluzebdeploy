@@ -36,4 +36,54 @@ router.post('/:clientID/:id', (req, res) =>{
     });
 });
 
+router.post('/image/:clientID/:id', (req, res)=>{
+    console.log('form submitted');
+    const storage = multer.diskStorage({
+        destination: './public/uploads/',
+        filename: function(req, file, cb){
+          cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        }
+      });
+      function checkFileType(files, cb){
+        // Allowed ext
+        const filetypes = /jpeg|jpg|png|gif/;
+        // Check ext
+        const extname = filetypes.test(path.extname(files.originalname).toLowerCase());
+        // Check mime
+        const mimetype = filetypes.test(files.mimetype);
+
+        if(mimetype && extname){
+          return cb(null,true);
+        } else {
+          cb('Error: Images and Documents Only!');
+        }
+      }
+      // Initialise Upload
+    const upload = multer({
+        storage: storage,
+        limits:{fileSize: 10000000},
+        fileFilter: function(req, file, cb){
+            checkFileType(file, cb);
+        }
+        }).single('profilePic')
+        upload(req, res, (err) => {
+            if(err){
+                console.log(err);
+            }else{
+                let client = {};
+                client.profilePic = req.file.filename;
+                let query = {clientID : req.params.clientID};
+                ClientDetails.updateOne(query, client, (err) =>{
+                    if(err){
+                        console.log(err);
+                        return;
+                    }else {
+                        console.log('found and updated');
+                        req.flash('success', 'Picture Updated');
+                        res.redirect('/client/dashboard/home/'+req.params.id);
+                    }
+                });
+            }
+        });
+});
 module.exports = router;

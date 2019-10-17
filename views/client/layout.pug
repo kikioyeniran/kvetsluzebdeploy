@@ -244,10 +244,12 @@ html
             // ***** SIDE NAVBAR *****
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
-                    .avatar
+                    .avatar.image-upload
                         img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="...")
+
                     .title
                         h1.h4= clientDetails.fullName
+
                 hr
                 // Sidebar Navidation Menus
                 ul#sidenav.list-unstyled
