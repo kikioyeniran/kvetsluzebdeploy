@@ -12,14 +12,14 @@ block content
         .col-md-3
           .card.hovercard
             .cardheader
-            form(method='POST', action='/client/edit/image/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id))
+            form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
               .avatar.image-upload
                 label(for="file-input")
                   img.img-fluid.image(alt="" src="/uploads/"+clientDetails.profilePic)
                   .overlay
                     a.icon(href="#" title="Click Image to Update Picture")
                       i.fa.fa-user
-                input#file-input(type="file")
+                input#file-input(type="file" name="profilePic")
               button.btn.btn-general.btn-blue.special(type='submit') Change picture
             .info
               .title

@@ -38,7 +38,7 @@ router.post('/:cleanerID/:id/', (req, res) =>{
 });
 
 //Edit Profile Picture
-router.post('/image/:cleanerID/:id', (req, res)=>{
+router.post('/images/:cleanerID/:id', (req, res)=>{
     console.log('form submitted');
     const storage = multer.diskStorage({
         destination: './public/uploads/',
@@ -57,7 +57,7 @@ router.post('/image/:cleanerID/:id', (req, res)=>{
         if(mimetype && extname){
           return cb(null,true);
         } else {
-          cb('Error: Images and Documents Only!');
+          cb('Error: Images Only!');
         }
       }
       // Initialise Upload
