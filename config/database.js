@@ -1,8 +1,9 @@
 module.exports = {
   database:
-    'mongodb://kvetadmin:lion8989lion@ds137008.mlab.com:37008/kvetsluzeb',
+    'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
   secret: 'yoursecret'
 };
+//'mongodb://kvetadmin:lion8989lion@ds137008.mlab.com:37008/kvetsluzeb',
 //new databse linkq
 // database:'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
 //     secret: 'yoursecret'
