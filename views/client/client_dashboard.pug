@@ -12,6 +12,7 @@ block content
         .col-md-3
           .card.hovercard
             .cardheader
+            // form for picture change
             form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
               .avatar.image-upload
                 label(for="file-input")
