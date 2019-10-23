@@ -1,8 +1,11 @@
 module.exports = {
-    database:'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
-    secret: 'yoursecret'
-}
+  database:
+    'mongodb://kvetadmin:lion8989lion@ds137008.mlab.com:37008/kvetsluzeb',
+  secret: 'yoursecret'
+};
 
+// database:'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
+//     secret: 'yoursecret'
 // var mongoClient = require("mongodb").MongoClient;
 // mongoClient.connect("mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test", {
 //   uri_decode_auth: true
