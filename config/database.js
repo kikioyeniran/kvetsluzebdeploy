@@ -1,6 +1,6 @@
 module.exports = {
   database:
-    'mongodb+srv://kikioyeniran:landactdecree1978@cluster0-9rntd.mongodb.net/test',
+    'mongodb://kvetadmin:lion8989lion@ds137008.mlab.com:37008/kvetsluzeb',
   secret: 'yoursecret'
 };
 //'mongodb://kvetadmin:lion8989lion@ds137008.mlab.com:37008/kvetsluzeb',
