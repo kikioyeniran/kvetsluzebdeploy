@@ -13,15 +13,18 @@ block content
           .card.hovercard
             .cardheader
             // form for picture change
-            form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
-              .avatar.image-upload
-                label(for="file-input")
-                  img.img-fluid.image(alt="" src="/uploads/"+clientDetails.profilePic)
-                  .overlay
-                    a.icon(href="#" title="Click Image to Update Picture")
-                      i.fa.fa-user
-                input#file-input(type="file" name="profilePic")
-              button.btn.btn-general.btn-blue.special(type='submit') Change picture
+            .upload-form
+              form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
+                .avatar.image-upload
+                  label(for="file-input")
+                    img.img-fluid.image(alt="" src="/uploads/"+clientDetails.profilePic)
+                    .overlay
+                      a.icon(href="#" title="Click Image to Update Picture")
+                        i.fa.fa-user
+                  input#file-input(type="file" name="profilePic")
+                input.btn.btn-general.btn-blue.special(type='submit' value="Change Picture")
+                if picUpdate === false
+                  p Please select a picture before submitting!
             .info
               .title
                 a(target="_blank" href="#") #{clientDetails.fullName}
