@@ -8,17 +8,21 @@ block content
           .card.hovercard
             .cardheader
             .upload-form
+
               form(method='POST', action='/cleaner/edit/images/'+encodeURIComponent(cleaner.cleanerID)+'/'+encodeURIComponent(cleaner._id), enctype="multipart/form-data")
                 .avatar.image-upload
                   label(for="file-input")
-                    img.img-fluid.image(alt="" src="/uploads/"+cleanerDetails.profilePic)
-                    .overlay
-                      a.icon(href="#" title="Click Image to Update Picture")
-                        i.fa.fa-user
+                    .container-pic
+                      .overlay
+                        img.img-fluid.image(alt="" title="Click Image to Update Picture" src="/uploads/"+cleanerDetails.profilePic )
+                        //- a.icon(href="#" title="Click Image to Update Picture")
+                          i.fa.fa-user
                   input#file-input(type="file" name="profilePic")
                 input.btn.btn-general.btn-blue.special(type='submit' value="Change Picture")
                 if picUpdate === false
                   p Please select a picture before submitting!
+                else
+                  p Click on the image to update your profile picture
             .info
               .title
                 a(target="_blank" href="#") #{cleanerDetails.fullName}

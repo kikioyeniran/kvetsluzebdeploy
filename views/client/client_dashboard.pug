@@ -17,9 +17,9 @@ block content
               form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
                 .avatar.image-upload
                   label(for="file-input")
-                    img.img-fluid.image(alt="" src="/uploads/"+clientDetails.profilePic)
                     .overlay
-                      a.icon(href="#" title="Click Image to Update Picture")
+                      img.img-fluid.image(alt="" title="Click Image to Update Picture" src="/uploads/"+clientDetails.profilePic)
+                      //- a.icon(href="#" title="Click Image to Update Picture")
                         i.fa.fa-user
                   input#file-input(type="file" name="profilePic")
                 input.btn.btn-general.btn-blue.special(type='submit' value="Change Picture")
