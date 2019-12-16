@@ -18,46 +18,55 @@ block content
                             p
                                 small Last updated #{wallet.updated}
 
+                //- #login-modal.modal.fade(role="dialog")
+                #login-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;')
+                    .modal-dialog.modal-dialog-centered
+                        // Modal content
+                        .modal-content
+                            .modal-header
+                                button.close(type="button" data-dismiss="modal") ×
+                                h4.modal-title YOU ARE ABOUT TO MAKE PAYMENTS
+                            .modal-body
+                                p You shall be redirected to the payment page once you click proceed to payments. Please don't click on pay twice
+                                p Once you payment has been completed, kindly refresh this page to avoid being charged twice.
+                                p Thank you!
+                                //- p #{wallet.pendingPay[0]}
+                            .modal-footer
+                                //- a.btn.btn-general.btn-blue.mr-2(href="https://payments.kvetsluzeb.com/"+ client._id +"/" + wallet.pendingPay[0].cleanerID + "/" + wallet.pendingPay[0].cleanDate + "/" + wallet.pendingPay[0].cost) Check Out
+                                a.btn.btn-general.btn-blue.mr-2(href="https://payment.kvetsluzeb.com?clientID="+ encodeURIComponent(client.clientID) +"&cleanerID=" + encodeURIComponent(wallet.pendingPay[0].cleanerID) + "&date=" + date + "&totalPaid=" + encodeURIComponent(wallet.pendingPay[0].cost) target="_blank") Proceed to Payment
+                                //- button.btn.btn-default(type="button" data-dismiss="modal") Close
+
                 .col-sm-6
                     .card
-                        //- .card-block
-                        form#requestForm(method="POST", action="/client/pay")
-                            input(type='hidden' name='clientID' value=client.clientID)
-                            input(type='hidden' name='clientName' value=clientDetails.fullName)
-                            if pending === false
-                                input(type='hidden' name='cleanerID' value=wallet.pendingPay[0].cleanerID)
-                                input(type='hidden' name='cleanDate' value=wallet.pendingPay[0].cleanDate)
-                                input(type='hidden' name='totalPay' value=wallet.pendingPay[0].cost)
-                                script.stripe-button(src="https://checkout.stripe.com/checkout.js" data-key=stripePublishableKey data-amount=wallet.pendingPay[0].cost * 100 data-name="Cleaning Service" data-description="Payment for cleaning done on "+wallet.pendingPay[0].cleanDate data-image="/img/marketplace2.png" data-locale="auto")
-                                script.
-                                    // Hide default stripe button
-                                    document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+                        .card.card-inverse.card-info
+                            .card-block
+                                h3.card-title Payment Information
+                                hr
+                                h6.card-line
+                                    strong Number of Bathrooms :
+                                    |  #{clientDetails.bathrooms}
+                                h6.card-line
+                                    strong Number of Bedrooms :
+                                    |  #{clientDetails.bedrooms}
+                                h6.card-line
+                                    strong Extra Tasks :
+                                    |  #{clientDetails.extraTasks}
+                                h6.card-line
+                                    strong Number of Cleaning Hours :
+                                    |  #{clientDetails.cleaningHours}
+                                if wallet.pendingPay == null
+                                    h6.card-line
+                                        strong Total Charge :
+                                        |  &euro;#{wallet.pendingPay[0]}
+                                if costStatus == true
+                                    a.btn.btn-general.btn-blue.mr-2.disabled(href="#") Check Out
+                                    //- button.btn.btn-info.btn-lg(type="button" data-toggle="modal" data-target="#login-modal") Open Modal
+                                else
+                                    //- a.btn.btn-general.btn-blue.mr-2(href="https://payments.kvetsluzeb.com/"+ encodeURIComponent(client._id) +"/" + encodeURIComponent(wallet.pendingPay[0].cleanerID) + "/" + encodeURIComponent(wallet.pendingPay[0].cleanDate) + "/" + encodeURIComponent(wallet.pendingPay[0].cost)) Check Out
+                                    button.btn.btn-general.btn-blue.mr-2(type="button" data-toggle="modal" data-target="#login-modal") Pay
+                                    //- button.btn.btn-general.btn-blue.mr-2(href="#") Check Out
 
-                            .card.card-inverse.card-info
-                                //- img.card-img-top(src="/admin/img/card/c-3.jpg")
-                                .card-block
-                                    h3.card-title Payment Information
-                                    hr
-                                    h6.card-line
-                                        strong Number of Bathrooms :
-                                        |  #{clientDetails.bathrooms}
-                                    h6.card-line
-                                        strong Number of Bedrooms :
-                                        |  #{clientDetails.bedrooms}
-                                    h6.card-line
-                                        strong Extra Tasks :
-                                        |  #{clientDetails.extraTasks}
-                                    h6.card-line
-                                        strong Number of Cleaning Hours :
-                                        |  #{clientDetails.cleaningHours}
-                                    if wallet.pendingPay == null
-                                        h6.card-line
-                                            strong Total Charge :
-                                            |  &euro;#{wallet.pendingPay[0].cost}
-                                    if costStatus == true
-                                        a.btn.btn-general.btn-blue.mr-2.disabled(href="#") Check Out
-                                    else
-                                        button.btn.btn-general.btn-blue.mr-2(href="#") Check Out
+
 
             if cleaner !== null
                 .row

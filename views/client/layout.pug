@@ -34,6 +34,7 @@ html
             Weglot.initialize({
             api_key: 'wg_67165334b2bc34d56bda185a04c28be70'
             });
+        script(src="https://js.stripe.com/v3/")
     // Global site tag (gtag.js) - Google Analytics
     script(async="" src="https://www.googletagmanager.com/gtag/js?id=UA-148228071-1")
     script.
@@ -46,6 +47,7 @@ html
             ====================================================
             MAIN NAVBAR
             ======================================================
+
         header.header
             nav.navbar.navbar-expand-lg
                 .search-box
@@ -70,53 +72,6 @@ html
                         li.nav-item.d-flex.align-items-center.full_scr_exp
                             a.nav-link(href="#")
                                 img.img-fluid(src="/admin/img/expand.png" onclick="toggleFullScreen(document.body)" alt="")
-                        // Search
-                        //- li.nav-item.d-flex.align-items-center
-                            a#search.nav-link(href="#")
-                                i.icon-search
-                        // Notifications
-                        //- li.nav-item.dropdown
-                            a#notifications.nav-link(rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                i.fa.fa-bell-o
-                                span.noti-numb-bg
-                                span.badge 12
-                            ul.dropdown-menu(aria-labelledby="notifications")
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-envelope.bg-red
-                                            | You have 6 new messages
-                                        .notification-time
-                                            small 4 minutes ago
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-twitter.bg-skyblue
-                                            | You have 2 followers
-                                        .notification-time
-                                            small 4 minutes ago
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-upload.bg-blue
-                                            | Server Rebooted
-                                        .notification-time
-                                            small 4 minutes ago
-                                li
-                                    a.dropdown-item.nav-link(rel="nofollow" href="#")
-                                        .notification
-                                        .notification-content
-                                            i.fa.fa-twitter.bg-skyblue
-                                            | You have 2 followers
-                                        .notification-time
-                                            small 10 minutes ago
-                                li
-                                    a.dropdown-item.all-notifications.text-center(rel="nofollow" href="#")
-                                        strong view all notifications
-
 
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
@@ -155,87 +110,8 @@ html
                                         .notification-content
                                             i.fa.fa-power-off
                                             | Logout
-                        //- li.nav-item.d-flex.align-items-center
-                            a#menu-toggle-right.nav-link(href="#")
-                                i.fa.fa-bars
-                            nav#sidebar-wrapper
-                                .sidebar-nav
-                                    .tab(role="tabpanel")
-                                        ul.nav.nav-tabs(role="tablist")
-                                            li.nav-item
-                                                a.nav-link.active(href="#live" role="tab" data-toggle="tab")
-                                                    i.fa.fa-globe
-                                                    |  Live
-                                            li.nav-item
-                                                a.nav-link(href="#trend" role="tab" data-toggle="tab")
-                                                    i.fa.fa-rocket
-                                                    |  Trending
-                                        .tab-content.tabs
-                                            #live.tab-pane.fade.show.active(role="tabpanel")
-                                                h3 Connect Live
-                                                .content.newsf-list
-                                                    ul.list-unstyled
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow " href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 New Innovation world
-                                                                    small Tech soft is great innovation for...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Modified hand-cart
-                                                                    small The idea is to incorporate easy...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-4.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-primary
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-1.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-success
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-2.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                                        li.border.border-info
-                                                            a.d-flex(rel="nofollow" href="#")
-                                                                .news-f-img
-                                                                    img.img-fluid.rounded-circle(src="/admin/img/avatar-3.jpg" alt="...")
-                                                                .msg-body
-                                                                    h6.h5.msg-nav-h6 Low cost Modern printer
-                                                                    small A dot matrix printer modified at...
-                                            #trend.tab-pane.fade(role="tabpanel")
-                                                .card.card-c2(style="box-shadow: 0 0 0;")
-                                                    .header
-                                                        h3.title Trending Items
-                                                        p.category Last Campaign Performance
-                                                    .content
-                                                        canvas#myChart4.ct-chart(height="250")
-                                                        .footer
-                                                            .legend
-                                                                i.fa.fa-circle.text-info
-                                                                |  Open
-                                                                i.fa.fa-circle.text-danger
-                                                                |  Bounce
-                                                                i.fa.fa-circle.text-warning
-                                                                |  Unsubscribe
-                                                            hr
-                                                            .stats
-                                                                i.fa.fa-clock-o
-                                                                |  Campaign sent 2 days ago
+
+
         //
             ====================================================
             PAGE CONTENT
@@ -301,6 +177,8 @@ html
     script(src="/admin/js/front.js")
     script(src="/admin/js/faq.js")
     script(src="/js/active.js")
+    script(src="/js/script.js")
+    script(src="/js/client.js")
     script(src='/js/conditional.js')
     script(src='/css/multi-select/js/jquery.multi-select.js')
     // Multi Select scripts

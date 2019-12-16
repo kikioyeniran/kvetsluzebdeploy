@@ -3,196 +3,214 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
+const uuid = require('uuid-random');
 
 //Bring in Cleaner Models
-let Cleaner =  require('../../models/cleaner');
-let CleanerDetails =  require('../../models/cleanerDetails');
+let Cleaner = require('../../models/cleaner');
+let CleanerDetails = require('../../models/cleanerDetails');
 let CleanerWallet = require('../../models/cleanerWallet');
 
-router.get('/page', (req, res) =>{
-    res.render('cleaner_registration', {
-        form: null
-    })
+router.get('/page', (req, res) => {
+  res.render('cleaner_registration', {
+    form: null
+  });
 });
 
 //Cleaner Registration Processes
 // /cleaner/register/post
-router.post('/post', (req, res)=>{
-    console.log('submitted');
-    // Set The Storage Engine
-    const storage = multer.diskStorage({
-        destination: './public/uploads/',
-        filename: function(req, file, cb){
-          cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-        }
-      });
-
-      function checkFileType(files, cb){
-        // Allowed ext
-        const filetypes = /jpeg|jpg|png|gif|pdf/;
-        // Check ext
-        const extname = filetypes.test(path.extname(files.originalname).toLowerCase());
-        // Check mime
-        const mimetype = filetypes.test(files.mimetype);
-
-        if(mimetype && extname){
-          return cb(null,true);
-        } else {
-          cb('Error: Images and Documents Only!');
-        }
-      }
-    // Initialise Upload
-    const upload = multer({
-    storage: storage,
-    limits:{fileSize: 15728640},
-    fileFilter: function(req, file, cb){
-        checkFileType(file, cb);
+router.post('/post', (req, res) => {
+  console.log('submitted');
+  // Set The Storage Engine
+  const storage = multer.diskStorage({
+    destination: './public/uploads/',
+    filename: function(req, file, cb) {
+      cb(
+        null,
+        file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+      );
     }
-    }).fields([{name: 'profilePic'}, {name: 'nationalID'}, {name: 'healthInsurance'}])
+  });
 
-    upload(req, res, (err) => {
-        if(err){
-            console.log(err);
-            return;
-        } else{
-            // const username = req.body.username.toLowerCase();
-            const email = req.body.email.toLowerCase();
-            const password = req.body.password;
-            const password2 = req.body.password2;
+  function checkFileType(files, cb) {
+    // Allowed ext
+    const filetypes = /jpeg|jpg|png|gif|pdf/;
+    // Check ext
+    const extname = filetypes.test(
+      path.extname(files.originalname).toLowerCase()
+    );
+    // Check mime
+    const mimetype = filetypes.test(files.mimetype);
 
-            const postcode = req.body.postcode;
-            const extraTasks = req.body.extraTasks;
-            const experience = req.body.experience;
-            const profile = req.body.profile;
-            const fullName = req.body.fullname;
-            const mobileNumber = req.body.mobilenumber;
-            const address = req.body.address;
-            const city = req.body.city;
-            const country = req.body.country;
-            const income = req.body.income;
-            let cleanerID = bcrypt.hashSync('fullName', 10);
-            const profilePic = req.files['profilePic'][0].filename;
-            const nationalID = req.files['nationalID'][0].filename;
-            const healthInsurance = req.files['healthInsurance'][0].filename;
-            //const cleanerID = req.body._id;
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb('Error: Images and Documents Only!');
+    }
+  }
+  // Initialise Upload
+  const upload = multer({
+    storage: storage,
+    limits: { fileSize: 15728640 },
+    fileFilter: function(req, file, cb) {
+      checkFileType(file, cb);
+    }
+  }).fields([
+    { name: 'profilePic' },
+    { name: 'nationalID' },
+    { name: 'healthInsurance' }
+  ]);
 
-            req.checkBody('email', 'Email is required').notEmpty();
-            req.checkBody('email', 'Email is not valid').isEmail();
-            req.checkBody('password', 'Password is required').notEmpty();
-            req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-            req.checkBody('postcode', 'Postcode is required').notEmpty();
-            req.checkBody('fullname', 'Your Full Name  is not valid').notEmpty();
-            req.checkBody('mobilenumber', 'Mobile Number is required').notEmpty();
-            req.checkBody('address', 'Addresss is required').notEmpty();
-            req.checkBody('city', 'City is required').notEmpty();
-            req.checkBody('country', 'Country is required').notEmpty();
-            req.checkBody('income', 'Your desired income is required').notEmpty();
-            req.checkBody('experience', 'Your years of experience is required').notEmpty();
-            req.checkBody('profile', 'Your profile is required').notEmpty();
-            // req.checkBody('nationalID', 'Your means of identification is required').notEmpty();
-            // req.checkBody('healthInsurance', 'Your Health Insurance is required').notEmpty();
+  upload(req, res, err => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      // const username = req.body.username.toLowerCase();
+      const email = req.body.email.toLowerCase();
+      const password = req.body.password;
+      const password2 = req.body.password2;
 
-            //Fields value Holder
-            var form = {
-                email: email,
-                password: password,
-                password2: password2,
-                postcode: postcode,
-                extraTasks: extraTasks,
-                experience: experience,
-                profile: profile,
-                fullName: fullName,
-                mobileNumber: mobileNumber,
-                address: address,
-                city: city,
-                country: country,
-                income: income,
-                profile: profile
+      const postcode = req.body.postcode;
+      const extraTasks = req.body.extraTasks;
+      const experience = req.body.experience;
+      const profile = req.body.profile;
+      const fullName = req.body.fullname;
+      const mobileNumber = req.body.mobilenumber;
+      const address = req.body.address;
+      const city = req.body.city;
+      const country = req.body.country;
+      const income = req.body.income;
+      // let cleanerID = bcrypt.hashSync('fullName', 10);
+      let cleanerID = uuid();
+      console.log(cleanerID);
+      const profilePic = req.files['profilePic'][0].filename;
+      const nationalID = req.files['nationalID'][0].filename;
+      const healthInsurance = req.files['healthInsurance'][0].filename;
+      //const cleanerID = req.body._id;
 
+      req.checkBody('email', 'Email is required').notEmpty();
+      req.checkBody('email', 'Email is not valid').isEmail();
+      req.checkBody('password', 'Password is required').notEmpty();
+      req
+        .checkBody('password2', 'Passwords do not match')
+        .equals(req.body.password);
+      req.checkBody('postcode', 'Postcode is required').notEmpty();
+      req.checkBody('fullname', 'Your Full Name  is not valid').notEmpty();
+      req.checkBody('mobilenumber', 'Mobile Number is required').notEmpty();
+      req.checkBody('address', 'Addresss is required').notEmpty();
+      req.checkBody('city', 'City is required').notEmpty();
+      req.checkBody('country', 'Country is required').notEmpty();
+      req.checkBody('income', 'Your desired income is required').notEmpty();
+      req
+        .checkBody('experience', 'Your years of experience is required')
+        .notEmpty();
+      req.checkBody('profile', 'Your profile is required').notEmpty();
+      // req.checkBody('nationalID', 'Your means of identification is required').notEmpty();
+      // req.checkBody('healthInsurance', 'Your Health Insurance is required').notEmpty();
+
+      //Fields value Holder
+      var form = {
+        email: email,
+        password: password,
+        password2: password2,
+        postcode: postcode,
+        extraTasks: extraTasks,
+        experience: experience,
+        profile: profile,
+        fullName: fullName,
+        mobileNumber: mobileNumber,
+        address: address,
+        city: city,
+        country: country,
+        income: income,
+        profile: profile
+      };
+
+      let errors = req.validationErrors();
+
+      if (errors) {
+        res.render('cleaner_registration', {
+          errors: errors
+        });
+      } else {
+        let newUser = new Cleaner({
+          email: email,
+          cleanerID: cleanerID,
+          fullName: fullName,
+          password: password
+        });
+        let newUserDetails = new CleanerDetails({
+          email: email,
+          postcode: postcode,
+          mobileNumber: mobileNumber,
+          extraTasks: extraTasks,
+          experience: experience,
+          profile: profile,
+          profilePic: profilePic,
+          nationalID: nationalID,
+          healthInsurance: healthInsurance,
+          address: address,
+          fullName: fullName,
+          city: city,
+          country: country,
+          income: income,
+          cleanerID: cleanerID
+        });
+        let newCleanerWallet = new CleanerWallet({
+          cleanerID: cleanerID,
+          cleanerIncome: income
+        });
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) {
+              console.log(err);
             }
-
-            let errors = req.validationErrors();
-
-            if(errors){
+            //console.log('bcrypt stage reached');
+            newUser.password = hash;
+            newUser.save(err => {
+              if (err) {
+                console.log(err);
+                let errors = [
+                  { msg: 'This email address has been used by another user' }
+                ];
                 res.render('cleaner_registration', {
-                    errors:errors
+                  errors: errors,
+                  form: form
                 });
-            }
-            else{
-                let newUser = new Cleaner({
-                    email:email,
-                    cleanerID: cleanerID,
-                    password:password
-                });
-                let newUserDetails = new CleanerDetails({
-                    email: email,
-                    postcode: postcode,
-                    mobileNumber: mobileNumber,
-                    extraTasks: extraTasks,
-                    experience: experience,
-                    profile: profile,
-                    profilePic: profilePic,
-                    nationalID: nationalID,
-                    healthInsurance: healthInsurance,
-                    address: address,
-                    fullName: fullName,
-                    city: city,
-                    country: country,
-                    income: income,
-                    cleanerID: cleanerID,
-                });
-                let newCleanerWallet = new CleanerWallet({
-                    cleanerID: cleanerID,
-                    cleanerIncome: income
-                })
-                bcrypt.genSalt(10, (err, salt)=>{
-                    bcrypt.hash(newUser.password, salt, (err, hash)=>{
-                        if(err){
-                            console.log(err);
-                        }
-                        //console.log('bcrypt stage reached');
-                        newUser.password = hash;
-                        newUser.save((err)=>{
-                            if(err){
-                                console.log(err);
-                                let errors = [{msg: "This email address has been used by another user"}]
-                                res.render('cleaner_registration', {
-                                    errors: errors,
-                                    form: form
-                                });
-                                return;
-                            }else{
-                                //req.flash('success', 'You are now registered and can login');
-                                console.log('new user save function worked');
-                                newUserDetails.save((err) =>{
-                                    if(err){
-                                        console.log(err);
-                                        return;
-                                    }else {
-                                        newCleanerWallet.save((err)=>{
-                                            if(err){
-                                                console.log(err);
-                                                return;
-                                            }else{
-                                                req.flash('success', 'You are now registered and can login')
-                                                //res.redirect('/cleaner/cleaner_dashboard');
-                                                res.redirect('/cleaner/login');
-                                                console.log('upload successful!');
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        })
+                return;
+              } else {
+                //req.flash('success', 'You are now registered and can login');
+                console.log('new user save function worked');
+                newUserDetails.save(err => {
+                  if (err) {
+                    console.log(err);
+                    return;
+                  } else {
+                    newCleanerWallet.save(err => {
+                      if (err) {
+                        console.log(err);
+                        return;
+                      } else {
+                        req.flash(
+                          'success',
+                          'You are now registered and can login'
+                        );
+                        //res.redirect('/cleaner/cleaner_dashboard');
+                        res.redirect('/cleaner/login');
+                        console.log('upload successful!');
+                      }
                     });
+                  }
                 });
-            }
-            console.log('upload successful');
-        }
-      });
-    console.log('form submitted');
+              }
+            });
+          });
+        });
+      }
+      console.log('upload successful');
+    }
+  });
+  console.log('form submitted');
 });
 
-
 module.exports = router;
-

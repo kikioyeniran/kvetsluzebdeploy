@@ -22,7 +22,7 @@ router.get('/home/:id', (req, res) =>{
         //console.log(cleaner)
         var query = {cleanerID: cleaner.cleanerID};
         CleanerDetails.find((query), (err, cleaner_details)=>{
-            //console.log(cleaner_details[0].fullName);
+            console.log(cleaner);
             res.render('cleaner/cleaner_dashboard',{
                 cleaner: cleaner,
                 cleanerDetails: cleaner_details[0]

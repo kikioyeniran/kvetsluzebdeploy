@@ -24,6 +24,27 @@ License URL: https://creativecommons.org/licenses/by/4.0/
   margin-bottom: 10px;
 }
 
+#login-modal .modal-dialog {
+  margin-top: 170px;
+  width: 400px;
+}
+#myModal .modal-dialog {
+  margin-top: 170px;
+  width: 400px;
+}
+@media (max-width: 575px) {
+  #login-modal .modal-dialog {
+    margin-top: 100px;
+    width: 300px;
+    margin: 100px auto;
+  }
+  #myModal .modal-dialog {
+    margin-top: 100px;
+    width: 300px;
+    margin: 100px auto;
+  }
+}
+
 #report1 p > small {
   padding-top: 10px;
   color: #777;
