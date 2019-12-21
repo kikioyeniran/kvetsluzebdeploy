@@ -70,7 +70,7 @@ router.get('/:scheduleID/:cleanerID/:clientID', (req,res)=>{
                         let queryWallet2 = {cleanerID: CleanSpecID}
                         CleanerWallet.findOne((queryWallet2), (err, walletFound)=>{
                             let wallet = {};
-                            wallet.totalIncome = totalCharge + walletFound. totalIncome;
+                            wallet.totalIncome = totalCharge + walletFound.totalIncome;
                             wallet.expectedIncome = totalCharge;
                             CleanerWallet.updateOne(queryWallet, wallet, (err) =>{
                                 //console.log(clientID);
