@@ -34,7 +34,7 @@ block content
                                 //- p #{wallet.pendingPay[0]}
                             .modal-footer
                                 //- a.btn.btn-general.btn-blue.mr-2(href="https://payments.kvetsluzeb.com/"+ client._id +"/" + wallet.pendingPay[0].cleanerID + "/" + wallet.pendingPay[0].cleanDate + "/" + wallet.pendingPay[0].cost) Check Out
-                                a.btn.btn-general.btn-blue.mr-2(href="https://payment.kvetsluzeb.com?clientID="+ encodeURIComponent(client.clientID) +"&cleanerID=" + encodeURIComponent(wallet.pendingPay[0].cleanerID) + "&date=" + date + "&totalPaid=" + encodeURIComponent(wallet.pendingPay[0].cost) target="_blank") Proceed to Payment
+                                a.btn.btn-general.btn-blue.mr-2(href="https://payment.kvetsluzeb.com?clientID="+ encodeURIComponent(client.clientID) +"&cleanerID=" + encodeURIComponent(wallet.pendingPay.cleanerID) + "&date=" + date + "&totalPaid=" + encodeURIComponent(wallet.pendingPay.cost) target="_blank") Proceed to Payment
                                 //- button.btn.btn-default(type="button" data-dismiss="modal") Close
 
                 .col-sm-6
