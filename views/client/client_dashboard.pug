@@ -12,7 +12,7 @@ block content
         .col-md-3
           .card.hovercard
             .cardheader
-            .upload-form
+            .upload-form9
               form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
                 .avatar.image-upload
                   label(for="file-input")
@@ -104,6 +104,10 @@ block content
                             strong.mr-5
                               i.fa.fa-map-marker Address:
                             |    #{clientDetails.address}
+                          .form-group
+                            strong.mr-5
+                              i.fa.fa-clock-o Regular Cleaning Time:
+                            |    #{clientDetails.time}
                 #references.tab-pane.fade(role="tabpanel")
                   form(method='POST', action='/client/edit/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id))
                     .row.mx-2
@@ -138,6 +142,10 @@ block content
                           label.col-form-label(for="example-tel-input" style="width: 85px;") Mobile Number
                           .col-9
                             input#example-tel-input.form-control(type="tel" name="mobileNumber" value=clientDetails.mobileNumber)
+                        .form-group.row
+                          label.col-form-label(for="example-time-input" style="width: 85px;") Time For Cleaning
+                          .col-9
+                            input#example-time-input.form-control(type="time" name="time" value=clientDetails.time)
                         .form-group.row
                       button.btn.btn-general.btn-blue.special(type='submit') Update
 

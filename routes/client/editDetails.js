@@ -20,6 +20,7 @@ router.post('/:clientID/:id', (req, res) => {
   client.country = req.body.country;
   client.address = req.body.address;
   client.mobileNumber = req.body.mobileNumber;
+  client.time = req.body.time;
   let query = { clientID: req.params.clientID };
   console.log(query);
   console.log(req.params.clientID);

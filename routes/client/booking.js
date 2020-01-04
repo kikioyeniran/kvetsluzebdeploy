@@ -76,6 +76,7 @@ router.post('', (req, res) => {
       const keyHiddenPin = req.body.keyHiddenPin;
       const schedule = req.body.schedule;
       const date = req.body.date;
+      const time = req.body.time;
       const fullName = req.body.fullname;
       const mobileNumber = req.body.mobilenumber;
       const address = req.body.address;
@@ -165,6 +166,7 @@ router.post('', (req, res) => {
           bathrooms: bathrooms,
           extraTasks: extraTasks,
           dateFirstClean: date,
+          time: time,
           cleaningHours: hours,
           moreCleaningHours: more_hours,
           cleaningPriority: priority,

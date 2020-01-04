@@ -67,6 +67,8 @@ block content
                                                     button.btn.btn-danger.btn-sm Schedule Canceled
                                                 p.lead
                                                     | Total Hours: #{schedule.totalHours}
+                                                p.lead
+                                                    | Time: #{schedule.clientDetails.time}
                                             //- a.btn.btn-secondary(href="#") Go somewhere
                                 .card.mb-2
                                     -var newClass = schedule.clientDetails.fullName.split(" ")
@@ -87,7 +89,9 @@ block content
                                             p.lead
                                                 | Income per hour: &euro;#{cleanerDetails.income}
                                             p.lead
-                                                    | Total Hours: #{schedule.totalHours} Hours
+                                                | Total Hours: #{schedule.totalHours} Hours
+                                            p.lead
+                                                | Time: #{schedule.clientDetails.time}
                                             a.btn.btn-danger(href="/cleaner/cancelschedule/"+encodeURIComponent(scheduleID)+'/'+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(schedule.clientDetails.clientID)) Cancel
                                             a.btn.btn-primary.float-right(href="/cleaner/paymentrequest/"+encodeURIComponent(scheduleID)+'/'+encodeURIComponent(cleaner._id)+"/"+encodeURIComponent(schedule.clientDetails.clientID)) Request Payment
                                 .card.mb-2

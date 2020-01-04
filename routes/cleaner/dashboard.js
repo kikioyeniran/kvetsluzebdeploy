@@ -76,17 +76,26 @@ router.get('/cleaner_requests/:id', (req, res) => {
         .sort('-updated')
         .exec((err, request) => {
           if (empty(request)) {
-            res.render('cleaner/cleaner_requests', {
-              cleaner: cleaner,
-              cleanerDetails: cleaner_details[0],
-              requests: null
+            var clientQuery = { clientID: request.clientID };
+            ClientDetails.find(query, (err, clientDetails) => {
+              res.render('cleaner/cleaner_requests', {
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0],
+                requests: null,
+                clientDetails: clientDetails
+              });
             });
           } else {
-            console.log(request[0].dateFirstClean);
-            res.render('cleaner/cleaner_requests', {
-              cleaner: cleaner,
-              cleanerDetails: cleaner_details[0],
-              requests: request
+            // console.log(request[0].dateFirstClean);
+            var clientQuery = { clientID: request[0].clientID };
+            ClientDetails.find(clientQuery, (err, clientDetails) => {
+              console.log(clientDetails[0].time);
+              res.render('cleaner/cleaner_requests', {
+                cleaner: cleaner,
+                cleanerDetails: cleaner_details[0],
+                requests: request,
+                clientDetails: clientDetails[0]
+              });
             });
           }
         });

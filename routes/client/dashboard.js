@@ -144,17 +144,25 @@ router.get('/schedule/:id', (req, res) => {
       var query2 = { clientDetails: { _id: client_details[0]._id } };
       CleaningSchedule.find(query2, (err, schedule) => {
         console.log(schedule);
-        Cleaner.findById(schedule[0].cleanerID, (err, cleaner) => {
-          var query3 = { cleanerID: cleaner.cleanerID };
-          CleanerDetails.find(query3, (err, cleanerDetails) => {
-            res.render('client/client_calendar', {
-              client: client,
-              clientDetails: client_details[0],
-              schedule: schedule[0],
-              cleanerDetails: cleanerDetails[0]
+        if (empty(schedule)) {
+          res.render('client/client_calendar', {
+            client: client,
+            clientDetails: client_details[0],
+            schedule: null
+          });
+        } else {
+          Cleaner.findById(schedule[0].cleanerID, (err, cleaner) => {
+            var query3 = { cleanerID: cleaner.cleanerID };
+            CleanerDetails.find(query3, (err, cleanerDetails) => {
+              res.render('client/client_calendar', {
+                client: client,
+                clientDetails: client_details[0],
+                schedule: schedule[0],
+                cleanerDetails: cleanerDetails[0]
+              });
             });
           });
-        });
+        }
       });
     });
   });
