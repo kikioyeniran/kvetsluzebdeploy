@@ -9,6 +9,7 @@ const passport = require('passport');
 const multer = require('multer');
 const config = require('./config/database');
 
+//connect to DB
 mongoose.connect(config.database, {
   useNewUrlParser: true,
   useUnifiedTopology: true
