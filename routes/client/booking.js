@@ -75,8 +75,10 @@ router.post('', (req, res) => {
       const keySafePin = req.body.keySafePin;
       const keyHiddenPin = req.body.keyHiddenPin;
       const schedule = req.body.schedule;
-      const date = req.body.date;
+      let date = req.body.date;
       const time = req.body.time;
+      let [hours2, mins] = time.split(':');
+      date = date + hours2 * 1000 * 60 * 60 + mins * 1000 * 60;
       const fullName = req.body.fullname;
       const mobileNumber = req.body.mobilenumber;
       const address = req.body.address;
@@ -85,7 +87,7 @@ router.post('', (req, res) => {
       const profilePic = req.file.filename;
       // let clientID = bcrypt.hashSync('fullName', 10);
       let clientID = uuid();
-      console.log(date);
+      console.log(time, ' ', hours2, ' ', mins, ' ', date);
 
       req.checkBody('email', 'Email is required').notEmpty();
       req.checkBody('email', 'Email is not valid').isEmail();

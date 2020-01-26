@@ -6,27 +6,27 @@ const expressValidator = require('express-validator');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const multer  = require('multer');
-const config = require('./config/database')
+const multer = require('multer');
+const config = require('./config/database');
 
-mongoose.connect(config.database, {useNewUrlParser: true});
-let db  = mongoose.connection;
+mongoose.connect(config.database, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+let db = mongoose.connection;
 
 //Init App
 const app = express();
 
 //Check Connection
-db.once('open', () =>{
-    console.log('Connected to MongoDB');
+db.once('open', () => {
+  console.log('Connected to MongoDB');
 });
-
 
 //Check for DB errors
-db.on('error', (err) =>{
-    console.log(err);
+db.on('error', err => {
+  console.log(err);
 });
-
-
 
 //Load View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -34,46 +34,48 @@ console.log(path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //parse application/json
-app.use(bodyParser.json({limit: '20mb'}));
+app.use(bodyParser.json({ limit: '20mb' }));
 //Body Parse Middleware
 app.use(bodyParser.urlencoded({ extended: false, limit: '20mb' }));
-
-
 
 //Set Public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Express Session Middleware
-app.use(session({
+app.use(
+  session({
     secret: 'keyboard cat',
     saveUninitialized: true,
     resave: true
-  }));
+  })
+);
 
 //Express Mesages Middleware
 app.use(require('connect-flash')());
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
 //Express Validator Middleware
-app.use(expressValidator({
+app.use(
+  expressValidator({
     errorFormatter: function(param, msg, value) {
-        var namespace = param.split('.')
-        , root    = namespace.shift()
-        , formParam = root;
+      var namespace = param.split('.'),
+        root = namespace.shift(),
+        formParam = root;
 
-      while(namespace.length) {
+      while (namespace.length) {
         formParam += '[' + namespace.shift() + ']';
       }
       return {
-        param : formParam,
-        msg   : msg,
-        value : value
+        param: formParam,
+        msg: msg,
+        value: value
       };
     }
-  }));
+  })
+);
 
 //Passport Config
 require('./config/passport')(passport);
@@ -83,15 +85,15 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*', (req, res, next)=>{
+app.get('*', (req, res, next) => {
   res.locals.client = req.client || null;
   res.locals.cleaner = req.cleaner || null;
   next();
 });
 
 //Home route
-app.get('/', (req, res) =>{
-    res.render('index');
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 //Route Files
@@ -107,19 +109,18 @@ let cancelSchedule = require('./routes/cleaner/cancelSchedule');
 let wallet = require('./routes/cleaner/wallet');
 let cleanerPswd = require('./routes/cleaner/pswd');
 
-
 //Client Route Files
 let clientDashboard = require('./routes/client/dashboard');
 let clientBooking = require('./routes/client/booking');
 let clientBookingFinal = require('./routes/client/bookingFinal');
 let clientEdit = require('./routes/client/editDetails');
 let clientRenew = require('./routes/client/renewbooking');
-let clientLogin = require('./routes/client/login')
-let clientPswd = require('./routes/client/pswd')
-let clientTransactions = require('./routes/client/transactions')
+let clientLogin = require('./routes/client/login');
+let clientPswd = require('./routes/client/pswd');
+let clientTransactions = require('./routes/client/transactions');
 let cancelSchedule2 = require('./routes/client/cancelSchedule');
-let clientPay = require('./routes/client/pay')
-let clientSuccess = require('./routes/client/success')
+let clientPay = require('./routes/client/pay');
+let clientSuccess = require('./routes/client/success');
 
 //General Route File
 let public = require('./routes/public');
@@ -129,8 +130,8 @@ let ratings = require('./routes/ratings');
 //Admin Route Files
 let adminDashboard = require('./routes/admin/dashboard');
 let adminLogin = require('./routes/admin/login');
-let adminRegister = require('./routes/admin/register')
-let adminPswd = require('./routes/admin/pswd')
+let adminRegister = require('./routes/admin/register');
+let adminPswd = require('./routes/admin/pswd');
 
 //Cleaner Routes
 app.use('/cleaner/dashboard', cleanerDashboard);
@@ -169,5 +170,5 @@ app.use('/rating', ratings);
 
 //Start Server
 app.listen(5000, () => {
-    console.log('Server started on port 5000...')
+  console.log('Server started on port 5000...');
 });

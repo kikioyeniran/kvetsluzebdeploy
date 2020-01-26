@@ -40,6 +40,7 @@ router.post('/booking_final', (req, res) => {
   const address = req.body.address;
   const city = req.body.city;
   const country = req.body.country;
+  const time = req.body.time;
   const selectedCleaner0 = req.body.selectedCleaner0;
   const selectedCleaner1 = req.body.selectedCleaner1;
   const selectedCleaner2 = req.body.selectedCleaner2;
@@ -130,7 +131,8 @@ router.post('/booking_final', (req, res) => {
           dateFirstClean: dateFirstClean,
           selectedCleaners: selectedCleaners,
           selectedcleanerIDs: selectedcleanerIDs,
-          status: status
+          status: status,
+          time: time || '09:00'
         });
 
         newUser.save(err => {
