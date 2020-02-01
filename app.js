@@ -12,7 +12,8 @@ const config = require('./config/database');
 //connect to DB
 mongoose.connect(config.database, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 let db = mongoose.connection;
 
