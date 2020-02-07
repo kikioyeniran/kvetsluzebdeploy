@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
   //res.render('admin/dashboard')
 });
 
-//Route for All Clients Page
+// Route for All Clients Page
 router.get('/clients/:id', (req, res) => {
   Admin.findById(req.params.id, (err, admin) => {
     //console.log(admin);
@@ -48,6 +48,19 @@ router.get('/clients/:id', (req, res) => {
     });
   });
 });
+
+// router.get('/clients/:id', (req, res) => {
+//   Admin.findById(req.params.id, (err, admin) => {
+//     //console.log(admin);
+//     Client.find({}, (err, clients) => {
+//       //var active = true;
+//       res.render('admin/allClients', {
+//         admin: admin,
+//         clients: clients
+//       });
+//     });
+//   });
+// });
 
 //Route for All Cleaners Page
 router.get('/cleaners/:id', (req, res) => {
@@ -150,6 +163,20 @@ router.delete('/deleteclient/:clientid', (req, res) => {
     }
   });
 });
+
+// router.delete('/deleteclient/:clientid', (req, res) => {
+//   console.log(req.params.clientid);
+//   let query = { clientID: req.params.clientid };
+
+//   Client.deleteOne(query, err => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.send('Success');
+//     }
+//   });
+// });
+
 //Route for Delete Cleaner
 router.delete('/deletecleaner/:cleanerid', (req, res) => {
   let query = { cleanerID: req.params.cleanerid };

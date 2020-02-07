@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const path = require('path');
 const uuid = require('uuid-random');
+const moment = require('moment');
 //Bring in Client Models
 let Client = require('../../models/client');
 let ClientDetails = require('../../models/clientDetails');
@@ -78,7 +79,11 @@ router.post('', (req, res) => {
       let date = req.body.date;
       const time = req.body.time;
       let [hours2, mins] = time.split(':');
-      date = date + hours2 * 1000 * 60 * 60 + mins * 1000 * 60;
+      date = moment(date)
+        .add(hours2, 'h')
+        .add(mins, 'm')
+        .toDate();
+      console.log(date);
       const fullName = req.body.fullname;
       const mobileNumber = req.body.mobilenumber;
       const address = req.body.address;
@@ -87,7 +92,7 @@ router.post('', (req, res) => {
       const profilePic = req.file.filename;
       // let clientID = bcrypt.hashSync('fullName', 10);
       let clientID = uuid();
-      console.log(time, ' ', hours2, ' ', mins, ' ', date);
+      // console.log(time, ' ', hours2, ' ', mins, ' ', date);
 
       req.checkBody('email', 'Email is required').notEmpty();
       req.checkBody('email', 'Email is not valid').isEmail();

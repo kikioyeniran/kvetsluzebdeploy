@@ -16,10 +16,10 @@ let CleaningSchedule = require('../../models/cleaningSchedule');
 //Client Dashboard route
 router.get('/home/:id', (req, res) => {
   Client.findById(req.params.id, (err, client) => {
-    //console.log(client)
+    console.log(client);
     var query = { clientID: client.clientID };
     ClientDetails.find(query, (err, client_details) => {
-      //console.log(client_details[0]);
+      // console.log(client_details[0]);
       res.render('client/client_dashboard', {
         client: client,
         clientDetails: client_details[0]
