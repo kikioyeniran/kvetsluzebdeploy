@@ -35,10 +35,10 @@ html
                 img.img-fluid(src="/img/mainlogo.png" alt="")
               br
               h4.text-center RESET YOUR PASSWORD
-              form(method="POST", action='/client/pswd/resetpswd')
+              form(method="POST", action='/client/pswd/resetpswd/'+token)
                 .form-group
                   label(for="username") Enter New Password
-                  input#username.form-control(type="text" placeholder="Enter Password" name="password")
+                  input#username.form-control(type="password" placeholder="Enter Password" name="password")
                 .form-group
                   label(for="exampleInputEmail1") Confirm New Password
                   input#example-password-input.form-control(type="password" name="password2")

@@ -9,6 +9,24 @@ block content
                         h4.card-title #{cleanerDetails.fullName}
                     .card-block
                         h4.card-title #{cleanerDetails.email}
+                    .card-block
+                        h4.card-title Cleaner Account Details
+                        hr
+                        h6.card-line
+                            strong Account Name :
+                            |  #{cleanerAcct.acctName}
+                        hr
+                        h6.card-line
+                            strong IBAN :
+                            |  #{cleanerAcct.ibanNumber}
+                        hr
+                        h6.card-line
+                            strong Total Income :
+                            |  #{cleanerAcct.totalIncome}
+                        hr
+                        h6.card-line
+                            strong Income Per Hour :
+                            | &euro; #{cleanerAcct.cleanerIncome}
                     .card-footer
                         small Last updated #{cleanerDetails.updated}
                         //- button.btn.btn-info.float-right.btn-sm View Details
@@ -48,11 +66,11 @@ block content
                     hr
                     h6.card-line
                         strong City:
-                        | #{cleanerDetails.city}
-                    hr
-                    h6.card-line
-                        strong Income:
-                        | &euro; #{cleanerDetails.income}
+                    //-     | #{cleanerDetails.city}
+                    //- hr
+                    //- h6.card-line
+                    //-     strong Income:
+                    //-     | &euro; #{cleanerDetails.income}
                     hr
                     h6.card-line
                         strong National ID:
