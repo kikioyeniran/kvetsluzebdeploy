@@ -14,7 +14,7 @@ router.post(
     failureFlash: true
   }),
   function(req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     res.redirect('/client/dashboard/home/' + req.user.id);
   }
 );
