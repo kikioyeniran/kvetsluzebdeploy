@@ -32,6 +32,7 @@ router.post('', (req, res) => {
   });
 
   function checkFileType(files, cb) {
+    // console.log(file);
     // Allowed ext
     const filetypes = /jpeg|jpg|png|gif/;
     // Check ext
@@ -198,6 +199,7 @@ router.post('', (req, res) => {
             if (err) {
               console.log(err);
             }
+            file;
             //console.log('bcrypt stage reached');
             newUser.password = hash;
             newUser.save(err => {

@@ -16,6 +16,7 @@
     "bower": "^1.8.8",
     "connect-flash": "^0.1.1",
     "date-and-time": "^0.9.0",
+    "exif-image-auto-rotation": "^1.0.3",
     "express": "^4.17.1",
     "express-messages": "^1.0.1",
     "express-session": "^1.16.2",

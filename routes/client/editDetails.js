@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+// const fs = require('fs');
+// const Jimp = require('jimp');
+// const modifyExif = require('modify-exif');
+const autoRotate = require('exif-image-auto-rotation');
 var empty = require('is-empty');
 const multer = require('multer');
 const path = require('path');
@@ -38,7 +42,10 @@ router.post('/:clientID/:id', (req, res) => {
 });
 
 router.post('/images/:clientID/:id', (req, res) => {
-  console.log('form submitted');
+  console.log(req.path);
+
+  const image_path = req.path;
+  autoRotate(image_path);
   const storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function(req, file, cb) {
@@ -64,6 +71,7 @@ router.post('/images/:clientID/:id', (req, res) => {
       cb('Error: Images only!');
     }
   }
+
   // Initialise Upload
   const upload = multer({
     storage: storage,
@@ -109,4 +117,5 @@ router.post('/images/:clientID/:id', (req, res) => {
     }
   });
 });
+
 module.exports = router;
