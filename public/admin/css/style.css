@@ -91,6 +91,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
   /* background-color: black; */
   border-radius: 50%;
 }
+.myImage {
+  display: none;
+}
 
 /* When you mouse over the container, fade in the overlay icon*/
 .container-pic:hover .overlay {

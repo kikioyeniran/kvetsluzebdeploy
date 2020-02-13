@@ -7,13 +7,15 @@ block content
         .col-md-3
           .card.hovercard
             .cardheader
+            script(src='')
             .upload-form
               form(method='POST', action='/client/edit/images/'+encodeURIComponent(client.clientID)+'/'+encodeURIComponent(client._id), enctype="multipart/form-data")
                 .avatar.image-upload
                   label(for="file-input")
                     .container-pic
                       .overlay
-                        img.img-fluid.image(alt="" title="Click Image to Update Picture" src="/uploads/"+clientDetails.profilePic)
+                        img.img-fluid.image#myPic(alt="" title="Click Image to Update Picture" src="/uploads/"+clientDetails.profilePic)
+
                         //- a.icon(href="#" title="Click Image to Update Picture")
                           i.fa.fa-user
                   input#file-input(type="file" name="profilePic")
@@ -74,6 +76,7 @@ block content
 
                       .row.mt-3
                         h5.col-12.mb-2 User Info
+                          //- img#myPic2(alt="" width='700' src="/uploads/"+clientDetails.profilePic)
                         .col-6
                           .form-group
                             strong.mr-5

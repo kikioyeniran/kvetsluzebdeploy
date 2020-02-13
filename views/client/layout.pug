@@ -75,7 +75,7 @@ html
 
                         li.nav-item.dropdown
                             a#profile.nav-link.logout(data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="..." style="height: 30px; width: 30px;")
+                                img.img-fluid.rounded-circle#mini2(src="/uploads/"+clientDetails.profilePic alt="..." style="height: 30px; width: 30px;")
                             ul.dropdown-menu.profile(aria-labelledby="profile")
                                 li
                                     a.dropdown-item.d-flex(rel="nofollow" href="#")
@@ -121,7 +121,7 @@ html
             nav.side-navbar
                 .sidebar-header.d-flex.align-items-center
                     .avatar.image-upload
-                        img.img-fluid.rounded-circle(src="/uploads/"+clientDetails.profilePic alt="...")
+                        img.img-fluid.rounded-circle#mini(src="/uploads/"+clientDetails.profilePic alt="...")
 
                     .title
                         h1.h4= clientDetails.fullName
@@ -172,10 +172,12 @@ html
     script(src="/admin/js/bootstrap.min.js")
     script(src="/admin/js/jquery.cookie.js")
     script(src="/admin/js/jquery.validate.min.js")
+    script(src="/admin/js/jquery-image-blob.min.js")
     script(src='/js/multiform/vendor/jquery-validation/dist/jquery.validate.min.js')
     script(src="/admin/js/chart.min.js")
     script(src="/admin/js/front.js")
     script(src="/admin/js/faq.js")
+    script(src="/admin/js/autorotate.js")
     script(src="/js/active.js")
     script(src="/js/script.js")
     script(src="/js/client.js")

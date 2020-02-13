@@ -14,7 +14,7 @@ block content
                   label(for="file-input")
                     .container-pic
                       .overlay
-                        img.img-fluid.image(alt="" title="Click Image to Update Picture" src="/uploads/"+cleanerDetails.profilePic )
+                        img.img-fluid.image#myPic(alt="" title="Click Image to Update Picture" src="/uploads/"+cleanerDetails.profilePic )
                         //- a.icon(href="#" title="Click Image to Update Picture")
                           i.fa.fa-user
                   input#file-input(type="file" name="profilePic")

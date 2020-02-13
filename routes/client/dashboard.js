@@ -3,7 +3,6 @@ const router = express.Router();
 var empty = require('is-empty');
 const keys = require('../../config/keys');
 const stripe = require('stripe')(keys.stripeSecretKey);
-
 //Bring in Client Models
 let Client = require('../../models/client');
 let Cleaner = require('../../models/cleaner');
@@ -23,6 +22,7 @@ router.get('/home/:id', (req, res) => {
       res.render('client/client_dashboard', {
         client: client,
         clientDetails: client_details[0]
+        // img: image
       });
     });
   });
